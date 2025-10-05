@@ -38,17 +38,18 @@
         const tall_array_to = [23, 76, 88, 13, 56, 90, 42]
 
         //Din kode for å løse problem 3 her.
-         function gjennomsnitt(array) {
-      if (array.length === 0) {
-      }
-      const sum = array.reduce((acc, tall) => acc + tall, 0);
-      return sum / array.length;
-    }
-    const avg1 = gjennomsnitt(tall_array_en);
-    const avg2 = gjennomsnitt(tall_array_to);
+    let score1 = [85, 90, 78, 92, 88];
+    let scores2 = [23, 76, 88, 13, 56, 90, 42];
 
-    document.getElementById('resultat1').textContent = avg1
-    document.getElementById('resultat2').textContent = avg2
+const calculateAverage = arr => arr.reduce((sum, value) => sum + value, 0) / arr.length;
+
+let averageScore = calculateAverage(scores2);
+
+
+
+console.log(`The average score is ${averageScore}`); // Output: The average score is 86.6
+document.getElementById('resultat1').textContent = tall_array_en;
+document.getElementById('resultat2').textContent = averageScore;
   </script>
 </body>
 </html>

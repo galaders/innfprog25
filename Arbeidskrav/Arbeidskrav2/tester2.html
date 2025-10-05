@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ let scores = [85, 90, 78, 92, 88];
+
+const calculateAverage = arr => arr.reduce((sum, value) => sum + value, 0) / arr.length;
+
+let averageScore = calculateAverage(scores);
+
+console.log(`The average score is ${averageScore}`); // Output: The average score is 86.6
+  </script>
+</body>
+</html>
