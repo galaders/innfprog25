@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planlegging</title>
+</head>
+<body>
+    <section>
+        <h2>logg inn</h2>
+        <label for="email">
+            e-post:
+            <input type="text" id="email">
+        </label>
+         <label for="password"></label>
+            password:
+            <input type="text" id="password">
+        </label>
+        <button id="loginbtn"> logg inn</button>
+        <a href="#">Glemt passord?</a>
+    </section>
+
+    <script>
+
+        const users = [
+            {
+                email: "kjetilen@hiof.no",
+                password: "tester"
+            }
+        ]
+        //LOGIN
+        //TA IMOT INPUT FRA BRUKER
+
+        //BUTTON
+        function verifyUser(){
+            //EPOST VERDI/VALUE
+            const eMail = document.getElementById("email").value
+            //PASSORD VERDI/VALUE
+            const password = document.getElementById("password").value
+             //SENDE INFORMASJON OG SJEKKE ETTER BRUKER
+                 //FILTER 
+                 const filteredUser = users.filter(user => users.email === eMail && user.password === password)
+                //IF
+                //Hvis filteredUser (0) er tom skal noe skje
+                if(!filteredUser.length[0]){
+                    console.log("Feil e-post eller passord")
+                    //Hvis ikke, skal noe annet skje
+                } else {
+                    console.log("logget inn med" + eMail)
+                }
+        }
+        //Lagre knapp i variabel
+        const loginbtn = document.getElementById("loginbtn")
+
+        // lytte etter klikk
+        loginbtn.addEventListener("click", () => {
+            verifyUser()
+        })
+
+        //LINK
+            //SENDE BRUKER TIL SKJEMA FOR GLEMT PASSORD        
+
+
+
+    </script>
+</body>
+</html>

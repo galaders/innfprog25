@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Øvingsoppgave 4 - variabler</title>
+</head>
+<body>
+    <p id="maillink"></p>
+    <script>
+        //Create variables
+        const name = "kjetil"
+        const email = "kjetil@hiof.no"
+
+        //Build the email link with template literal:
+        const emailLink = `<a href="mailto:${email}">Send mail til ${name}</a>`
+        //Print the email link to the HTML element with id maillink
+        document.getElementById("maillink").innerHTML = emailLink
+    </script>
+    
+</body>
+</html>

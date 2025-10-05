@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Øvingsoppgave 2</title>
+</head>
+<body>
+    <p id="setning"></p>
+
+    <script>
+        //Lag variabel med array:
+        const dyr = ["Hund", "Katt", "Måke", "Hest", "Pinnsvin", "Ekorn", "Sau", "Geit", "Gris", "Ku"]
+        //Lag oversatt array:
+        const animals = ["Dog","Cat","Seagul","Horse","Hedgehog","Squirrel","Sheep","Goat", "Pig","Cow"]
+
+        const dyrIndex1 = 2
+        const dyrIndex2 = 7
+
+        //Template literal med dyrene og oversettelser på index 2 og 8
+        const tekst = `${dyr[dyrIndex1]} er et dyr. Det heter ${animals[dyrIndex1]} på engelsk. 
+        ${dyr[dyrIndex2]} er også et dyr, som heter ${animals[dyrIndex2]} på engelsk.`
+
+        //Skriv ut setningen til p#utskrift:
+        document.getElementById("setning").innerHTML = tekst
+    </script>
+    
+</body>
+</html>

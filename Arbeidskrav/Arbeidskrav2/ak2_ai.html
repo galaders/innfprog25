@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Arbeidskrav 2</h1>
+    <p>Denne nettsiden skal ha noen ulike funksjoner, som beskrevet i <a href="https://hiof.instructure.com/courses/9942/assignments/46701" target="_blank">oppgaveteksten i canvas.</a></p>
+    <h2>Problem 1</h2>
+    <p>Tilfeldig hexadesimal fargekode: <span id="random_color"></span></p>
+    <h2>Problem 2</h2>
+    <p>Finnes ordet "betingelse" i Programmeringsord-arrayen? <span id="betingelse_sjekk"></span></p>
+    <p>Finnes ordet "algoritme" i Programmeringsord-arrayen? <span id="algoritme_sjekk"></span></p>
+    <p>Finnes ordet "problemløsning" i Programmeringsord-arrayen? <span id="problemlosning_sjekk"></span></p>
+    <h2>Problem 3</h2>
+    <p>Gjennomsnittet av tallene i tall_array_en er <span id="resultat1"></span></p>
+    <p>Gjennomsnittet av tallene i tall_array_to er <span id="resultat2"></span></p>
+
+    <script>
+        //PROBLEM 1
+        
+        //AI-kode for å løse problem 1 her.
+
+        //PROBLEM 2
+        const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
+
+        //AI-kode for å løse problem 2 her.
+        // Definerer en liste med ord
+        const ordListe = [
+            "betingelse",
+            "løkke",
+            "funksjon",
+            "variabel",
+            "algoritme",
+            "objekt",
+            //"problemlosning" siste for ja men har av for å vise at nei funker //
+        ];
+
+        // Funksjon som sjekker om ordet finnes i ordListe
+        function sjekkOrd(ord) {
+            return ordListe.includes(ord) ? "Ja" : "Nei";
+        }
+    </script>
+</head>
+<body>
+  
+
+    <script>
+        // Kjører sjekkOrd på de tre ordene og skriver resultatet i HTML
+        document.getElementById("betingelse_sjekk")
+            .innerText = sjekkOrd("betingelse");
+
+        document.getElementById("algoritme_sjekk")
+            .innerText = sjekkOrd("algoritme");
+
+        document.getElementById("problemlosning_sjekk")
+            .innerText = sjekkOrd("problemlosning");
+    
+
+        //PROBLEM 3
+          const tall_array_en = [2, 4, 6, 8, 10];
+          const tall_array_to = [5, 10, 15];
+
+        //AI-kode for å løse problem 3 her.
+         function gjennomsnitt(arr) {
+      if (arr.length === 0) {
+        return 0; // Håndterer tom array
+      }
+      const sum = arr.reduce((acc, tall) => acc + tall, 0);
+      return sum / arr.length;
+    }
+    const avg1 = gjennomsnitt(tall_array_en);
+    const avg2 = gjennomsnitt(tall_array_to);
+
+    // Skriver resultatene til HTML
+    document.getElementById('resultat1').textContent = avg1;
+    document.getElementById('resultat2').textContent = avg2;
+    //document.getElementById('resultat1').textContent = åsne den ai ville lage dette men vi har denne text på p over i head
+      'Gjennomsnittet av tall_array_en er ' + avg1;
+    //document.getElementById('resultat2').textContent = åsne den ai ville lage dette men vi har denne text på p over i head
+      'Gjennomsnittet av tall_array_to er ' + avg2;
+    </script>
+    
+</body>
+</html>

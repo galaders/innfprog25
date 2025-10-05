@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Øvingsoppgave 1</title>
+  </head>
+  <body>
+    <p id="utskrift"></p>
+    <!--Gjort klar en <p>-tag med id utskrift som kan skrives til via JavaScript -->
+    <script>
+      //Deklarerer en variabel kalt navn med verdien kjetil som en tekststreng
+      const navn = "kjetil"
+      //Gjør klar en variabel utskrift som skal inneholde teksten vi skal skrive ut
+      let utskrift
+
+      //Så gjør vi en if-test. Hvis variabelen navn inneholder tekststrengen "kjetil", er dette riktig.
+      //Da kan jeg skrive ut at jeg heter dette.
+      //Men, hvis navn inneholder hva som helst annet enn "kjetil" (else), skal vi skrive ut "Jeg heter ikke NAVN Karlsen"
+      if (navn === "kjetil") {
+        utskrift = "Mitt navn er " + navn + " engvold"
+      } else {
+        utskrift = "Jeg heter ikke " + navn + " engvold"
+      }
+      //Når if-testen er ferdig kan vi skrive ut det som ligger lagret i variabelen utskrift til HTML-elementet med id utskrift
+      document.getElementById("utskrift").innerHTML = utskrift
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Gjennomsnitt av tall</title>
+</head>
+<body>
+  <h1>Eksempel: Beregning av gjennomsnitt</h1>
+  <p id="resultat1"></p>
+  <p id="resultat2"></p>
+
+  <script>
+    // Funksjon som tar en array av tall og returnerer gjennomsnittet
+    function gjennomsnitt(arr) {
+      if (arr.length === 0) {
+        return 0; // Håndterer tom array
+      }
+      const sum = arr.reduce((acc, tall) => acc + tall, 0);
+      return sum / arr.length;
+    }
+
+    // Eksempel-arrayer
+   const tall_array_en = [2, 4, 6, 8, 10];
+    const tall_array_to = [5, 10, 15];
+
+    // Kjører funksjonen på eksempel-arrayene
+    const avg1 = gjennomsnitt(tall_array_en);
+    const avg2 = gjennomsnitt(tall_array_to);
+
+    // Skriver resultatene til HTML
+    document.getElementById('resultat1').textContent =
+      'Gjennomsnittet av tall_array_en er ' + avg1;
+    document.getElementById('resultat2').textContent =
+      'Gjennomsnittet av tall_array_to er ' + avg2;
+  </script>
+</body>
+</html>
