@@ -34,22 +34,21 @@
         document.getElementById("random_color").innerHTML = minTilfeldigeFarge
 
         //PROBLEM 3
-        const tall_array_en = [9, 13, 5, 62, 11, 6, 28, 31, 17]
-        const tall_array_to = [23, 76, 88, 13, 56, 90, 42]
+    
 
         //Din kode for å løse problem 3 her.
-    let score1 = [85, 90, 78, 92, 88];
-    let scores2 = [23, 76, 88, 13, 56, 90, 42];
+          const grades = [80, 77, 88, 95, 68];
+          const grades2 = [85, 90, 78, 92, 88];
 
-const calculateAverage = arr => arr.reduce((sum, value) => sum + value, 0) / arr.length;
+function getAvg(grades) {
+  if (grades.length === 0) return 'Empty grades array';
+  return grades.reduce((acc, c) => acc + c, 0) / grades.length;
+}
 
-let averageScore = calculateAverage(scores2);
-
-
-
-console.log(`The average score is ${averageScore}`); // Output: The average score is 86.6
-document.getElementById('resultat1').textContent = tall_array_en;
-document.getElementById('resultat2').textContent = averageScore;
+console.log(getAvg(grades));
+console.log(getAvg(grades2));
+document.getElementById('resultat1').textContent = grades;
+document.getElementById('resultat2').textContent = grades2;
   </script>
 </body>
 </html>
