@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const grades = [80, 77, 88, 95, 68];
+const grades2 = [85, 90, 78, 92, 88];
+
+function getAvg(grades) {
+  if (grades.length === 0) return 'Empty grades array';
+  return grades.reduce((acc, c) => acc + c, 0) / grades.length;
+}
+
+console.log(getAvg(grades));
+console.log(getAvg(grades2));
+    </script>
+    
+</body>
+</html>
