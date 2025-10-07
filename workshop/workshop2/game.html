@@ -77,7 +77,7 @@
         //PREPARE GAME CONFIG AND VARIABLES
         //TODO: config
         const gameConfig = {
-            playerName: "Jostein",
+            playerName: "",
             energy: 10,
             points: 4000,
             duration: 30
@@ -96,23 +96,35 @@
         
 
         //(BONUS) TODO: function for all prints
-        function updateStaticUI() {
-            //TODO: print playerinfo to HTML
-            if(gameConfig.playerName === "") {
-                document.getElementById("playerName").innerHTML = "Waiting for player..."
-            } else {
-                document.getElementById("playerName").innerHTML = gameConfig.playerName
+        function updateStaticUI(){
+        //TODO: print playerinfo to HTML
+        //Vi kan lagre HTML-elementer i variabler for lettere testing/kontroll i logg.
+        let playerNameHTML = document.getElementById("playerName")
+
+        if(gameConfig.playerName === ""){
+            document.getElementById("playerName").innerHTML = "Waiting for player..."
+            // Her tvinger vi gameConfig-verdiene til å være 0 dersom spiller ikke er "logget inn"
+            for(key in gameConfig){
+                gameConfig[key] = 0
             }
-            document.getElementById("energy").innerHTML = gameConfig.energy
-            document.getElementById("points").innerHTML = gameConfig.points
-            document.getElementById("duration").innerHTML = gameConfig.duration
-            
-            //TODO: print notebook info to HTML
-            document.getElementById("variables").innerHTML = notebook.variables
-            document.getElementById("loops").innerHTML = notebook.loops
-            document.getElementById("functions").innerHTML = notebook.functions
-            document.getElementById("arrays").innerHTML = notebook.arrays
+            for(key in notebook){
+                notebook[key] = 0
+            }
+        } else {
+            document.getElementById("playerName").innerHTML = gameConfig.playerName
         }
+
+        document.getElementById("energy").innerHTML = gameConfig.energy
+        document.getElementById("points").innerHTML = gameConfig.points
+        document.getElementById("duration").innerHTML = gameConfig.duration
+
+
+        //TODO: print notebook info to HTML
+        document.getElementById("variables").innerHTML = notebook.variables
+        document.getElementById("arrays").innerHTML = notebook.arrays
+        document.getElementById("loops").innerHTML = notebook.loops
+        document.getElementById("functions").innerHTML = notebook.functions
+    }
 
         updateStaticUI()
     </script>
