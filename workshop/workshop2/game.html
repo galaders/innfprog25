@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +32,7 @@
         </nav>
     </header>
     <main>
-        
+
         <section id="notebook">
             <div id="notebook-page">
                 
@@ -75,9 +76,9 @@
     </main>
     <script>
         //PREPARE GAME CONFIG AND VARIABLES
-        //TODO: config
+        // Config-objekt
         const gameConfig = {
-            playerName: "",
+            playerName: "Thor",
             energy: 10,
             points: 4000,
             duration: 30
@@ -85,7 +86,7 @@
 
         console.log(gameConfig)
        
-        //TODO: notebook
+        // Notebook-objekt
         const notebook = {
             variables: 2,
             loops: 4,
@@ -93,12 +94,9 @@
             arrays: 7
         }
 
-        
-
-        //(BONUS) TODO: function for all prints
         function updateStaticUI(){
-        //TODO: print playerinfo to HTML
-        //Vi kan lagre HTML-elementer i variabler for lettere testing/kontroll i logg.
+        // Print playerinfo to HTML
+        // Vi kan lagre HTML-elementer i variabler for lettere testing/kontroll i logg.
         let playerNameHTML = document.getElementById("playerName")
 
         if(gameConfig.playerName === ""){
@@ -119,7 +117,7 @@
         document.getElementById("duration").innerHTML = gameConfig.duration
 
 
-        //TODO: print notebook info to HTML
+        // Print notebook info to HTML
         document.getElementById("variables").innerHTML = notebook.variables
         document.getElementById("arrays").innerHTML = notebook.arrays
         document.getElementById("loops").innerHTML = notebook.loops
@@ -127,6 +125,77 @@
     }
 
         updateStaticUI()
+
+        //TODO: Oppgave 1. Lag en funksjon for å skjule/vise notatblokk og informasjonsskjerm.
+        // #notebook
+        // #info
+
+        function toggleVisibility(elementid){
+            const elem = document.getElementById(elementid)
+
+            console.log(elem)
+            if(elem.classList.contains("hidden")){
+                elem.style.display = "block"
+                elem.classList.remove("hidden")
+            } else {
+                elem.style.display = "none"
+                elem.classList.add("hidden")
+            }
+        }
+
+        toggleVisibility("info")
+
+        //TODO: Oppgave 2. Endre synlighet på notatbok og info-tekst med tastaturet.
+        document.addEventListener("keydown", (event) => {
+            if(event.code === "KeyN"){
+                toggleVisibility("notebook")
+            } else if(event.code === "KeyI"){
+                toggleVisibility("info")
+            }
+        })
+
+        //TODO: Oppgave 3. Bytt onClick fra oppgave 1 med addEventListeners.
+        const infoTogglerBtn = document.getElementById("infoToggler")
+        infoTogglerBtn.addEventListener("click", () => {
+            toggleVisibility("info")
+        })
+
+        const notebookTogglerBtn = document.getElementById("notebookToggler")
+        notebookTogglerBtn.addEventListener("click", () => {
+            toggleVisibility("notebook")
+        })
+
+        //TODO: Oppgave 4. Funksjon for å oppdatere HTML-utskrift av én konfigurasjonsverdi.
+        function updateSingleStaticUI(elementid, value){
+            document.getElementById(elementid).innerHTML = value
+        }
+
+        updateSingleStaticUI("points", 10)
+        updateSingleStaticUI("energy", 60)
+
+        //TODO: Oppgave 5. Funksjon for å oppdatere konfigurasjonsverdier.
+
+        function updateConfigValue(obj, configType, value){
+            console.log(configType)
+            obj === "notebook" ? notebook[configType] += value : gameConfig[configType] += value
+            
+            // obj === "gameConfig" ? gameConfig[configType] += value : null
+
+            // configType === "variables" ? notebook.variables += value : null
+            // configType === "arrays" ? notebook.arrays += value : null
+            // configType === "loops" ? notebook.loops += value : null
+            // configType === "functions" ? notebook.functions += value : null
+
+            // configType === "energy" ? gameConfig.energy += value : null
+            // configType === "points" ? gameConfig.points += value : null
+            // configType === "duration" ? gameConfig.duration += value : null
+
+            updateStaticUI()
+        }
+
+        updateConfigValue("notebook" ,"variables", 10)
+        updateConfigValue("notebook", "arrays", 40)
+        updateConfigValue("bjarne", "energy", 100)
     </script>
 </body>
 </html>
