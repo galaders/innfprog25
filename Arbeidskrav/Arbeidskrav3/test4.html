@@ -6,6 +6,9 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Rekursiv utskrift av tall</h1>
+    <ul id="numberList">
+        <li>Tall vil skrives ut her.</li>
     <script>
         function randomNumberBetween1And9() {
     return Math.floor(Math.random() * 9) + 1;
@@ -26,6 +29,7 @@ function recursivelySelectNumbers(numberList = []) {
 // Initialiserer rekursjon og skriver ut listen når den er ferdig.
 const list = recursivelySelectNumbers();
 console.log("Final list of numbers:", list);
+//document.getElementById('numberList').textContent = randomNumberBetween1And9;
     </script>
 </body>
 </html>
