@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Rekursiv tilfeldig tall</title>
+</head>
+<body>
+  <ul id="numberList"></ul>
+
+  <script>
+    // Henter referanse til UL-elementet
+    const listElement = document.getElementById('numberList');
+    console.log(addRandomNumber)
+
+    // Rekursiv funksjon
+    function addRandomNumber() {
+      // Generer tall mellom 1 og 9
+      const num = Math.floor(Math.random() * 9) + 1 ;
+
+      // Lag nytt list item og legg til i DOM
+      const listItem = document.createElement('addRandomNumber');
+      listItem.textContent = num;
+      listElement.appendChild(listItem);
+
+      // Sjekk stoppbetingelse
+      if (num === 4 || num === 7) {
+        return; // Base case: stopp rekursjon
+      }
+
+      // Rekursivt kall
+      addRandomNumber();
+    }
+
+    // Start rekursjonen
+    addRandomNumber();
+  </script>
+</body>
+</html>
