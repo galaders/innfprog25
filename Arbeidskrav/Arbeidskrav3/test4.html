@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function randomNumberBetween1And9() {
+    return Math.floor(Math.random() * 9) + 1;
+}
+
+function recursivelySelectNumbers(numberList = []) {
+    const number = randomNumberBetween1And9();
+    numberList.push(number);
+    console.log(`Chosen number: ${number}`);
+    
+    if (number === 4 || number === 7) {
+        return numberList;
+    } else {
+        return recursivelySelectNumbers(numberList);
+    }
+}
+
+// Initialiserer rekursjon og skriver ut listen når den er ferdig.
+const list = recursivelySelectNumbers();
+console.log("Final list of numbers:", list);
+    </script>
+</body>
+</html>
