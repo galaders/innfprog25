@@ -8,31 +8,31 @@
   <ul id="numberList"></ul>
 
   <script>
-    // Henter referanse til UL-elementet
-    const listElement = document.getElementById('numberList');
-    console.log(addRandomNumber)
 
-    // Rekursiv funksjon
-    function addRandomNumber() {
-      // Generer tall mellom 1 og 9
-      const num = Math.floor(Math.random() * 9) + 1 ;
-
-      // Lag nytt list item og legg til i DOM
-      const listItem = document.createElement('addRandomNumber');
-      listItem.textContent = num;
-      listElement.appendChild(listItem);
-
-      // Sjekk stoppbetingelse
-      if (num === 4 || num === 7) {
+ // Henter referanse til UL-elementet
+  
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+  let randomInt = getRandomInt(1, 9);
+    if (num === 4 || num === 7) {
         return; // Base case: stopp rekursjon
       }
 
       // Rekursivt kall
-      addRandomNumber();
+      getRandomInt();
     }
 
     // Start rekursjonen
-    addRandomNumber();
+    getRandomInt();
+
+
+let randomInt = getRandomInt(1, 9);
+console.log(randomInt);
+document.getElementById("numberList").innerHTML = randomInt
+
+
   </script>
 </body>
 </html>
