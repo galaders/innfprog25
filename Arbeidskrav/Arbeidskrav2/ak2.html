@@ -32,6 +32,28 @@
         }    
         const minTilfeldigeFarge = genererTilfeldigHexFarge();
         document.getElementById("random_color").innerHTML = minTilfeldigeFarge
+        
+        //PROBLEM 2
+        const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
+
+
+        //kode for å løse problem 2 her.
+        let answer = document.getElementById("betingelse_sjekk")
+        let answer2 = document.getElementById("algoritme_sjekk")
+        let answer3 = document.getElementById("problemlosning_sjekk")
+
+        function answer_check(word,id_name){
+
+        if(programming_words.includes(word)=== true){
+            id_name.innerHTML = "Ja"
+        } else {
+            id_name.innerHTML = "Nei"
+        }
+    }
+
+    answer_check("betingelse", answer)
+    answer_check("algoritme", answer2)
+    answer_check("problemlosning", answer3)
 
         //PROBLEM 3
         const tall_array_en = [9, 13, 5, 62, 11, 6, 28, 31, 17]

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Pong</title>
+    <style>
+        *{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="Pong"></canvas>
+
+    <script>
+        const canvas = document.getElementById("Pong")
+        const ctx = canvas.getContext("2d")
+
+        console.log(window)
+
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+
+        const racket = {
+            width: canvas.width / 30,
+            height: canvas.height / 3,
+        }
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.width / 2,
+            radius: 10
+        }
+
+        ctx.beginPath()
+        //spiler 1
+        ctx.rect(racket.width, (canvas.height - racket.height) / 2, racket.width, racket.height)
+        ctx.fill()
+        ctx.closePath()
+        
+        //spiler 2
+        ctx.rect(canvas.width - (racket.width * 2), (canvas.height - racket.height) / 2, racket.width, racket.height)
+        ctx.fill()
+        ctx.closePath()
+
+        ctx.beginPath()
+        ctx.arc(ball.x -ball.radius, ball.y, ball.radius, 0, 2 * Math.PI)
+        ctx.fill()
+        ctx.closePath()
+
+        ctx.beginPath()
+        ctx.moveTo(0,0)
+        ctx.lineTo(canvas.width, canvas.height)
+        ctx.moveTo(canvas.width, 0)
+        ctx.lineTo(0, canvas.height)
+
+        ctx.stroke()
+   
+   </script> 
+</body>
+</html>

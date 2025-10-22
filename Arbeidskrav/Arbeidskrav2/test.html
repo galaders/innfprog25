@@ -1,37 +1,47 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Gjennomsnitt av tall</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <h1>Eksempel: Beregning av gjennomsnitt</h1>
-  <p id="resultat1"></p>
-  <p id="resultat2"></p>
+    <h1>Arbeidskrav 2</h1>
+    <p>Denne nettsiden skal ha noen ulike funksjoner, som beskrevet i <a href="https://hiof.instructure.com/courses/9942/assignments/46701" target="_blank">oppgaveteksten i canvas.</a></p>
+    <h2>Problem 1</h2>
+    <p>Tilfeldig hexadesimal fargekode: <span id="random_color"></span></p>
+    <h2>Problem 2</h2>
+    <p>Finnes ordet "betingelse" i Programmeringsord-arrayen? <span id="betingelse_sjekk"></span></p>
+    <p>Finnes ordet "algoritme" i Programmeringsord-arrayen? <span id="algoritme_sjekk"></span></p>
+    <p>Finnes ordet "problemløsning" i Programmeringsord-arrayen? <span id="problemlosning_sjekk"></span></p>
+    <h2>Problem 3</h2>
+    <p>Gjennomsnittet av tallene i tall_array_en er <span id="avg_array_one"></span></p>
+    <p>Gjennomsnittet av tallene i tall_array_to er <span id="avg_array_to"></span></p>
 
-  <script>
-    // Funksjon som tar en array av tall og returnerer gjennomsnittet
-    function gjennomsnitt(arr) {
-      if (arr.length === 0) {
-        return 0; // Håndterer tom array
-      }
-      const sum = arr.reduce((acc, tall) => acc + tall, 0);
-      return sum / arr.length;
+    <script>
+        //PROBLEM 2
+        const programming_words = ["variabel","funksjon","array","objekt","loop","betingelse","klasse","rekursjon","algoritme","kompilator"]
+
+        //Din kode for å løse problem 2 her.
+        let answer = document.getElementById("betingelse_sjekk")
+        let answer2 = document.getElementById("algoritme_sjekk")
+        let answer3 = document.getElementById("problemlosning_sjekk")
+
+        function answer_check(word,id_name){
+
+        if(programming_words.includes(word)=== true){
+            id_name.innerHTML = "Ja"
+        } else {
+            id_name.innerHTML = "Nei"
+        }
     }
 
-    // Eksempel-arrayer
-   const tall_array_en = [2, 4, 6, 8, 10];
-    const tall_array_to = [5, 10, 15];
+    answer_check("betingelse", answer)
+    answer_check("algoritme", answer2)
+    answer_check("problemløsning", answer3)
 
-    // Kjører funksjonen på eksempel-arrayene
-    const avg1 = gjennomsnitt(tall_array_en);
-    const avg2 = gjennomsnitt(tall_array_to);
 
-    // Skriver resultatene til HTML
-    document.getElementById('resultat1').textContent =
-      'Gjennomsnittet av tall_array_en er ' + avg1;
-    document.getElementById('resultat2').textContent =
-      'Gjennomsnittet av tall_array_to er ' + avg2;
-  </script>
+
+    </script>
 </body>
 </html>
