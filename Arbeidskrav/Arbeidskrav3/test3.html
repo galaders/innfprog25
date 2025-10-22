@@ -1,90 +1,85 @@
 <!doctype html>
-<html>
-<head><meta charset="utf-8"><title>Passordgenerator</title></head>
+<html lang="no">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Rekursiv tilfeldig tall</title>
+	<style>
+		body { font-family: Arial, Helvetica, sans-serif; padding: 24px; }
+		button { margin-right: 8px; }
+		ul { margin-top: 12px; }
+		.log { margin-top: 12px; color: #333; }
+	</style>
+</head>
 <body>
-  <h3>Passordgenerator</h3>
-  <label>Lengde: <input id="len" type="number" value="6" min="1" max="20"></label><br>
-  <label>Store/små/ Begge:
-    <select id="case">
-      <option value="both">Begge</option>
-      <option value="lower">Bare små</option>
-      <option value="upper">Bare store</option>
-    </select>
-  </label><br>
-  <label><input id="special" type="checkbox" checked> Tillat spesialtegn</label><br>
-  <button id="gen">Generer</button>
-  <p>Passord: <code id="out"></code></p>
+	<h1>Rekursiv tilfeldig tall (1–9)</h1>
+	<p>Trykk på <strong>Start</strong> for å begynne. Funksjonen velger et tilfeldig tall mellom 1 og 9, legger det til i listen og kaller seg selv på nytt. Den stopper når tallet <strong>4</strong> eller <strong>7</strong> blir valgt.</p>
 
-  <script>
-    // Lim inn generatePassword og avhengige funksjoner her (fra passordgenerator.js)
-    const CHAR_SETS = {
-      lower: 'abcdefghijklmnopqrstuvwxyz',
-      upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-      digits: '0123456789',
-      special: '!@#$%^&*()-_=+[]{}|;:,.<>?/~`'
-    };
+	<button id="startBtn">Start</button>
+	<button id="clearBtn">Tøm</button>
 
-    function getCharset({ useLower, useUpper, useDigits = true, useSpecial }) {
-      let chars = '';
-      if (useLower) chars += CHAR_SETS.lower;
-      if (useUpper) chars += CHAR_SETS.upper;
-      if (useDigits) chars += CHAR_SETS.digits;
-      if (useSpecial) chars += CHAR_SETS.special;
-      return chars;
-    }
+	<ul id="numbersList" aria-live="polite"></ul>
+	<div class="log" id="log"></div>
 
-    function secureRandomInt(max) {
-      const array = new Uint32Array(1);
-      const limit = Math.floor(0xFFFFFFFF / max) * max;
-      let r;
-      do {
-        crypto.getRandomValues(array);
-        r = array[0];
-      } while (r >= limit);
-      return r % max;
-    }
+	<script>
+		// Velger tilfeldig tall i intervallet [min, max]
+		function randomInt(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
 
-    function generatePassword(options) {
-      const length = Number(options.length) || 12;
-      if (!Number.isInteger(length) || length <= 0) {
-        throw new Error('Lengde må være et positivt heltall');
-      }
+		// Rekursiv funksjon som legger til et tall i listen og stopper hvis tallet er 4 eller 7
+		function addRandomUntilStop(listElement, logElement) {
+			const n = randomInt(1, 9);
 
-      let useLower = false;
-      let useUpper = false;
-      if (options.case === 'lower') useLower = true;
-      else if (options.case === 'upper') useUpper = true;
-      else useLower = useUpper = true;
+			const li = document.createElement('li');
+			li.textContent = n;
+			listElement.appendChild(li);
 
-      const charset = getCharset({
-        useLower,
-        useUpper,
-        useDigits: true,
-        useSpecial: Boolean(options.allowSpecial)
-      });
+			logElement.textContent = `Valgt: ${n}`;
 
-      if (!charset) throw new Error('Ingen gyldige tegn valgt for passordet');
+			// Stopp-betingelse: hvis n er 4 eller 7, ikke kall funksjonen igjen
+			if (n === 4 || n === 7) {
+				const endMsg = document.createElement('div');
+				endMsg.textContent = `Stopper fordi tallet ${n} ble valgt.`;
+				logElement.appendChild(endMsg);
+				return; // stopper rekursjon
+			}
 
-      let pwd = '';
-      for (let i = 0; i < length; i++) {
-        const idx = secureRandomInt(charset.length);
-        pwd += charset[idx];
-      }
+			// Bruk setTimeout for å gi en liten pause mellom kallene slik at UI oppdateres
+			setTimeout(() => addRandomUntilStop(listElement, logElement), 200);
+		}
 
-      return pwd;
-    }
+		// Koble knapper
+		const startBtn = document.getElementById('startBtn');
+		const clearBtn = document.getElementById('clearBtn');
+		const numbersList = document.getElementById('numbersList');
+		const log = document.getElementById('log');
 
-    document.getElementById('gen').addEventListener('click', () => {
-      try {
-        const length = parseInt(document.getElementById('len').value, 10);
-        const kase = document.getElementById('case').value;
-        const allowSpecial = document.getElementById('special').checked;
-        const pwd = generatePassword({ length, case: kase, allowSpecial });
-        document.getElementById('out').textContent = pwd;
-      } catch (e) {
-        document.getElementById('out').textContent = 'Feil: ' + e.message;
-      }
-    });
-  </script>
+		let running = false;
+
+		startBtn.addEventListener('click', () => {
+			if (running) return; // unngå multiple kjøringer samtidig
+			running = true;
+			log.textContent = '';
+			addRandomUntilStop(numbersList, log);
+
+			// Når stopp-betingelsen er nådd, funksjonen avslutter og running settes ikke eksplisitt til false.
+			// Vi observerer endringer i listen for å sette running = false når avsluttet.
+			const observer = new MutationObserver(() => {
+				const last = numbersList.lastElementChild;
+				if (last && (last.textContent === '4' || last.textContent === '7')) {
+					running = false;
+					observer.disconnect();
+				}
+			});
+			observer.observe(numbersList, { childList: true });
+		});
+
+		clearBtn.addEventListener('click', () => {
+			numbersList.innerHTML = '';
+			log.textContent = '';
+			running = false;
+		});
+	</script>
 </body>
 </html>
