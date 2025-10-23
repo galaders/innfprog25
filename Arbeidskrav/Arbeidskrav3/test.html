@@ -1,40 +1,99 @@
-<!DOCTYPE html>
-<html lang="no">
+<!doctype html>
+<html lang="nb">
 <head>
-  <meta charset="UTF-8">
-  <title>Rekursiv tilfeldig tall</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Passordgenerator</title>
+  <style>
+    body { font-family: system-ui, Arial; max-width: 640px; margin: 32px auto; padding: 0 16px; }
+    label { display: block; margin: 8px 0 4px; font-weight: 600; }
+    input[type="number"] { width: 80px; }
+    .row { display: flex; gap: 12px; align-items: center; margin: 8px 0; }
+    .output { margin-top: 12px; font-family: monospace; padding: 8px; background:#f4f4f4; border-radius:4px; word-break:break-all; }
+    button { margin-top: 12px; padding: 8px 12px; }
+  </style>
 </head>
 <body>
-  <h1>Rekursiv utskrift av tall</h1>
-    <ul id="numberList">
-        <li>Tall vil skrives ut her.</li>
+  <h3>Passordgenerator</h3>
+
+  <label for="length">Lengde</label>
+  <input id="length" type="number" min="4" max="60" value="16" />
+
+  <label>Bokstavvalg</label>
+  <div class="row">
+    <label><input type="radio" name="case" value="lower" checked /> Bare små bokstaver</label>
+    <label><input type="radio" name="case" value="upper" /> Bare store bokstaver</label>
+    <label><input type="radio" name="case" value="both" /> Begge deler</label>
+  </div>
+
+  <label><input id="special" type="checkbox" /> Inkluder spesialtegn</label>
+
+  <div class="row">
+    <button id="generate">Generer passord</button>
+  </div>
+
+  <div class="output" id="result" aria-live="polite">Her vises passordet</div>
 
   <script>
+    // Tegnsett
+    const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const DIGITS = '0123456789';
+    const SPECIAL = '!@#$%^&*()-_=+[]{}<>/?|\\:;,.~`';
 
- // Henter referanse til UL-elementet
-  
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-  let randomInt = getRandomInt(1, 9);
-    if (num === 4 || num === 7) {
-        return; // Base case: stopp rekursjon
-      }
+    // Hent elementer
+    const lengthInput = document.getElementById('length');
+    const specialInput = document.getElementById('special');
+    const generateBtn = document.getElementById('generate');
+    const resultDiv = document.getElementById('result');
 
-      // Rekursivt kall
-      getRandomInt();
+    // Funksjon som returnerer valgt bokstavsett
+    function getLetterSet() {
+      const caseChoice = document.querySelector('input[name="case"]:checked').value;
+      if (caseChoice === 'lower') return LOWER;
+      if (caseChoice === 'upper') return UPPER;
+      return LOWER + UPPER;
     }
 
-    // Start rekursjonen
-    getRandomInt();
+    // Sikrere tilfeldig tallgenerator om tilgjengelig
+    function secureRandomInt(max) {
+      if (window.crypto && window.crypto.getRandomValues) {
+        const array = new Uint32Array(1);
+        window.crypto.getRandomValues(array);
+        return array[0] % max;
+      }
+      return Math.floor(Math.random() * max);
+    }
 
+    // Generer passord
+    function generatePassword(length, includeSpecial) {
+      if (length <= 0) return '';
+      let charset = getLetterSet() + DIGITS;
+      if (includeSpecial) charset += SPECIAL;
+      // Sørg for at det finnes minst ett tegn i charset
+      if (!charset.length) throw new Error('Tegnsett er tomt');
+      // Bygg passord
+      let out = '';
+      for (let i = 0; i < length; i++) {
+        const idx = secureRandomInt(charset.length);
+        out += charset.charAt(idx);
+      }
+      return out;
+    }
 
-let randomInt = getRandomInt(1, 9);
-console.log(randomInt);
-document.getElementById("numberList").innerHTML = randomInt
-
-
+    // Hendelser
+    generateBtn.addEventListener('click', () => {
+      const length = Math.max(1, Math.min(60, Number(lengthInput.value) || 16));
+      const includeSpecial = specialInput.checked;
+      try {
+        const pwd = generatePassword(length, includeSpecial);
+        resultDiv.textContent = pwd;
+      } catch (err) {
+        resultDiv.textContent = 'Feil ved generering: ' + err.message;
+      }
+    });
+    
+    
   </script>
 </body>
 </html>

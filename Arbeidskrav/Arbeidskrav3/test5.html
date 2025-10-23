@@ -12,19 +12,14 @@
     </ul>
 
     <script>
-        /*
-            Hva er en rekursiv funksjon?
-
-            --Ditt svar her. Husk kilder--
-        */
-            // Din kode her
+        
        function numbere(min, max){
            const minnumber = Math.floor(min);
            const maxnumber = Math.floor(max);
            return Math.floor(Math.random() * (maxnumber - minnumber) + minnumber);
        }
         function numberSelector(){
-           
+            // Din kode her
             let randomnumber = numbere(1, 10)
 
             document.getElementById("numberList").innerHTML += randomnumber
@@ -37,7 +32,8 @@
 
         }
         numberSelector()
-        
+
+
     </script>
 </body>
 </html>
