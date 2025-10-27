@@ -3,76 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animasjon i canvas</title>
+    <title>Canvas Animasjon</title>
+    <style>
+        #drawing-area{
+            border: 2px solid black;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="drawingarea"></canvas>
+    <canvas id="drawing-area"></canvas>
     <script>
-        const canvas = document.getElementById("drawingarea")
+        const canvas = document.getElementById("drawing-area")
+        canvas.width = 800
+        canvas.height = 600
 
         const ctx = canvas.getContext("2d")
 
-        canvas.width = 800
-        canvas.height = 600
+        const speed = 5
 
         const ball = {
             x: canvas.width / 2,
             y: canvas.height / 2,
-            radius: 20,
-            speedX: 5,
-            speedY: 5
+            radius: 30,
+            speedX: -speed,
+            speedY: speed,
         }
 
-        
-        requestAnimationFrame =
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
+        const paddle = {
+            x: 100,
+            y: 100,
+            w: 100,
+            h: 100
+        }
+
+        requestAnimationFrame = window.requestAnimationFrame ||
         window.msRequestAnimationFrame ||
-        window.mozRequestAnimationFrame
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame
 
-       
-        
+        function draw(){
 
-        function drawBall(){
+            //Kollisjonsdeteksjon
+            //Vegger og tak
+            ball.x + ball.radius >= canvas.width ? ball.speedX = ball.speedX * -1 : null
+            ball.x - ball.radius <= 0 ? ball.speedX = ball.speedX * -1 : null
 
-            if(ball.y + ball.radius > canvas.height){
-                
-            ball.speedY = - ball.speedY
+            ball.y + ball.radius >= canvas.height ? ball.speedY = ball.speedY * -1 : null
+            ball.y - ball.radius <= 0 ? ball.speedY = ball.speedY * -1 : null
+
+            //if(ball.x <= paddle.x && ball.y >= paddle.y && ball.y <=0){
+            //    ball.speedX *= -1
+            //}
+
+            if(ball.x <= paddle.x + paddle.w && ball.y <= paddle.y + paddle.h){
+                ball.speedX *= -1
             }
-            if(ball.x + ball.radius > canvas.width){
-                ball.speedX = -ball.speedX
+
+            if(ball.x <= paddle.x && ball.y <= paddle.y + paddle.h){
+                ball.speedX *= -1
             }
-            if(ball.y <= 0 + ball.radius){
-                ball.speedY = ball.speedY * -1
+
+            if(ball.y <= paddle.y + paddle.h && ball.x <= paddle.x + paddle.w){
+                ball.speedY *= -1
             }
-            if(ball.x - ball.radius <=0){
-                ball.speedX = ball.speedX * -1
+
+            if(ball.y <= paddle.y && ball.x <= paddle.x + paddle.w){
+                ball.speedY *= -1
             }
+            
 
 
             ball.x += ball.speedX
             ball.y += ball.speedY
 
-            
-        ctx.clearRect(0,0, canvas.width, canvas.height)    
-        ctx.beginPath()
-        ctx.fillStyle = "#003366"
-        ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI)
-        ctx.fill()
-        ctx.closePath()
 
+            //Tegn ballen
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            ctx.beginPath()
+            ctx.fillStyle = "#003366"
+            ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI)
+            ctx.fill()
+            ctx.closePath()
 
-        requestAnimationFrame(drawBall)
-    }
+            ctx.beginPath()
+            ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h)
+            ctx.fill()
+            ctx.closePath()
+            requestAnimationFrame(draw)
+        }
 
-    drawBall()
-
-        // setInterval(() => {
-        //     ball.x += 1
-        //     drawBall()
-        //     console.log(ball.x, ball.y)
-        // }, 1000)
-
-    </script>    
+        draw()
+    </script>
 </body>
 </html>
