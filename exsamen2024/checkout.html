@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="ikoner/css/fontawesome.css" rel="stylesheet">
+    <link href="ikoner/css/brands.css" rel="stylesheet">
+    <link href="ikoner/css/solid.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Forside</title>
+</head>
+<body>
+    <div id="grid-container">
+        <header id="global-header">
+                <form>
+                    <label for="search"></label>
+                    <input type="search" placeholder="Søk her" id="search">
+                    <input type="submit" value="søk">
+                </form>
+                <ul class="flex-menu" id="menu">
+                    <li><a href="index.html">Hjem</a></li>
+                    <li><a href="index.html#popular-products">Produkter</a></li>
+                    <li><a href="index.html"><h1>logo</h1></a></li>
+                    <li><a href="index.html#popular-categories">Kategorier</a></li>
+                    <li><a href="#contact">Kontakt oss</a></li>
+                    <li><a href="#"><i class="fa-regular fa-user"></i></a>
+                    <li><a href="#"><i class="fa-regular fa-heart"></i></a></li>
+                    <li><a href="checkout.html"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                </ul>
+        </header>
+        <main>
+            <h2>Kasse</h2>
+            <h2>1. SHOPPINGBAGEN DIN</h2>
+            <article class="product-card">
+                <picture>
+                    <img src="bilder/techprist.jpg" alt="Tech">
+                </picture>
+            </article>
+            <a href="product.html">Produkt navn</a>
+                <p>Kr 1999</p>
+                <p>Farge: Rød</p>
+                <article class="product-card">
+                    <picture>
+                        <img src="bilder/techprist.jpg" alt="Tech">
+                    </picture>
+                </article>
+                <a href="product.html">Produkt navn</a>
+                    <p>Kr 1999</p>
+                    <p>Farge: Rød</p>
+                    <article class="product-card">
+                        <picture>
+                            <img src="bilder/techprist.jpg" alt="Tech">
+                        </picture>
+                    </article>
+                    <a href="product.html">Produkt navn</a>
+                        <p>Kr 1999</p>
+                        <p>Farge: Rød</p>
+                        <article>
+                            <h2>2. DINE OPPLYSNINGER</h2>
+                            <P>Leveringsadresse</P>
+                        </article>
+        <form id="opplysninger">
+            <label>
+                <input type="text" class="opplysninger-knapp" pattern="[A-Za-zæøåÆØÅ ]{2,}" required placeholder="Fornavn*"> 
+            </label>
+            <label>
+                <input type="text" class="opplysninger-knapp" pattern="[A-Za-zæøåÆØÅ ]{2,}" required placeholder="Ettrnavn*"> 
+            </label>
+            <label>
+                <input type="text" class="opplysninger-knapp" pattern="[A-Za-zæøåÆØÅ ]{2,}" required placeholder="Gateadresse*"> 
+            </label>
+            <label>
+                <input type="number" class="opplysninger-knapp" min="1" max="9999" required placeholder="postnummer*"> 
+            </label>
+            <label for="city"></label> 
+            <input type="text" id="city" class="opplysninger-knapp" required placeholder="poststed">
+                <button>Lagre</button>
+                <a href="#">Avbryt</a>
+        </form>
+            <form id="Levering">
+                <h2>3. Levering</h2>
+                <p>LEVERINGSVALG</p>
+                 <label>
+                    <input type="radio" name="valg">
+                    Express Hjemlevering
+                </label> 
+                <label>
+                    <input type="radio" name="valg">
+                    Express Pakke til utleveringssted
+                </label>   
+                <label>
+                    <input type="radio" name="valg">
+                    Standard Hjemlevering
+                </label>     
+            </form>
+            <section id="bettaling"> 
+                <form>
+                <h2>Bettaling</h2>
+                <p>BETAL MED KORT</p>
+                <p>Kortnummer</p>
+                <label>
+                    <input type="number" id="cardnumber" min="1000000000000000" max="9999999999999999" required placeholder="342342****4435">
+                </label>
+                <p> Utløpsdato</p>
+                <label>
+                    <input type="date"> 
+                </label>
+                <p>CVC/CVV</p>
+                <label for="cvc">
+                    <input type="text" id="cvc" required placeholder="CVC/CVV"> 
+                </label>
+                <article id="betaling-boks">
+                    <p>A betale inkl. mva.</p>
+                    <p>1 199kr</p>
+                    <input type="submit" value="Fullfør kjøp">
+                    <p>Du bekrefter herved at opplysningene og dokumentene du har oppgitt er korrekte og fullstendige. Leverandøren forbeholder seg retten til å heve eller avslutte avtaleforholdet dersom det foreligger uriktige eller ufullstendige opplysninger.</p>
+                   <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                        </label> 
+                    </li>
+                    <li>
+                        <p>Ja takk! Send nyhetsbrev til meg</p>
+                    </li>
+                   </ul>
+                   <ul>
+                    <li>
+                        <label>
+                            <input type="checkbox">
+                        </label> 
+                    </li>
+                    <li>
+                        <p>Jeg ønsker å motta textmeldinger med tilbud og nyheter</p>
+                    </li>
+                   </ul>
+                </article>
+                
+            </form>
+        </section>
+           
+        </main>
+           
+        <footer id="global-footer">
+            <a href="index.html"><h3>logo</h3></a>
+            <h3> at vero eos et accusam et justo duo dolores et ea rebum</h3>
+            <h3 id="contact"> Kontakt</h3>
+            <article class="sosiale">
+                <i class="fa-solid fa-location-pin"></i> <h3> Andresse: Dia veien 2, 1489 random </h3>
+            </article>
+            <article class="sosiale">
+                <i class="fa-solid fa-phone"></i> <h3> telefon: ** ** ** **</h3> 
+            </article>
+            <article class="sosiale">
+                <i class="fa-solid fa-envelope"></i> <h3> e-post: random@live.no</h3>
+            </article>
+            <article class="sosiale">
+                <i class="fa-solid fa-clock"></i> <h3> åpningstider: Stenger 16.00</h3>
+            </article>
+            <h3> snarveier</h3>
+            <ul id="footer-list">
+            <li><a href="index.html#popular-products">Produkter</a></li>
+            <li><a href="index.html#popular-categories">Kategorier</a></li>
+            <li><a href="#contact">Kontakt oss</a></li>
+            <li><a href="Erklæringslink/Mal-WCAG.pdf" target="_blank">Erklæringslink</a></li>
+            </ul>
+            <h3> Sosiale Medier</h3>
+            <ul class="flex-fotter" id="#">
+            <li><i class="fa-brands fa-instagram"></i></li>
+            <li><i class="fa-brands fa-facebook"></i></li>
+            <li><i class="fa-brands fa-invision"></i></li>
+            <li><i class="fa-brands fa-pinterest"></i></li>
+        </ul> 
+        </footer>
+    </div>    
+</body>
+</html>

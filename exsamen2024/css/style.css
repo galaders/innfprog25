@@ -1,0 +1,212 @@
+
+
+#global-header {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.opplysninger-knapp{
+    width: 100%;
+}
+
+
+#banner {
+    display: flex; 
+    flex-wrap: wrap; 
+    background-color: gray;
+    justify-content: right;
+    text-align: right;
+    img {
+        max-width: 70%; 
+    }
+}
+
+#banner h2,p,button{
+    margin: 10px;
+}
+
+#banner button{
+    padding: 10px;
+}
+
+.banner-button{
+   background-color: white;
+   color: black;
+   text-align: center;
+   justify-content: space-evenly;
+   background-color: white;
+   color: black;
+   text-align: center;
+   display: flex;
+   gap: 1rem;
+   justify-content: space-evenly;
+
+}
+.banner-button button{
+    border: black 1px solid;
+    padding: 10px;
+}
+
+.populære-produkter{
+    background-color: white;
+    color: black;
+    justify-content: center;
+    display: flex;
+}
+#banner div h2{
+    font-size: 1rem;
+}
+
+
+img {
+    width: 100%; 
+    max-width: 400px;
+}
+
+
+.flex-menu {
+   
+    list-style: none;
+    margin-bottom: 30px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+
+.flex-menu a {
+    text-decoration: none;
+    color: #000;
+}
+
+.flex-space-b {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+    margin-bottom: 30px;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+    text-decoration: none;
+    color: black;    
+
+}
+
+.product-card a{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.anmeldelser-bilde{
+    border: black 1px solid;
+    margin-bottom: 30px;
+}
+
+.anmeldelser-bilde img{
+    max-width: 150px;
+    border: black;
+    box-shadow: 1px;
+}
+
+
+.category-card {
+    width: 100%; 
+    box-shadow: 13px 9px 20px 0px #efefef; 
+    border-radius: 4px; 
+}
+
+.product-card h3{
+    border: black 1px solid;
+    padding: 10px;
+    text-align: center;
+    min-height: 50px;
+}
+
+.sosiale h3{
+display: inline;
+}
+
+.flex-fotter {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: inherit;
+}
+
+
+#global-footer{
+    border-top: black 1px solid;;
+}
+
+
+#footer-list ul,a{
+    text-decoration: none;
+    list-style: none;
+    color: black;
+    padding: 0px;
+}
+
+
+
+#bettaling form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#bettaling form input{
+    width: 100%;
+}
+
+
+#betaling-boks{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#betaling-boks ul{
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#betaling-boks ul li{
+    max-width: 76%;
+}
+
+#opplysninger{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#Levering{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+}
