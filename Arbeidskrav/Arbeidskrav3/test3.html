@@ -1,85 +1,68 @@
-<!doctype html>
-<html lang="no">
+<html>
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Rekursiv tilfeldig tall</title>
-	<style>
-		body { font-family: Arial, Helvetica, sans-serif; padding: 24px; }
-		button { margin-right: 8px; }
-		ul { margin-top: 12px; }
-		.log { margin-top: 12px; color: #333; }
-	</style>
+
 </head>
 <body>
-	<h1>Rekursiv tilfeldig tall (1–9)</h1>
-	<p>Trykk på <strong>Start</strong> for å begynne. Funksjonen velger et tilfeldig tall mellom 1 og 9, legger det til i listen og kaller seg selv på nytt. Den stopper når tallet <strong>4</strong> eller <strong>7</strong> blir valgt.</p>
+    <div class="container">
+        <h1>Passord generator</h1>
+        <label>
+            Passord Lengde:
+            <input id="len" min="6" type="number" value="12" />
+        </label>
+        <br />
+        <label>
+            <input id="upper" type="checkbox" checked /> Begge deler
+        </label>
+        <br />
+        <label>
+            <input id="upper" type="checkbox" checked /> Bare små bokstaver"
+        </label>
+        <br />
+        <label>
+            <input id="upper" type="checkbox" checked /> Bare store bokstaver"
+        </label>
+        <br />
+        <label>
+            <input id="nums" type="checkbox" checked /> Inkluder number
+        </label>
+        <br />
+        <label>
+            <input id="special" type="checkbox" checked /> Inkluder spesialtegn
+        </label>
+        <br />
+        <button class="btn" onclick="generate()">Generer passord</button>
+        <div class="output" id="passOut">Her vises passordet</div>
+    </div>
+    <script>
+        function genPass(len, upper, nums, special) {
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numChars = "0123456789";
+            const specialChars = "!@#$%^&*()-_=+[]{}|;:,.<>?";
+            let chars = lower;
 
-	<button id="startBtn">Start</button>
-	<button id="clearBtn">Tøm</button>
+            if (upper) chars += upperChars;
+            if (nums) chars += numChars;
+            if (special) chars += specialChars;
 
-	<ul id="numbersList" aria-live="polite"></ul>
-	<div class="log" id="log"></div>
+            let pass = "";
+            for (let i = 0; i < len; i++) {
+                const randIdx = Math.floor(Math.random() * chars.length);
+                pass += chars[randIdx];
+            }
 
-	<script>
-		// Velger tilfeldig tall i intervallet [min, max]
-		function randomInt(min, max) {
-			return Math.floor(Math.random() * (max - min + 1)) + min;
-		}
+            return pass;
+        }
+        function generate() {
+            const len = parseInt(document.getElementById("len").value);
+            const upper = document.getElementById("upper").checked;
+            const nums = document.getElementById("nums").checked;
+            const special = document.getElementById("special").checked;
 
-		// Rekursiv funksjon som legger til et tall i listen og stopper hvis tallet er 4 eller 7
-		function addRandomUntilStop(listElement, logElement) {
-			const n = randomInt(1, 9);
-
-			const li = document.createElement('li');
-			li.textContent = n;
-			listElement.appendChild(li);
-
-			logElement.textContent = `Valgt: ${n}`;
-
-			// Stopp-betingelse: hvis n er 4 eller 7, ikke kall funksjonen igjen
-			if (n === 4 || n === 7) {
-				const endMsg = document.createElement('div');
-				endMsg.textContent = `Stopper fordi tallet ${n} ble valgt.`;
-				logElement.appendChild(endMsg);
-				return; // stopper rekursjon
-			}
-
-			// Bruk setTimeout for å gi en liten pause mellom kallene slik at UI oppdateres
-			setTimeout(() => addRandomUntilStop(listElement, logElement), 200);
-		}
-
-		// Koble knapper
-		const startBtn = document.getElementById('startBtn');
-		const clearBtn = document.getElementById('clearBtn');
-		const numbersList = document.getElementById('numbersList');
-		const log = document.getElementById('log');
-
-		let running = false;
-
-		startBtn.addEventListener('click', () => {
-			if (running) return; // unngå multiple kjøringer samtidig
-			running = true;
-			log.textContent = '';
-			addRandomUntilStop(numbersList, log);
-
-			// Når stopp-betingelsen er nådd, funksjonen avslutter og running settes ikke eksplisitt til false.
-			// Vi observerer endringer i listen for å sette running = false når avsluttet.
-			const observer = new MutationObserver(() => {
-				const last = numbersList.lastElementChild;
-				if (last && (last.textContent === '4' || last.textContent === '7')) {
-					running = false;
-					observer.disconnect();
-				}
-			});
-			observer.observe(numbersList, { childList: true });
-		});
-
-		clearBtn.addEventListener('click', () => {
-			numbersList.innerHTML = '';
-			log.textContent = '';
-			running = false;
-		});
-	</script>
+            const pass = genPass(len, upper, nums, special);
+            document.getElementById("passOut").textContent = pass;
+        }
+    
+    </script>
 </body>
 </html>
