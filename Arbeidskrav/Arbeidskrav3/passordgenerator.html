@@ -6,32 +6,75 @@
     <title>Passordgenerator</title>
 </head>
 <body>
-    <h1>Passordgenerator</h1>
-    <!-- Felter for brukervalg her -->
-     <p>Ditt passord: <span id="generatedPassword"></span></p>
-     <h3>Passordgenerator</h3>
-  <label for="length">Lengde</label>
-  <input id="length" type="number" min="4" max="20" value="8" />
-  <label>Bokstavvalg</label>
-  <div class="row">
-    <label><input type="radio" name="case" value="lower" checked /> Bare små bokstaver</label>
-    <label><input type="radio" name="case" value="upper" /> Bare store bokstaver</label>
-    <label><input type="radio" name="case" value="both" /> Begge deler</label>
-  </div>
-  <label><input id="special" type="checkbox" /> Inkluder spesialtegn</label>
-  <div class="row">
-    <button id="generate">Generer passord</button>
-  </div>
-  <div class="output" id="result" aria-live="polite">Her vises passordet</div>
-     <script>
-        const lowercase = "abcdefghijklmnopqrstuvwxyz";
-        const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const numbers = "0123456789";
-        const symbols = "!@#$%^&*()_+-=[]{}|;:',.<>?/`~";
+    <div class="container">
+        <h1>Passord generator</h1>
+        <label>
+            Passord Lengde:
+            <input id="len" min="6" max="20" type="number" value="8" />
+        </label>
+        <br />
+        <label>
+            <input id="begge" type="checkbox"  /> Begge deler
+        </label>
+        <br />
+        <label>
+            <input id="små" type="checkbox" checked /> Bare små bokstaver
+        </label>
+        <br />
+        <label>
+            <input id="store" type="checkbox"  /> Bare store bokstaver
+        </label>
+        <br />
+        <label>
+            <input id="nums" type="checkbox"  /> Inkluder number
+        </label>
+        <br />
+        <label>
+            <input id="special" type="checkbox"  /> Inkluder spesialtegn
+        </label>
+        <br />
+        <button class="btn" onclick="generate()">Generer passord</button>
+        <div class="output" id="passOut">Her vises passordet</div>
+    </div>
+    <script>
+        function genPass(len, begge, store, små, nums, special) {
+            const lower = "abcdefghijklmnopqrstuvwxyz";
+            const upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const numChars = "0123456789";
+            const specialChars = "!@#$%^&*()-_=+[]{}|;:,.<>?";
+            let chars = '';
 
-        function passwordgenerator(length, includeLowercase, includeUppercase, includeNumbers, includeSymbols) {
-            /* Din kode her */
+
+            
+            if (begge) chars += upperChars + lower;
+            if (store) chars += upperChars;
+            if (små) chars += lower;
+            if (nums) chars += numChars;
+            if (special) chars += specialChars;
+
+            let pass = "";
+            for (let i = 0; i < len; i++) {
+                const randIdx = Math.floor(Math.random() * chars.length);
+                pass += chars[randIdx];
+                
+            }
+
+            return pass;
         }
-     </script>
+        function generate() {
+            const len = parseInt(document.getElementById("len").value);
+            const begge = document.getElementById("begge").checked;
+            const store = document.getElementById("store").checked;
+            const små = document.getElementById("små").checked;
+            const nums = document.getElementById("nums").checked;
+            const special = document.getElementById("special").checked;
+
+            const pass = genPass(len, begge, store, små, nums, special);
+            document.getElementById("passOut").textContent = pass;
+        }
+
+       // bjørnar studasident//
+    
+    </script>
 </body>
 </html>
