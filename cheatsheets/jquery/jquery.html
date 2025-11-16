@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQeary</title>
+    <style>
+        section{
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0.2px 0.2px 0.2px black;
+            width: fit-content;
+            padding: 2rem;
+            gap: 1rem;
+            border-radius: .5rem;
+
+            article{
+                
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <article>
+            <h2> Første overskrift</h2>
+            <p>Avsnitt med noe spennende innhold</p>
+            <button id="add">Endre første overskrift</button>
+        </article>
+         <article>
+            <h2> Andre overskrift</h2>
+            <p>Avsnitt med noe spennende innhold</p>
+            <button>Endre første overskrift</button>
+        </article>
+         <article>
+            <h2> Tredje overskrift</h2>
+            <p>Avsnitt med noe spennende innhold</p>
+            <button>Endre første overskrift</button>
+        </article>
+    </section>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(() => {
+            $("section article:nth-child(1)").css("background-color", "gray")
+
+            $("#add").click(() =>{
+                console.log("Knappen er trykket")
+                $("section article:nth-child(1) h2").text("Første overskrift er endret!")
+            })
+        })
+    </script>
+</body>
+</html>

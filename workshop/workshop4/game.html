@@ -154,7 +154,7 @@
         playerName: "Thor",
         energy: 10,
         points: 4000,
-        duration: 30,
+        duration: 0,
         gamePaused: false,
         pauseText: "Press P to pause"
       }
@@ -176,7 +176,21 @@
         y: canvas.height / 2
       }
 
-      const itemTypes = ["variables", "arrays", "loops", "functions", "energydrinks", "bugs"]
+      const directions = {
+        up: false,
+        down: false,
+        left: false,
+        right: false,
+      }
+
+      const itemTypes = ["variable", "array", "loop", "function", "energydrink", "bug"]
+
+      const items = [
+        {type: "variable", x: 500, y: 40, lifetime: 10, collected: false },
+        {type: "array", x: 450, y: 200, lifetime: 15, collected: false },
+        {type: "loop", x: 200, y: 100, lifetime: 1000, collected: false },
+        {type: "bug", x: 300, y: 10, lifetime: 0, collected: false },
+      ]
 
       function updateStaticUI() {
         // Print playerinfo to HTML
@@ -237,13 +251,35 @@
         } else if (event.code === "KeyI") {
           toggleVisibility("info")
         } else if (event.code === "KeyP"){
-          // gameConfig.gamePaused === true 
-          // ? gameConfig.gamePaused = false 
-          // : gameConfig.gamePaused === false
-          // ? gameConfig.gamePaused = true 
-          // : null
-
           gameConfig.gamePaused = !gameConfig.gamePaused
+        }
+
+        if(event.code === "ArrowUp" || event.code === "KeyW"){  
+          directions.up = true
+        } 
+        if(event.code === "ArrowDown" || event.code === "KeyS"){
+          directions.down = true
+        } 
+        if(event.code === "ArrowLeft" || event.code === "KeyA"){
+          directions.left = true
+        } 
+        if(event.code === "ArrowRight" || event.code === "KeyD"){
+          directions.right = true
+        } 
+      })
+
+      document.addEventListener("keyup", (event) =>{
+        if(event.code === "ArrowUp" ||event.code === "KeyW"){
+          directions.up = false
+        }
+         if(event.code === "ArrowDown" ||event.code === "KeyS"){
+          directions.down = false
+        }
+         if(event.code === "ArrowLeft" ||event.code === "KeyA"){
+          directions.left = false
+        }
+         if(event.code === "ArrowRight" ||event.code === "KeyD"){
+          directions.right = false
         }
       })
 
@@ -288,12 +324,11 @@
         fortranLoaded = true 
       }
 
-      function drawItem(type, x, y) {
+      function drawItem(type, x, y, lifetime) {
         let itemImage = new Image()
         itemImage.src = `icons/${type}.svg`
-        itemImage.onload = () => {
           ctx.drawImage(itemImage, x, y)
-        }
+
         if (type != "bug") {
           ctx.beginPath()
           ctx.arc(x, y, 10, 0, 2 * Math.PI)
@@ -301,10 +336,23 @@
           ctx.fill()
           ctx.fillStyle = "white"
           ctx.font = "11px Verdana"
-          ctx.fillText("99", x - 7, y + 4)
+          ctx.fillText(lifetime, x - 7, y + 4)
           ctx.closePath()
         }
       }
+
+
+      setInterval(() =>{
+        if(!gameConfig.gamePaused){ 
+        gameConfig.duration++
+        console.log(gameConfig.duration)
+        updateSingleStaticUI("duration", gameConfig.duration)
+      }
+      items.forEach((item) => {
+        item.lifetime--
+      })
+      }, 1000) 
+
 
       requestAnimationFrame = window.mozRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
@@ -312,7 +360,12 @@
       window.requestAnimationFrame
 
       function drawElements() {
-        // ctx.clearRect(0, 0, canvas.width, canvas.height)
+         ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+         directions.up ? fortran.y -= fortran.speed : null
+         directions.down ? fortran.y += fortran.speed : null
+         directions.left ? fortran.x -= fortran.speed : null
+         directions.right ? fortran.x += fortran.speed : null
 
         if(fortranLoaded = true){
           ctx.drawImage(fortranImage, fortran.x, fortran.y)
@@ -338,8 +391,10 @@
           ctx.fillText(gameConfig.pauseText, canvas.width - 143, canvas.height - 7)
           ctx.closePath()
 
-          drawItem("function", 130, 150)
-          drawItem("bug", 500, 500)
+          items.filter((item) => item.lifetime > 0 || item.type === "bug").map((item) => {
+            drawItem(item.type, item.x, item.y, item.lifetime)
+          })
+          
 
 
         requestAnimationFrame(drawElements)
@@ -349,9 +404,23 @@
 
       // Hvilken brukerinteraksjon må vi ta hensyn til i koden?
       // - Tastetur-input
-      // Hvilken deler av koden vår kan vi bruke i brukerinteraksjonen?
-      // - addEventListener
-      // Hva skal endres i koden når vi kjenner (eller hører)
+      // Hvilken deler av brukerinteraksjonen kan vi bruke i koden vår?
+      // - keydown, keyup
+      // hva skal endres i koden når vi hører brukerinraskjoen?
+      // - return
+      // når skal endringen stoppes?
+      // - når man slutter å trykke på tasten
+
+
+      // hva i koden skal lagre sekundene?
+      // -gameconfig.duration
+      // hvordan får vi koden til å gjøre noe hvert sekund?
+      // - setinterval
+      // hva skal skje hvert sekund? hva skal endres?
+      // - gameconfig.duration
+      // hvor skal endrene synes? hva har vi fra tidligere?
+      // -funksjon updatesinglestaticui
+
 
     </script>
   </body>
