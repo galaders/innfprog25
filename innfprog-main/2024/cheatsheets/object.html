@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object cheat sheet</title>
+</head>
+<body>
+    <p id="contactinfo"></p>
+
+    <script>
+        const lecturer = {
+            personname: "Marius Akerbæk",
+            office: "D1-016",
+            email: "toremake@hiof.no",
+            birthyear: 1983,
+            courses: ["Innføring i programmering", "Kommunikasjonsdesign", "UI Designprosjekt", "Utvikling av interaktive nettsteder"]
+        }
+
+        document.getElementById("contactinfo").innerHTML = `${lecturer.personname} sitter på kontor ${lecturer.office}. Epost: ${lecturer.email}. Favorittkurset hans er ${lecturer.courses[0]}.`
+
+        console.log(document.getElementById("contactinfo"))
+    </script>
+</body>
+</html>

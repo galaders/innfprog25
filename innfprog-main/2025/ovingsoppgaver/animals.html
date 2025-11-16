@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Øvingsoppgave 2</title>
+</head>
+<body>
+    <p id="setning"></p>
+
+    <script>
+        //Deklarerer variabel dyr med en liste over 9 dyr og én Pokémon
+        const dyr = ["Katt", "Hund", "Skilpadde", "Hest", "Pinnsvin", "Påfugl", "Blåhval", "Slange", "Frosk", "Pikachu"]
+
+        //Samme liste som over, oversatt til engelsk.
+        const animals = ["Cat", "Dog", "Turtle", "Horse", "Hedgehog", "Peacock", "Blue whale", "Snake", "Frog", "Pikachu"]
+
+        //Deklarerer to variabler for å ha kontroll på index.
+        const dyrIndex1 = 4
+        const dyrIndex2 = 7
+
+        const tekst = `${dyr[dyrIndex1]} er et dyr. Det heter ${animals[dyrIndex1]} på engelsk. ${dyr[dyrIndex2]} er også et dyr, som heter ${animals[dyrIndex2]} på engelsk.`
+
+        console.log(tekst)
+
+        document.getElementById("setning").innerHTML = tekst
+    </script>
+</body>
+</html>

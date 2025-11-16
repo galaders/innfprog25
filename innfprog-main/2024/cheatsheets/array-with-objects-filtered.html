@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object cheat sheet</title>
+</head>
+<body>
+    <ul id="profiles"></ul>
+
+    <script>
+        const lecturers = [
+            {
+                personname: "Marius Akerbæk",
+                office: "D1-016",
+                email: "toremake@hiof.no",
+                birthyear: 1983,
+                courses: ["Innføring i programmering", "Kommunikasjonsdesign", "UI Designprosjekt", "Utvikling av interaktive nettsteder"]
+            },
+            {
+                personname: "Ann-Charlott Karlsen",
+                office: "D1-062",
+                email: "ackarlse@hiof.no",
+                birthyear: 1992,
+                courses: ["Webutvikling", "Utvikling av interaktive nettsteder"]
+            },
+            {
+                personname: "Ole Edvard Ørebæk",
+                office: "D1-061A",
+                email: "oledvo@hiof.no",
+                birthyear: 1993,
+                courses: ["Innføring i datasikkerhet"]
+            },
+            {
+                personname: "Daniela Blauhut",
+                office: "D1-015",
+                email: "danielb@hiof.no",
+                birthyear: 1977,
+                courses: ["Designmetoder", "UI Designprosjekt"]
+            }
+        ]
+
+        /* 
+            Vi skal skrive ut hver foreleser i arrayen som et listepunkt: <li>
+            Før vi skriver ut arrayen, skal vi filtrere vekk forelesere født før 1990
+            Vi må gå gjennom hele arrayen med et filter: .filter
+            Når vi kjører .filter, må vi mellomlagre element i en variabel: lecturer
+            For hver lecturer, må vi gjøre en sammenligning (akkurat som en if-betingelse)
+            I dette tilfellet; er birthyear større eller lik 1990, skal foreleseren inkluderes
+           
+            Etter vi har filtrert, skal vi skrive ut de gjenværende foreleserne:
+            Vi må gå gjennom hele arrayen: .map
+            Når vi .mapper, må vi mellomlagre element i en variabel: lecturer
+            For hver lecturer, må vi legge til en <li> i <ul id="profiles">
+        */
+       lecturers.filter(lecturer => lecturer.birthyear >= 1990).map(lecturer => document.getElementById("profiles").innerHTML += `<li>${lecturer.personname} 
+            <ul>
+                ${lecturer.courses.map(course => `<li>${course}</li>`).join("")}
+            </ul>
+        </li>`)
+        /*
+            Dersom vi bruker .map på en array med kun tekststrenger, må vi bruke metoden .join() etter vi har kjørt .map for å fjerne .maps komma-generering.
+        */
+
+
+        //document.getElementById("contactinfo").innerHTML = `${lecturer.personname} sitter på kontor ${lecturer.office}. Epost: ${lecturer.email}. Favorittkurset hans er ${lecturer.courses[0]}.`
+
+        console.log(lecturers)
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Mini Game</title>
+    <style>
+        body {
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="anim-area"></canvas>
+
+    <script>
+        /*
+            I denne filen lager vi et veldig enkelt spill. En helt (grønn firkant) skal samle gull fra fjellet i midten av spillbrettet.
+            For å få til det har vi sett på
+            * Canvas og tegning av basisformer for å få opp firkantene som utgjør helten og gullfjellet: 
+                - Sette opp canvas: https://lms.webtricks.blog/kurs/innforing-i-programmering/canvas-tegning/canvas-introduksjon
+                - Tegne basisformer: https://lms.webtricks.blog/kurs/innforing-i-programmering/canvas-tegning/tegne-basisformer
+            * Brukerinput og brukerstyrt bevegelse for å styre helten:
+                - Flytte canvas-elementer: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/flytte-canvas-elementer
+                - Styre bevegelser: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/styre-bevegelse
+            * Kollisjonsdeteksjon for å se når helten forsvinner ut av spillbrettet eller treffer gullfjellet:
+                - Kollisjonsdeteksjon: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/kollisjonsdeteksjon
+            * Randomisering for å velge en tilfeldig posisjon helten dukker opp på etter kollisjon med gullfjellet:
+                - Randomisering: https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/randomisering-tilfeldig-utvalg-verdi
+        */
+
+        //Canvas-konfigurasjon:
+        const c = document.getElementById("anim-area")
+        c.width = 900
+        c.height = 600
+        const ctx = c.getContext("2d")
+
+        //RequestAnimationFrame: automatiser nye bildetegninger
+        const requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame
+
+        //Spillkonfigurasjon:
+        const game = {
+            speed: 3,
+            count: 0
+        }
+        
+        //Definerer startpunkter for helten:
+        const hero = {
+            x: 100,
+            y: 100,
+            w: 15,
+            h: 15
+        }
+        //Definer gullfjellet:
+        const goldmountain = {
+            x: c.width / 2 - 25,
+            y: c.height / 2 - 25,
+            w: 50,
+            h: 50
+        }
+
+        //Definerer variabler for å sjekke om en retning er aktiv:
+        //(alle retninger er deaktivert ved oppstart)
+        let up = false
+        let down = false
+        let right = false
+        let left = false
+
+        //Sjekk om en retning er aktivert med piltaster:
+        // d eller høyre piltast: høyre
+        // a eller venstre piltast: venstre
+        // w eller piltast opp: opp
+        // s eller piltast ned: ned
+
+        document.addEventListener("keydown", function(event) {
+            if(event.key === "d" || event.key === "ArrowRight") {
+                right = true
+            }
+            if(event.key === "s" || event.key === "ArrowDown") {
+                down = true
+            }
+            if(event.key === "a" || event.key === "ArrowLeft") {
+                left = true
+            }
+            if(event.key === "w" || event.key === "ArrowUp") {
+                up = true
+            }
+            //Hvis booster-knappen H er trykket ned, øker vi tempoet fra 3 til 10
+            if(event.key === "h") {
+                game.speed = 10
+            }
+        })
+
+        //Sjekk om en retning er deaktivert (knappen er ikke lenger trykket ned):
+        document.addEventListener("keyup", function(event) {
+            if(event.key === "d" || event.key === "ArrowRight") {
+                right = false
+            }
+            if(event.key === "s" || event.key === "ArrowDown") {
+                down = false
+            }
+            if(event.key === "a" || event.key === "ArrowLeft") {
+                left = false
+            }
+            if(event.key === "w" || event.key === "ArrowUp") {
+                up = false
+            }
+            //Hvis booster-knappen H ikke er trykket ned, skal vi ha vanlig tempo
+            if(event.key === "h") {
+                game.speed = 3
+            }
+        })
+
+        //funksjon for å tegne firkanter
+        //Tar imot 5 parametere:
+        //  x: startpunkt for tegning av firkant langs horisontal akse
+        //  y: startpunkt for tegning av firkant langs vertikal akse
+        //  w: firkantens bredde
+        //  h: firkantens høyde
+        //  color: firkantens fyllfarge
+        function drawRect(x = 0, y = 0, w = 10, h = 10, color = "#000000") {
+            ctx.beginPath()
+            ctx.rect(x, y, w, h)
+            ctx.fillStyle = color
+            ctx.fill()
+            ctx.closePath()
+        }
+
+        //Funksjon for randomisering hvor vi oppgir minimum- og maksimumverdi
+        //Se https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/randomisering-tilfeldig-utvalg-verdi for forklaring
+        function randomMinMax(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min)
+        }
+
+        //Rekursiv funksjon som kaller seg selv avhengig av skjerm/nettleser den vises i
+        //Bruker requestAnimationFrame for å kalle seg selv
+        function frames() {
+            //Tøm frame for ny opptegning:
+            ctx.clearRect(0,0,c.width,c.height)
+            
+            //Tegne helten ved hjelp av drawRect-funksjonen
+            drawRect(hero.x, hero.y, hero.w, hero.h, "#6ea100")
+            //Tegne gullfjellet ved hjelp av drawRect-funksjonen
+            drawRect(goldmountain.x, goldmountain.y, goldmountain.w, goldmountain.h, "orange")
+            
+            //Tegne/skrive ut count:
+            ctx.font = "30px Arial"
+            ctx.fillStyle = "#000000"
+            ctx.fillText(game.count, 10, 60)
+
+            //Sjekker om retning er aktivert, og setter bevegelse i den retningen
+            right ? hero.x = hero.x + game.speed : null
+            left ? hero.x = hero.x - game.speed : null
+            up ? hero.y = hero.y - game.speed : null
+            down ? hero.y = hero.y + game.speed : null
+
+            //Sjekker om firkant er utenfor canvas på henholdsvis venstre, høyre, topp og bunn
+            //Hvis den er det, start å tegne fra andre siden av canvaset for å gi en illusjon om at
+            //firkanten går "rundt" canvaset.
+            if(hero.x < 0) {
+                hero.x = c.width
+            }
+            if(hero.x > c.width) {
+                hero.x = 0
+            }
+            if(hero.y < 0) {
+                hero.y = c.height
+            }
+            if(hero.y > c.height) {
+                hero.y = 0
+            }
+
+            //Sjekker om helt kolliderer med orange firkant
+            //Se https://lms.webtricks.blog/kurs/innforing-i-programmering/10-canvas-animasjon/kollisjonsdeteksjon for forklaring
+            if(
+                hero.x + hero.w > goldmountain.x && 
+                hero.x < goldmountain.x + goldmountain.w && 
+                hero.y + hero.h > goldmountain.y && 
+                hero.y < goldmountain.y + goldmountain.h
+            ) {
+                console.log(game.count)
+                //Sett tilfeldige nye verdier for heltens plassering, og legg til en til teller
+                hero.x = randomMinMax(0, c.width - hero.w)
+                hero.y = randomMinMax(0, c.height - hero.h)
+                game.count = game.count + 1
+            }
+            
+
+            //Testutskrift for å bekrefte at requestAnimationFrame kjører
+            console.log("requestAnimationFrame fungerer")
+            //Rekursivt kall:
+            requestAnimationFrame(frames)  
+        }
+        //Kaller frames()-funksjon første gang:
+        frames()
+    </script>
+</body>
+</html>

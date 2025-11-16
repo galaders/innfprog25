@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Animation cheat sheet</title>
+    <style>
+        body {
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="anim-area"></canvas>
+
+    <script>
+        //Canvas konfigurasjon:
+        const c = document.getElementById("anim-area")
+        c.width = 900
+        c.height = 600
+        const ctx = c.getContext("2d")
+
+
+        //RequestAnimationFrame: automatiser nye bildetegninger
+        const requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.mozRequestAnimationFrame
+
+        //Definerer startpunkter forsirkelen:
+        const circle = {
+            x: 100,
+            y: 100,
+            r: 15
+        }
+
+        //Rekursiv funksjon som kaller seg selv avhengig av skjerm/nettleser den vises i
+        function frames() {
+            //Tøm frame for ny opptegning:
+            ctx.clearRect(0,0,c.width,c.height)
+            
+            //Tegne en sirkel
+            ctx.beginPath()
+            ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI)
+            ctx.fill()
+            ctx.closePath()
+            
+            //Hvis sirkelen ikke har nådd høyre vegg, skal vi manipulere x
+            if(circle.x < c.width - circle.r) {
+                circle.x = circle.x + 5
+            }
+            //Hvis sirkelen har nådd høyre vegg, skal den ramle ned (manipulere y)
+            if(circle.x === c.width - circle.r) {
+                if(circle.y < c.height - circle.r) {
+                    circle.y = circle.y + 10
+                } else {
+                    //Når sirkelen har nådd bunnen av canvas, setter vi en fast y for å "holde" sirkelen til bunnen
+                    circle.y = c.height - circle.r
+                }
+            }
+
+            //Testutskrift for å bekrefte at requestAnimationFrame kjører
+            console.log("requestAnimationFrame fungerer")
+            //Rekursivt kall:
+            requestAnimationFrame(frames)  
+        }
+        //Kaller frames()-funksjon første gang:
+        frames()
+    </script>
+</body>
+</html>

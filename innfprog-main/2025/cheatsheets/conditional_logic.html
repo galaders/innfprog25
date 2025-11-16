@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional Logic - Cheat Sheet</title>
+</head>
+<body>
+    <h2>Er du kvalifisert til å ta førerkort?</h2>
+    <p id="carmsg"></p>
+    <h2>Kan spilleren åpne døren?</h2>
+    <p id="doormsg"></p>
+    <h2>Kan jeg pensjonere meg?</h2>
+    <p id="retire"></p>
+
+    <script>
+
+        //Førerkort
+        const age = 35
+        const tg_passed = true
+
+        //If-test
+        if(age >= 18 && tg_passed === true){
+            document.getElementById("carmsg").innerHTML = "Ja"
+        } else {
+            document.getElementById("carmsg").innerHTML = "Nei"
+        }
+
+        //Deklarerer variablene door_locked med verdien true og backpack med verdien "key"
+        const door_locked = true
+        const backpack = "key"
+        
+        let utskrift = document.getElementById("doormsg")
+        
+        //Sjekk om dør er låst, eventuelt om spiller har nøkkel i sekken
+        //HVIS døren er åpen skriver vi ut "Ja". HVIS døren er låst og spiller har "key" i backpack, skriver vi ut "Ja". Ellers skriver vi ut "Nei".
+        if(door_locked === false){
+            utskrift.innerHTML = "Ja"
+        } else {
+            if(backpack === "key"){
+            utskrift.innerHTML = "Ja"
+            } else {
+             utskrift.innerHTML = "Nei"
+            }
+        }
+
+        //Lagrer HTML-elementet i variabel for å lettere kunne referere seinere.
+        let retiremsg = document.getElementById("retire")
+
+        //Sjekk av mulig pensjonsalder.
+        if(age >= 62 && age < 67) {
+            retiremsg.innerHTML = "Du kan gå av med AFP"
+        } else if(age >= 67){
+            retiremsg.innerHTML = "Du kan gå av med full pensjon"
+        } else {
+            retiremsg.innerHTML = `Du kan gå av med AFP om ${62 - age} år, og full pensjon om ${67 - age} år.`
+        }
+    </script>
+</body>
+</html>

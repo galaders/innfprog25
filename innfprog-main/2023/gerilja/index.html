@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Geriljaprogrammering</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <main>
+            <h1>Monkey Island commando escape</h1>
+            <img id="game-screen" src="img/1.png" alt="Guybrush i knipe">
+            <h2 id="winMessage">Congratulations, you have escaped!</h2>
+            <p id="strawMessage">You have picked up a straw!</p>
+            <form>
+                <input id="command-field" type="text" placeholder="Gjør dette...">
+                <button id="command-button">Gi kommando</button>
+            </form>
+        </main>
+
+        <script>
+            //KONFIGURASJON
+            //Kommandoer
+            //Til hver kommando trenger vi selve kommandoen, hvilket bilde som skal vises hvis kommandoen er riktig, og en status (om den er løst eller ikke)
+            const commands = [
+                {step: 1, command: "Åpne skattekiste", image: "img/2.png", solved: false},
+                {step: 2, command: "Fest ballong til stein", image: "img/3.png", solved: false},
+                {step: 3, command: "Blås på ballong", image: "img/4.png", solved: false},
+                {step: 4, command: "Plukk opp strå", image: "img/4.png", solved: false},
+                {step: 5, command: "Plukk opp torne", image: "img/5.png", solved: false},
+                {step: 6, command: "lade blåserør", image: "img/6.png", solved: false},
+                {step: 7, command: "skyt på ballong", image: "img/7.png", solved: false},
+                {step: 8, command: "ta tak i tau", image: "img/8.png", solved: false}
+            ]
+
+            //Funksjon for å ta imot verdi fra input-felt
+            function checkCommand() {
+                //Hent verdi skrevet i input-feltet og lagre den i variabelen userCommand
+                const userCommand = document.getElementById("command-field").value
+                console.log(userCommand)
+                //Tøm input-feltet så brukeren kan skrive ny kommando
+                document.getElementById("command-field").value = ""
+                //Test brukerinput mot kommando(er)
+                //Vi må løpe gjennom alle kommandoer for å sjekke om brukerens input matcher en av kommandoene som er gyldige
+                commands.map((c, index) => {
+                    //Vi gjør både brukerens innskrevne kommando og kommandoene fra arrayen vår til små bokstaver, så vi ikke får feil dersom bruker har store/små bokstaver annerledes enn det er i kommandoen i arrayen
+                    if(userCommand.toLowerCase() === c.command.toLowerCase()) {
+                        console.log(userCommand.toLowerCase())
+                        console.log(c.command.toLowerCase())
+                        console.log("Denne kommandoen finnes på index " + index)
+                        //Vi lager en statusvariabel for å sjekke om vi får lov til å aksepteredenne kommandoen
+                        let canContinue = true
+                        //For-løkke som skal gå gjennom alle tidligere kommandoer (indexer)
+                        //enn den som er funnet
+                        for(let checkIndex = 0; checkIndex < index; checkIndex++) {
+                            if(commands[checkIndex].solved === false) {
+                                //Hvis en av de tidligere kommandoene er false, setter vi canContinue også til false
+                                canContinue = false
+                            }
+                        }
+                        if(canContinue === true) {
+                            //Bytte bilde
+                            document.getElementById("game-screen").src = c.image
+                            //Sette solved til true for denne kommandoen
+                            c.solved = true
+                            //Hvis vi er på steg 4 og kommandoen er riktig, skal vi ikke bytte bilde. Derfor gjør vi en liten tekstbeskjed synlig, slik at brukeren vet at noe har skjedd
+                            if(c.step === 4) {
+                                document.getElementById("strawMessage").style.display = "block"
+                            } else {
+                                document.getElementById("strawMessage").style.display = "none"
+                            }
+                            //Hvis index til denne kommandoen er den samme som siste index i kommandoarrayen er spillet ferdig. Da gjør vi gratulerer-meldingen synlig.
+                            if(index === commands.length - 1) {
+                                document.getElementById("winMessage").style.display = "block"
+                            }
+                        }
+                    }
+                })
+            }
+            //EventListener for å sjekke om knappen er trykket. Vi bruker event.preventDefault for å hindre nettsiden i å lastes inn på nytt når knappen trykkes.
+            document.getElementById("command-button").addEventListener("click", function(event) {
+                event.preventDefault()
+                checkCommand()
+            })
+        </script>
+    </body>
+</html>

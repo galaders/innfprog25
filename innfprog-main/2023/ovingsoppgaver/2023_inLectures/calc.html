@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red { color: red; }
+    </style>
+</head>
+<body>
+        <ul id="results">
+            
+        </ul>
+
+        <script>
+            function calculator(num1 = 0, num2 = 0) {
+                //utregninger for +, -, *, /
+                const pluss = num1 + num2
+                const minus = num1 - num2
+                const gange = num1 * num2
+                const dele = num1 / num2
+                //skrive ut regnestykkene til listen #results
+                document.getElementById("results").innerHTML = 
+                `<li ${pluss < 0 ? "class='red'" : null}>${num1} + ${num2} = ${pluss}</li>
+                <li ${minus < 0 ? "class='red'" : null}>${num1} - ${num2} = ${minus}</li>
+                <li ${gange < 0 ? "class='red'" : null}>${num1} * ${num2} = ${gange}</li>
+                <li ${dele < 0 ? "class='red'" : null}>${num1} / ${num2} = ${dele}</li>`
+            }
+
+            calculator(2, 3)
+        </script>
+</body>
+</html>

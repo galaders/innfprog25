@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+</head>
+<body>
+    <script>
+        //For-løkker
+        //Tar imot tre parametere:
+        //Initialisering (let teller = 0;), betingelse(teller <= 10;) og inkrementasjon/dekrementasjon(teller++)
+        for(let teller = 0; teller <= 10; teller++){
+        //For hver runde i løkken skal variabelen teller logges.
+            console.log(teller)
+        }
+
+        //Legg sammen tall mellom start og slutt
+        const start = 0
+        const slutt = 100
+        let sum = 0
+        
+        //Her bytter vi tallet 0 med variabelen start, dette betyr at telleren nå starter på tallet som er lagret i variableren start. Lignende gjør vi med betingelsen, men vi bytter dette tallet med verdien av variabelen slutt.
+        for(let teller = start; teller <= slutt; teller++){
+            //For hver runde i løkken skal 
+            sum += teller
+        }
+
+        console.log(sum)
+
+        //Gangetabellen
+        let gangetabellen = []
+        
+        //Her nester vi to løkker. Den første løkken oppretter en ny array, row, per runde.
+        //I den neste løkken bruker vi .push() for å fylle den nyopprettede arrayen row med
+        for(let n = 1; n <= 10; n++){
+            let row = []
+            for(let i = 1; i <= 10; i++){
+                row.push(n * i)
+            }
+            gangetabellen.push(row)
+        }
+
+        console.log(gangetabellen)
+
+        //Sjekk om tall er delelig på Z
+        const x = 0
+        const z = 3
+        const y = 100
+
+        for (let teller = x; teller <= y; teller++){
+            if(teller % z === 0){
+                console.log(`${teller},`)
+            }
+        }
+
+        const months = ["Januar", "Februar", "Mars", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Desember"]
+        
+        const date = {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth() + 1,
+            day: new Date().getDate()
+        }
+
+        console.log(date)
+
+        const famObj = [{
+            fName: "Thor",
+            birthyear: 1990,
+            birthmonth: 7,
+            birthday: 10
+        },
+        {
+            fName: "Tora",
+            birthyear: 1994,
+            birthmonth: 5,
+            birthday: 19
+        },
+        {
+            fName: "Ask",
+            birthyear: 2019,
+            birthmonth: 11,
+            birthday: 19
+        },
+        {
+            fName: "Eik",
+            birthyear: 2021,
+            birthmonth: 7,
+            birthday: 20
+        }
+    ]
+
+        for(let teller = 0; teller < famObj.length; teller++){
+            if(date.month <= famObj[teller].birthmonth){
+                console.log(`${famObj[teller].fName} fyller ${date.year - famObj[teller].birthyear} år i ${months[famObj[teller].birthmonth - 1]}`)
+            } else{
+                console.log(`${famObj[teller].fName} fylte ${date.year - famObj[teller].birthyear} år i ${months[famObj[teller].birthmonth - 1]}`)
+            }
+        }
+
+        //For-in-løkker
+        const person = {
+            name: "Thor",
+            age: (new Date().getFullYear()) - 1990,
+            location: "Halden"
+        }
+
+        for(let key in person){
+            console.log(key + ": " + person[key])
+        }
+
+        //forEach-"løkker"
+        const numbers = [4, 3, 5, 6, 10, 100, 24]
+        let total = 0
+
+        numbers.forEach((item) => total += item)
+
+        console.log(total)
+
+        //While-løkker
+
+        let teller = 0
+
+        while(teller < 10){
+            teller++
+            // console.log(teller)
+        }
+
+
+    </script>
+</body>
+</html>

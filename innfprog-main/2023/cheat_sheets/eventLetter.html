@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing a letter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
+        body {
+            background-color: rgb(90, 30, 12);
+            background-image: url("https://images.unsplash.com/photo-1596865668258-242a087887ab");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        main {
+            background-color: antiquewhite;
+            box-shadow: 2px 2px 2px rgba(0,0,0,.7);
+            width: 90%;
+            max-width: 70rem;
+            padding: 2rem;
+            font-family: 'Caveat', cursive;
+            font-size: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="text"></div>
+    </main>
+
+    <script>
+        //KODE FOR Å SKRIVE BREVET MED TASTATURET
+        document.addEventListener("keydown", function(event) {
+            console.log(event)
+            if(event.key.length === 1) {
+                document.getElementById("text").innerHTML += event.key
+            }
+            if(event.key === "Backspace") {
+                const text = document.getElementById("text").innerHTML
+                const newText = text.slice(0, text.length - 1)
+                document.getElementById("text").innerHTML = newText
+                console.log(text.slice(0, text.length - 1))
+            }
+            if(event.key === "Enter") {
+                //document.getElementById("text").innerHTML += "<br />"
+
+                //Finn siste avsluttende </p>. Legg til <p> etter denne avsluttende </p>-tagen, 
+                //og en </p> på slutten av setningen
+                const text = document.getElementById("text").innerHTML
+                //Bruk .split("</p>") for å dele opp tekststrengen i en array.
+                //Den fjerner </p> og lager et nytt element av teksten på hver side av </p>-tagen
+                const textArray = text.split("</p>")
+                //Gjør klar en HTML-variabel
+                let newText = ""
+                //Gå gjennom alle tekstbitene vi laget med .split("</p>")
+                textArray.map((s) => {
+                    //Vi må sjekke om de tre første tegnene i array-elementet er <p>.
+                    //Hvis de er det, må vi avslutte array-elementet med </p> for å få gyldig HTML
+                    if(s.substring(0,2) === "<p>") {
+                        newText += s + "</p>"
+                    } else {
+                        //Hvis ikke de første tegnene er <p>, må vi legge på både <p> på starten og
+                        //</p> på slutten av array-elementet
+                        newText += "<p>" + s + "</p>"
+                    }
+                })
+                console.log(textArray)
+                //Når vi har bygget HTML-en med tekst og p-tager, skriver vi den tilbake til #text
+                document.getElementById("text").innerHTML = newText
+            }
+        })
+    </script>
+</body>
+</html>

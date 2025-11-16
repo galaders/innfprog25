@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoppeklokke</title>
+    <style>
+        body { 
+            background: #eee; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;
+        }
+        #sec { font-size: 260px; font-family: Georgia, serif; margin: 0; }
+        button {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <p id="sec">0</p>
+        <p>SEKUNDER</p>
+        <button id="start">START (S)</button>
+        <button id="stop" disabled>STOPP (E)</button>
+    </main>
+
+    <script>
+        //HTML-elementer:
+        const secPrint = document.getElementById("sec")
+        const btnStart = document.getElementById("start")
+        const btnStop = document.getElementById("stop")
+
+        //Konfigurasjon:
+        let seconds = 0
+        let status = false
+
+        function counter() {
+            if(status === true) {
+                seconds++
+                secPrint.innerHTML = seconds
+                setTimeout(counter, 1000)
+            }
+        }
+
+        function start() {
+            status = true
+            btnStart.disabled = true
+            btnStop.disabled = false
+            counter()
+        }
+
+        function stop() {
+            btnStart.disabled = false
+            btnStop.disabled = true
+            status = false
+        }
+
+        btnStart.addEventListener("click", start)
+
+        btnStop.addEventListener("click", stop)
+
+        document.addEventListener("keydown", function(event) {
+            if(event.key === "s") {
+                start()
+            }
+            if(event.key === "e") {
+                stop()
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays with objects - Cheat Sheet</title>
+</head>
+<body>
+    <!-- HTML-element til utskrift -->
+    <ul id="profiles"></ul>
+
+    <script>
+        //Lagrer HTML-elementene i variabler. Dette gjør det lettere å referere seinere
+        const profiles = document.getElementById("profiles")
+
+        //Oppretter variabelen lecturers, denne inneholder en array[] med objekter{}
+        const lecturers = [
+            {
+                name: "Marius Akerbæk",
+                office: "D1-016",
+                email: "toremake@hiof.no",
+                birthyear: 1983,
+                courses: ["Innføring i programmering", "Kommunikasjonsdesign", "UI Designprosjekt", "Utvikling av interaktive nettsteder"]
+            },
+            {
+                name: "Daniela Blauhut",
+                office: "D1-015",
+                email: "danielb@hiof.no",
+                birthyear: 1977,
+                courses: ["Designmetoder", "UI Designprosjekt"]
+            },
+            {
+                name: "Ann-Charlott Karlsen",
+                office: "D1-062",
+                email: "ackarlse@hiof.no",
+                birthyear: 1992,
+                courses: ["Webutvikling", "Utvikling av interaktive nettsteder"]
+            },
+            {
+                name: "Ole Edvard Ørebæk",
+                office: "D1-061A",
+                email: "oledvo@hiof.no",
+                birthyear: 1993,
+                courses: ["Innføring i datasikkerhet"]
+            },
+            {
+                name: "Thor Andreas Holberg Murtnes-Hatlestad",
+                office: "Hjemmekontor",
+                email: "thoraho@hiof.no",
+                birthyear: 1990,
+                courses: ["Innføring i programmering"]
+            }
+        ]
+
+        console.log(lecturers)
+
+        //Går gjennom array med .map(), deretter skriver vi ut HTML-strukturen til elementet vi har lagret i variabelen profiles
+        lecturers.map(lecturer => {
+            profiles.innerHTML += `
+            <li>
+                <h3>${lecturer.name}</h3>
+                <span>Alder: ${2025 - lecturer.birthyear}</span>
+                <p>Kontor: ${lecturer.office}</p>
+                <a href="mailto:${lecturer.email}">Skriv e-post til ${lecturer.name}</a>
+                <ul>
+                ${lecturer.courses.map(course => {
+                    return `<li>${course}</li>`
+                }).join(" ")}
+                </ul>
+                </li>`
+        })
+
+        //Filtrerer forelesere basert på fødselsår og skriver ut HTML-strukturen til elementet vi har lagret i variabelen profiles
+        // lecturers.filter(lec => lec.birthyear >= 1990).map(lecturer => {
+        //     profiles.innerHTML += `
+        //     <li>
+        //         <h3>${lecturer.name}</h3>
+        //         <span>Alder: ${2025 - lecturer.birthyear}</span>
+        //         <p>Kontor: ${lecturer.office}</p>
+        //         <a href="mailto:${lecturer.email}">Skriv e-post til ${lecturer.name}</a>
+        //         </li>`
+        // })
+
+
+
+
+    </script>
+</body>
+</html>

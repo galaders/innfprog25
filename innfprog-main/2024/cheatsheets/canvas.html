@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas cheat sheet</title>
+    <style>
+        body {
+            height: 100dvh;
+            background: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="drawingarea"></canvas>
+
+    <script>
+        //Standard config av canvas
+        const canvas = document.getElementById("drawingarea")
+        canvas.width = 800
+        canvas.height = 600
+        const ctx = canvas.getContext("2d")
+
+        //PATH
+        ctx.beginPath()
+        ctx.moveTo(0,0)
+        ctx.lineTo(800, 600)
+        ctx.stroke()
+        ctx.closePath()
+
+        //RECTANGELS (RECT)
+        ctx.beginPath()
+        ctx.rect(100, 100, 200, 200)
+        ctx.fillStyle = "green"
+        ctx.fill()
+        ctx.stroke()
+        ctx.closePath()
+        //.fillRect(), .strokeRect()
+        //Tømme canvaset: ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+        //SIRKEL (ARC)
+        ctx.beginPath()
+        ctx.arc(400, 400, 100, 0, 2 * Math.PI)
+        ctx.fillStyle = "gold"
+        ctx.fill()
+        ctx.closePath()
+
+        //TEXT
+        ctx.beginPath()
+        ctx.font = "150px Georgia"
+        ctx.strokeText("5", 360, 420)
+        ctx.font = "24px Arial"
+        ctx.fillStyle = "purple"
+        ctx.fillText("Marius", 300, 100)
+        ctx.closePath()
+
+        //TEGN ET EKSISTERENDE BILDE INN I CANVAS
+        const pumpkin = new Image(128, 128)
+        let pumpkinLoaded = false
+        pumpkin.onload = () => { 
+            ctx.drawImage(pumpkin, 0, 0, 128, 128)
+        }
+        pumpkin.src = "pumpkin.png"
+    </script>
+</body>
+</html>

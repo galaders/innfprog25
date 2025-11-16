@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addEventListener Keyboard cheat sheet</title>
+    <style>
+        body {
+            background: navy;
+            padding: 3rem;
+        }
+        main {
+            background: #fff;
+            color: #333;
+            width: 60rem;
+            margin: 0 auto;
+            min-height: 300px;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="text"></div>
+    </main>
+
+    <script>
+        document.addEventListener("keydown", function(event) {
+            console.log(event)
+            if(event.key.length === 1) {
+                document.getElementById("text").innerHTML += event.key
+            }
+
+            //Slette siste tegn:
+            if(event.key === "Backspace") {
+                const text = document.getElementById("text").innerHTML
+                console.log(text)
+                const newText = text.slice(0, text.length - 1)
+                document.getElementById("text").innerHTML = newText
+            }
+
+            
+        })
+    </script>
+</body>
+</html>

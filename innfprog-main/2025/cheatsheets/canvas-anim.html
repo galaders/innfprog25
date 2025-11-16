@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Animasjon</title>
+    <style>
+      #drawing-area {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="drawing-area"></canvas>
+    <script>
+      const canvas = document.getElementById("drawing-area")
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      const ctx = canvas.getContext("2d")
+
+      const speed = 5
+
+      const ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 25,
+        speedX: speed,
+        speedY: speed,
+      }
+
+      const paddle = {
+        x: 400,
+        y: 300,
+        w: 100,
+        h: 500,
+      }
+
+      requestAnimationFrame =
+        window.requestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame
+
+      function draw() {
+        //Kollisjonsdeteksjon
+        //Vegger og tak
+        ball.x + ball.radius >= canvas.width
+          ? (ball.speedX = ball.speedX * -1)
+          : null
+        ball.x - ball.radius <= 0 ? (ball.speedX = ball.speedX * -1) : null
+
+        ball.y + ball.radius >= canvas.height
+          ? (ball.speedY = ball.speedY * -1)
+          : null
+        ball.y - ball.radius <= 0 ? (ball.speedY = ball.speedY * -1) : null
+
+        // Kollisjon mot firkanten
+        if (
+          ball.x + ball.radius >= paddle.x &&
+          ball.x - ball.radius <= paddle.x + paddle.w &&
+          ball.y - ball.radius <= paddle.y + paddle.h &&
+          ball.y + ball.radius >= paddle.y
+        ) {
+          ball.speedX *= -1
+        }
+
+        // Oppdaterer position på ball
+        ball.x += ball.speedX
+        ball.y += ball.speedY
+
+        //Tegn ballen
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ctx.beginPath()
+        ctx.fillStyle = "#003366"
+        ctx.arc(ball.x, ball.y, ball.radius, 0, 2 * Math.PI)
+        ctx.fill()
+        ctx.closePath()
+
+        ctx.beginPath()
+        ctx.strokeStyle = "#000000"
+        ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h)
+        ctx.stroke()
+        ctx.closePath()
+
+        //Rekursivt kall av draw()-funksjon
+        requestAnimationFrame(draw)
+      }
+
+      draw()
+    </script>
+  </body>
+</html>
