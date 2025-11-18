@@ -1,16 +1,10 @@
+//ta imot index fra anstatt og returner html struktur for den ansatte
+//liste ut alle ansatte og bruke første funsjon for å strukturere utsriktfen av html
+//ta imot en parameter som angir stilling og filtrere ansatte på den insente parameteren knapper for dekan rektor professor lektor vaktmester
+//vis alle annsatte ved klikk på en knapp
+//returnere alle kurser i en liste kursoversikt på bunnen av siden
+//funsjon som filtere med en knapp for alle undervisere og en knapp for alle adminstrative
+// fumsjon som skal ta imot en parameter fra 1 underviser og legge denne til i registeret dette vil kun funke i oppgave 3 register.html
+//funsjon skal ta imot en parameter som intenifiserer en ansatt og fjerne denne fra registeret dette blir på admin siden i oppgave 3
 const kursoversikt = ["Programmering 1, Webutvikling, 3D-modellering, 3D-Animasjon, 3D-Spillutvikling, Kunstig intelligens, Maskinlæring,Databaser, Operativsystemer, Webdesign, Responsiv Utvikling, Grunnleggende JavaScript, Fontend_utvikling, CSS og design, Python og web, Systemutvikling, Datakommunikasjon, Datasikkerhet,"]
 console.log(kursoversikt)
-const navn = [""] //21 1 rekotr 2 dekaner  3 vaktmestere 5 profseorer 10 lektor
-const stillinger =[""] //5
-const kontor = ["c308 til c329"] // 21
-const epost = [""] // 21
-const dobbelStillinger = [""] // 3
-const undervisere = [""] // 15
-console.log(kontor)
-const employees = [
-            {name: "Hans Hansen", position: "Programmerer", email: "hans.hansen@email.com", office: "316", image: "man"},
-            {name: "Jens Jensen", position: "Programmerer", email: "jens.jensen@email.com", office: "323", image: "man2"},
-            {name: "Trine Trinesdotter", position: "Programmerer", email: "trine.trinesdotter@email.com", office: "304", image: "woman"},
-        ]
-console.log(employees)
-document.getElementById("employees").innerHTML = HTML_employees
