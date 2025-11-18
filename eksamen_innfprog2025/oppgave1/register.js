@@ -17,3 +17,4 @@ function sendEmail() {
 }
 // document.getElementById("employees").innerHTML = HTML_employees //
 //lage en datastruktur for de ansatte og en datastruktur for stillinger
+//bruk av navn emal og sånt bruk en fiktivt register eller noe likt "bare fake navn stillinger emal kontor og sånt"
