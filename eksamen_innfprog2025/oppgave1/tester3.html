@@ -14,6 +14,36 @@
       text-align: center;
       color: #2c3e50;
     }
+    /* Kontrollseksjon */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+    .controls h2 {
+      width: 100%;
+      text-align: center;
+      margin: 10px 0;
+      color: #2c3e50;
+    }
+    .control-box {
+      background-color: #fff;
+      border: 2px solid #2c3e50;
+      border-radius: 6px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #2c3e50;
+      transition: background-color 0.2s ease;
+    }
+    .control-box:hover {
+      background-color: #2c3e50;
+      color: #fff;
+    }
+
+    /* Ansattkort */
     .container {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* 3 bokser per rad */
@@ -59,31 +89,80 @@
       color: #333;
       font-weight: bold;
     }
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Ansattoversikt</h1>
-  <div class="container"><div class="card"><h2>Anne Berg</h2><p class=" dark">Stilling: Rektor</p><p class="dark">Kontor: 101</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:anne.berg@email.com">anne.berg@email.com</a></p></div>
-    <div class="card"><h2>Bjørn Olsen</h2><p class=" dark">Stilling: Dekan</p><p class="dark">Kontor: 102</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:bjorn.olsen@email.com">bjorn.olsen@email.com</a></p></div>
-    <div class="card"><h2>Camilla Nilsen</h2><p class=" dark">Stilling: Dekan</p><p class="dark">Kontor: 103</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:camilla.nilsen@email.com">camilla.nilsen@email.com</a></p></div>
-    <div class="card"><h2>Dag Johansen</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 104</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:dag.johansen@email.com">dag.johansen@email.com</a></p></div>
-    <div class="card"><h2>Eirik Hansen</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 105</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:eirik.hansen@email.com">eirik.hansen@email.com</a></p></div>
-    <div class="card"><h2>Frida Solberg</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 106</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:frida.solberg@email.com">frida.solberg@email.com</a></p></div>
-    <div class="card"><h2>Gunnar Lie</h2><p class=" dark">Stilling: Professor </p><p class="dark">Kontor: 107</p><p class="courses">Kursansvar: Fag 1</p><p class="dark">E‑post: <a href="mailto:gunnar.lie@email.com">gunnar.lie@email.com</a></p></div>
-    <div class="card"><h2>Hanne Kristoffersen</h2><p class=" dark">Stilling: Professor </p><p class="dark">Kontor: 108</p><p class="courses">Kursansvar: Fag 2</p><p class="dark">E‑post: <a href="mailto:hanne.kristoffersen@email.com">hanne.kristoffersen@email.com</a></p></div>
-    <div class="card"><h2>Ingrid Dahl</h2><p class=" dark">Stilling: Professor</p><p class="dark">Kontor: 109</p><p class="courses">Kursansvar: Fag 3</p><p class="dark">E‑post: <a href="mailto:ingrid.dahl@email.com">ingrid.dahl@email.com</a></p></div>
-    <div class="card"><h2>Jonas Aas</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 110</p><p class="courses">Kursansvar: Fag 4</p><p class="dark">E‑post: <a href="mailto:jonas.aas@email.com">jonas.aas@email.com</a></p></div>
-    <div class="card"><h2>Kari Lund</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 111</p><p class="courses">Kursansvar: Fag 5</p><p class="dark">E‑post: <a href="mailto:kari.lund@email.com">kari.lund@email.com</a></p></div>
-    <div class="card"><h2>Lars Bergström</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 112</p><p class="courses">Kursansvar: Fag 6, Fag 7</p><p class="dark">E‑post: <a href="mailto:lars.bergstrom@email.com">lars.bergstrom@email.com</a></p></div>
-    <div class="card"><h2>Maria Haugen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 113</p><p class="courses">Kursansvar: Fag 8</p><p class="dark">E‑post: <a href="mailto:maria.haugen@email.com">maria.haugen@email.com</a></p></div>
-    <div class="card"><h2>Nils Eriksen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 114</p><p class="courses">Kursansvar: Fag 9, Fag 10</p><p class="dark">E‑post: <a href="mailto:nils.eriksen@email.com">nils.eriksen@email.com</a></p></div>
-    <div class="card"><h2>Oda Kristiansen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 115</p><p class="courses">Kursansvar: Fag 11</p><p class="dark">E‑post: <a href="mailto:oda.kristiansen@email.com">oda.kristiansen@email.com</a></p></div>
-    <div class="card"><h2>Per Andreassen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 116</p><p class="courses">Kursansvar: Fag 12</p><p class="dark">E‑post: <a href="mailto:per.andreassen@email.com">per.andreassen@email.com</a></p></div>
-    <div class="card"><h2>Ragnhild Moen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 117</p><p class="courses">Kursansvar: Fag 13</p><p class="dark">E‑post: <a href="mailto:ragnhild.moen@email.com">ragnhild.moen@email.com</a></p></div>
-    <div class="card"><h2>Sindre Foss</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 118</p><p class="courses">Kursansvar: Fag 14</p><p class="dark">E‑post: <a href="mailto:sindre.foss@email.com">sindre.foss@email.com</a></p></div>
-    <div class="card"><h2>Tiril Evensen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 119</p><p class="courses">Kursansvar: Fag 15</p><p class="dark">E‑post: <a href="mailto:tiril.evensen@email.com">tiril.evensen@email.com</a></p></div>
-    <div class="card"><h2>Ulrik Strand</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 120</p><p class="courses">Kursansvar: Fag 16</p><p class="dark">E‑post: <a href="mailto:ulrik.strand@email.com">ulrik.strand@email.com</a></p></div>
-    <div class="card"><h2>Vilde Knutsen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 121</p><p class="courses">Kursansvar: Fag 17, fag 18</p><p class="dark">E‑post: <a href="mailto:vilde.knutsen@email.com">vilde.knutsen@email.com</a></p></div>
-  </div>
+  <h1>Høyskolen JS</h1>
+
+  <!-- Kontrollseksjon -->
+  <main class="controls">
+    <main class="control-box" onclick="filterCards('all')">Vis alle ansatte</main>
+    <main class="control-box" onclick="filterCards('undervisere')">Vis undervisere</main>
+    <main class="control-box" onclick="filterCards('administrasjon')">Vis administrasjon</main>
+    <h2>Vis kun stillinger:</h2>
+    <main class="control-box" onclick="filterCards('Professor')">Professor</main>
+    <main class="control-box" onclick="filterCards('Dekan')">Dekan</main>
+    <main class="control-box" onclick="filterCards('Rektor')">Rektor</main>
+    <main class="control-box" onclick="filterCards('Vaktmester')">Vaktmester</main>
+    <main class="control-box" onclick="filterCards('Lektor')">Lektor</main>
+    <h2>Ansatte</h2>
+  </main>
+
+  <!-- Ansattkortene -->
+  <main class="container">
+    <main class="card" data-role="Rektor"><h2>Anne Berg</h2><p class=" dark">Stilling: Rektor</p><p class="dark">Kontor: 101</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:anne.berg@email.com">anne.berg@email.com</a></p></main>
+    <main class="card" data-role="Dekan"><h2>Bjørn Olsen</h2><p class=" dark">Stilling: Dekan</p><p class="dark">Kontor: 102</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:bjorn.olsen@email.com">bjorn.olsen@email.com</a></p></main>
+    <main class="card" data-role="Dekan"><h2>Camilla Nilsen</h2><p class=" dark">Stilling: Dekan</p><p class="dark">Kontor: 103</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:camilla.nilsen@email.com">camilla.nilsen@email.com</a></p></main>
+    <main class="card" data-role="Vaktmester"><h2>Dag Johansen</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 104</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:dag.johansen@email.com">dag.johansen@email.com</a></p></main>
+    <main class="card" data-role="Vaktmester"><h2>Eirik Hansen</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 105</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:eirik.hansen@email.com">eirik.hansen@email.com</a></p></main>
+    <main class="card" data-role="Vaktmester"><h2>Frida Solberg</h2><p class=" dark">Stilling: Vaktmester</p><p class="dark">Kontor: 106</p><p class="courses">Ingen kursansvar</p><p class="dark">E‑post: <a href="mailto:frida.solberg@email.com">frida.solberg@email.com</a></p></main>
+    <main class="card" data-role="Professor"><h2>Gunnar Lie</h2><p class=" dark">Stilling: Professor </p><p class="dark">Kontor: 107</p><p class="courses">Kursansvar: Fag 1</p><p class="dark">E‑post: <a href="mailto:gunnar.lie@email.com">gunnar.lie@email.com</a></p></main>
+    <main class="card" data-role="Professor"><h2>Hanne Kristoffersen</h2><p class=" dark">Stilling: Professor </p><p class="dark">Kontor: 108</p><p class="courses">Kursansvar: Fag 2</p><p class="dark">E‑post: <a href="mailto:hanne.kristoffersen@email.com">hanne.kristoffersen@email.com</a></p></main>
+    <main class="card" data-role="Professor"><h2>Ingrid Dahl</h2><p class=" dark">Stilling: Professor</p><p class="dark">Kontor: 109</p><p class="courses">Kursansvar: Fag 3</p><p class="dark">E‑post: <a href="mailto:ingrid.dahl@email.com">ingrid.dahl@email.com</a></p></main>
+    <main class="card" data-role="Professor"><h2>Jonas Aas</h2><p class=" dark">Stilling: Professor</p><p class="dark">Kontor: 110</p><p class="courses">Kursansvar: Fag 4</p><p class="dark">E‑post: <a href="mailto:jonas.aas@email.com">jonas.aas@email.com</a></p></main>
+    <main class="card" data-role="Professor"><h2>Kari Lund</h2><p class=" dark">Stilling: Professor</p><p class="dark">Kontor: 111</p><p class="courses">Kursansvar: Fag 5</p><p class="dark">E‑post: <a href="mailto:kari.lund@email.com">kari.lund@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Lars Bergström</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 112</p><p class="courses">Kursansvar: Fag 6, Fag 7</p><p class="dark">E‑post: <a href="mailto:lars.bergstrom@email.com">lars.bergstrom@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Maria Haugen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 113</p><p class="courses">Kursansvar: Fag 8</p><p class="dark">E‑post: <a href="mailto:maria.haugen@email.com">maria.haugen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Nils Eriksen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 114</p><p class="courses">Kursansvar: Fag 9, Fag 10</p><p class="dark">E‑post: <a href="mailto:nils.eriksen@email.com">nils.eriksen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Oda Kristiansen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 115</p><p class="courses">Kursansvar: Fag 11</p><p class="dark">E‑post: <a href="mailto:oda.kristiansen@email.com">oda.kristiansen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Per Andreassen</h2><p class=" dark">Stilling: Lektor</p><p class="dark">Kontor: 116</p><p class="courses">Kursansvar: Fag 12</p><p class="dark">E‑post: <a href="mailto:per.andreassen@email.com">per.andreassen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Ragnhild Moen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 117</p><p class="courses">Kursansvar: Fag 13</p><p class="dark">E‑post: <a href="mailto:ragnhild.moen@email.com">ragnhild.moen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Sindre Foss</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 118</p><p class="courses">Kursansvar: Fag 14</p><p class="dark">E‑post: <a href="mailto:sindre.foss@email.com">sindre.foss@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Tiril Evensen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 119</p><p class="courses">Kursansvar: Fag 15</p><p class="dark">E‑post: <a href="mailto:tiril.evensen@email.com">tiril.evensen@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Ulrik Strand</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 120</p><p class="courses">Kursansvar: Fag 16</p><p class="dark">E‑post: <a href="mailto:ulrik.strand@email.com">ulrik.strand@email.com</a></p></main>
+    <main class="card" data-role="Lektor"><h2>Vilde Knutsen</h2><p class="dark">Stilling: Lektor</p><p class="dark">Kontor: 121</p><p class="courses">Kursansvar: Fag 17, fag 18</p><p class="dark">E‑post: <a href="mailto:vilde.knutsen@email.com">vilde.knutsen@email.com</a></p></main>
+  </main>
+
+  <script>
+    function filterCards(filter) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        const role = card.getAttribute('data-role');
+        card.classList.remove('hidden');
+
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else if (filter === 'undervisere') {
+          // undervisere = Professor + Lektor
+          if (!(role.includes('Professor') || role.includes('Lektor'))) {
+            card.classList.add('hidden');
+          }
+        } else if (filter === 'administrasjon') {
+          // administrasjon = Rektor + Dekan + Vaktmester
+          if (!(role.includes('Rektor') || role.includes('Dekan') || role.includes('Vaktmester'))) {
+            card.classList.add('hidden');
+          }
+        } else {
+          // spesifikk stilling
+          if (!role.includes(filter)) {
+            card.classList.add('hidden');
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>

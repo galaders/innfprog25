@@ -1,5 +1,5 @@
 //ta imot index fra anstatt og returner html struktur for den ansatte
-//liste ut alle ansatte og bruke første funsjon for å strukturere utsriktfen av html
+//liste ut alle ansatte og bruke første funsjon for å strukturere utskriften av html
 //ta imot en parameter som angir stilling og filtrere ansatte på den insente parameteren knapper for dekan rektor professor lektor vaktmester
 //vis alle annsatte ved klikk på en knapp 
 //returnere alle kurser i en liste kursoversikt på bunnen av siden

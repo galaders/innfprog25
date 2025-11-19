@@ -43,5 +43,7 @@ console.log(personer);
 
 
 // document.getElementById("employees").innerHTML = HTML_employees //
-//lage en datastruktur for de ansatte og en datastruktur for stillinger
+//lage en datastruktur for de ansatte med alt fra navn stilling kontro epost og kursansvar om det har det eller ikke
+// en datastruktur for stillinger "kursansvar" den skal være en egen liste for stillinger som en index
 //bruk av navn emal og sånt bruk en fiktivt register eller noe likt "bare fake navn stillinger emal kontor og sånt"
+//html siden skal prøve å være så lik som mulig som oppgave vidoen viser
