@@ -110,6 +110,16 @@
   text-align: left;  /* venstrejustert */
 }
 
+
+
+#kursListe {
+  grid-column: 1;   /* plasser i første kolonne */
+  grid-row: 2;      /* plasser under første rad */
+  font-size: 22px;   /* større font */
+  align-self: start;
+  justify-self: start;
+  text-align: left;
+}
     
   </style>
 </head>
@@ -141,6 +151,12 @@
 
   
   <div class="grid" id="ansatteGrid">
+  <div class="grid" id="ansatteGrid"></div>
+
+<!-- Ny seksjon for kursliste -->
+<div id="kursListe"></div>
+
+      
 
 
   
@@ -180,36 +196,107 @@ const kontorer = {
   H105: { navn: "Kontor H105", etasje: "1. etasje", bygning: "Bygg H" },
   H205: { navn: "Kontor H205", etasje: "2. etasje", bygning: "Bygg H" }
 };
+
+const navn = {
+  1: "Greg Jensen",
+  2: "Kari Olsen",
+  3: "Per Hansen",
+  4: "Anne Johansen",
+  5: "Morten Berg",
+  6: "Lise Nilsen",
+  7: "Erik Larsen",
+  8: "Sara Pedersen",
+  9: "Jonas Kristoffersen",
+  10: "Camilla Andresen",
+  11: "Henrik Solberg", 
+  12: "Marte Lie",
+  13: "Sindre Aas",
+  14: "Tor Eriksen",
+  15: "Ida Svendsen",
+  16: "Magnus Haugen",
+  17: "Nora Evensen",
+  18: "Eirik Moe",
+  19: "Sofie Gundersen",
+  20: "Helene Dahl",
+  21: "Ola Nordmann",
+};
+
+const emails = {
+  1: "Greg Jensen@example.no",
+  2: "Kari Olsen@example.no",
+  3: "Per Hansen@example.no",
+  4: "Anne Johansen@example.no",
+  5: "Morten Berg@example.no",
+  6: "Lise Nilsen@example.no",
+  7: "Erik Larsen@example.no",
+  8: "Sara Pedersen.no",
+  9: "Jonas Kristoffersen@example.no",
+  10: "Camilla Andresen@example.no",
+  11: "Henrik Solberg@example.no",
+  12: "Marte Lie@example.no",
+  13: "Sindre Aas@example.no",
+  14: "Tor Eriksen@example.no",
+  15: "Ida Svendsen@example.no",
+  16: "Magnus Haugen@example.no",
+  17: "Nora Evensen@example.no",
+  18: "Eirik Moe@example.no",
+  19: "Sofie Gundersen@example.no",
+  20: "Helene Dahl@example.no",
+  21: "Ola Nordmann@example.no",
+};
+
+// Kurs-struktur
+const kurs = {
+  1: "Programmering 1",
+  2: "Webutvikling",
+  3: "3D-modellering",
+  4: "3D-Animasjon",
+  5: "3D-Spillutvikling",
+  6: "Kunstig intelligens",
+  7: "Maskinlæring",
+  8: "Databaser",
+  9: "Operativsystemer",
+  10: "Webdesign",
+  11: "Responsiv Utvikling",
+  12: "Grunnleggende JavaScript",
+  13: "Frontend_utvikling",
+  14: "CSS og design",
+  15: "Python og web",
+  16: "Systemutvikling",
+  17: "Datakommunikasjon",
+  18: "Datasikkerhet"
+};
+
 // 21 ansatte med kobling til kontorer
 const ansatte = [
   // Administrasjon (6)
-  { id: 1, fullNavn: "Greg Jensen", stilling: "Rektor", gruppe: "Administrasjon", kontor: "A101", epost: "Greg Jensen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 1, stilling: "Rektor", gruppe: "Administrasjon", kontor: "A101",  kursansvar: { harKursansvar: false } },
 
-  { id: 2, fullNavn: "Kari Olsen", stilling: "Dekan", gruppe: "Administrasjon", kontor: "A102", epost: "Kari Olsen@example.no", kursansvar: { harKursansvar: false } },
-  { id: 3, fullNavn: "Per Hansen", stilling: "Dekan", gruppe: "Administrasjon", kontor: "A103", epost: "Per Hansen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 2, stilling: "Dekan", gruppe: "Administrasjon", kontor: "A102", epost: "Kari Olsen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 3, stilling: "Dekan", gruppe: "Administrasjon", kontor: "A103", epost: "Per Hansen@example.no", kursansvar: { harKursansvar: false } },
 
-  { id: 4, fullNavn: "Anne Johansen", stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B201", epost: "Anne Johansen@example.no", kursansvar: { harKursansvar: false } },
-  { id: 5, fullNavn: "Morten Berg", stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B202", epost: "Morten Berg@example.no", kursansvar: { harKursansvar: false } },
-  { id: 6, fullNavn: "Lise Nilsen", stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B203", epost: "Lise Nilsen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 4, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B201", epost: "Anne Johansen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 5, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B202", epost: "Morten Berg@example.no", kursansvar: { harKursansvar: false } },
+  { id: 6, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B203", epost: "Lise Nilsen@example.no", kursansvar: { harKursansvar: false } },
 
   // Professorer (5) - Undervisere
-  { id: 7, fullNavn: "Erik Larsen", stilling: "Professor", gruppe: "Undervisere", kontor: "C301", epost: "Erik Larsen@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
-  { id: 8, fullNavn: "Sara Pedersen", stilling: "Professor", gruppe: "Undervisere", kontor: "C302", epost: "Sara Pedersen.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 9, fullNavn: "Jonas Kristoffersen", stilling: "Professor", gruppe: "Undervisere", kontor: "C303", epost: "Jonas Kristoffersen@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
-  { id: 10, fullNavn: "Camilla Andresen", stilling: "Professor", gruppe: "Undervisere", kontor: "D401", epost: "Camilla Andresen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 11, fullNavn: "Henrik Solberg", stilling: "Professor", gruppe: "Undervisere", kontor: "D402", epost: "Henrik Solberg@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
+  { id: 7, stilling: "Professor", gruppe: "Undervisere", kontor: "C301", epost: "Erik Larsen@example.no", kursansvar: { harKursansvar: true, kurs: [1, 2] } },
+  { id: 8, stilling: "Professor", gruppe: "Undervisere", kontor: "C302", epost: "Sara Pedersen.no", kursansvar:  { harKursansvar: true, kurs: [3, 4] } },
+  { id: 9, stilling: "Professor", gruppe: "Undervisere", kontor: "C303", epost: "Jonas Kristoffersen@example.no", kursansvar: { harKursansvar: true, kurs: [5, 6] } },
+  { id: 10, stilling: "Professor", gruppe: "Undervisere", kontor: "D401", epost: "Camilla Andresen@example.no", kursansvar: { harKursansvar: true, kurs: [7] } },
+  { id: 11, stilling: "Professor", gruppe: "Undervisere", kontor: "D402", epost: "Henrik Solberg@example.no", kursansvar: { harKursansvar: true, kurs: [8] } },
 
   // Lektorer (10) - Undervisere
-  { id: 12, fullNavn: "Marte Lie", stilling: "Lektor", gruppe: "Undervisere", kontor: "D403", epost: "Marte Lie@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 13, fullNavn: "Sindre Aas", stilling: "Lektor", gruppe: "Undervisere", kontor: "E210", epost: "Sindre Aas@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 14, fullNavn: "Tor Eriksen", stilling: "Lektor", gruppe: "Undervisere", kontor: "E211", epost: "Tor Eriksen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 15, fullNavn: "Ida Svendsen", stilling: "Lektor", gruppe: "Undervisere", kontor: "E212", epost: "Ida Svendsen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 16, fullNavn: "Magnus Haugen", stilling: "Lektor", gruppe: "Undervisere", kontor: "F115", epost: "Magnus Haugen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 17, fullNavn: "Nora Evensen", stilling: "Lektor", gruppe: "Undervisere", kontor: "F116", epost: "Nora Evensen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 18, fullNavn: "Eirik Moe", stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", epost: "Eirik Moe@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 19, fullNavn: "Sofie Gundersen", stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", epost: "Sofie Gundersen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 20, fullNavn: "Helene Dahl", stilling: "Lektor", gruppe: "Undervisere", kontor: "H105", epost: "Helene Dahl@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 21, fullNavn: "Ola Nordmann", stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Ola Nordmann@example.no", kursansvar: { harKursansvar: true, antall: 1 } }
+  { id: 12, stilling: "Lektor", gruppe: "Undervisere", kontor: "D403", epost: "Marte Lie@example.no", kursansvar: { harKursansvar: true, kurs: [9] } },
+  { id: 13, stilling: "Lektor", gruppe: "Undervisere", kontor: "E210", epost: "Sindre Aas@example.no", kursansvar: { harKursansvar: true, kurs: [10] } },
+  { id: 14, stilling: "Lektor", gruppe: "Undervisere", kontor: "E211", epost: "Tor Eriksen@example.no", kursansvar: { harKursansvar: true, kurs: [11] } },
+  { id: 15, stilling: "Lektor", gruppe: "Undervisere", kontor: "E212", epost: "Ida Svendsen@example.no",kursansvar: { harKursansvar: true, kurs: [12] } },
+  { id: 16, stilling: "Lektor", gruppe: "Undervisere", kontor: "F115", epost: "Magnus Haugen@example.no", kursansvar: { harKursansvar: true, kurs: [13] } },
+  { id: 17, stilling: "Lektor", gruppe: "Undervisere", kontor: "F116", epost: "Nora Evensen@example.no", kursansvar: { harKursansvar: true, kurs: [14] } },
+  { id: 18, stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", epost: "Eirik Moe@example.no", kursansvar: { harKursansvar: true, kurs: [15] } },
+  { id: 19, stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", epost: "Sofie Gundersen@example.no", kursansvar: { harKursansvar: true, kurs: [16] } },
+  { id: 20, stilling: "Lektor", gruppe: "Undervisere", kontor: "H105", epost: "Helene Dahl@example.no", kursansvar: { harKursansvar: true, kurs: [17] } },
+  { id: 21, stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Ola Nordmann@example.no", kursansvar: { harKursansvar: true, kurs: [18] } },
 ];
 
 
@@ -228,19 +315,19 @@ const ansatte = [
 // --- Render funksjon ---
 function renderAnsatte(liste) {
   const grid = document.getElementById("ansatteGrid");
-  if (!grid) return;
   grid.innerHTML = "";
   liste.forEach(a => {
     const kontorInfo = kontorer[a.kontor] || { navn: a.kontor, etasje: "", bygning: "" };
+    const kursListe = a.kursansvar?.kurs?.map(id => kurs[id]).join(", ") || "Ingen kursansvar";
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <h2>${a.fullNavn}</h2>
+      <h2>${navn[a.id]}</h2>
       <p><strong>Stilling:</strong> ${a.stilling}</p>
-      <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
-      <p class="email"><strong>E-post:</strong> <a href="mailto:${a.epost}">${a.epost}</a></p>
+     <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
+      <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
       <p class="${a.kursansvar?.harKursansvar ? "kursansvar" : "ingen-kursansvar"}">
-        ${a.kursansvar?.harKursansvar ? a.kursansvar.antall + " kursansvar" : "Ingen kursansvar"}
+        ${a.kursansvar?.harKursansvar ? "Kursansvar: " + kursListe : "Ingen kursansvar"}
       </p>
     `;
     grid.appendChild(card);
@@ -297,6 +384,24 @@ function toggleActive(id) {
 function clearActiveGroup(attr) {
   document.querySelectorAll(`[${attr}]`).forEach(b => b.classList.remove("active"));
 }
+
+function visAlleKurs() {
+  const kursDiv = document.getElementById("kursListe");
+  kursDiv.innerHTML = "<h2>Alle kurs</h2>";
+
+  const ul = document.createElement("ul");
+  Object.values(kurs).forEach(k => {
+    const li = document.createElement("li");
+    li.textContent = k;
+    ul.appendChild(li);
+  });
+
+  kursDiv.appendChild(ul);
+}
+document.addEventListener("DOMContentLoaded", () => {
+  visAlle();      // viser alle ansatte
+  visAlleKurs();  // viser alle kursene nederst
+});
   </script>
 </body>
 </html>
