@@ -6,5 +6,3 @@
 //funsjon som filtere med en knapp for alle undervisere og en knapp for alle adminstrative
 //funsjon som skal ta imot en parameter fra 1 underviser og legge denne til i registeret dette vil kun funke i oppgave 3 register.html
 //funsjon skal ta imot en parameter som intenifiserer en ansatt og fjerne denne fra registeret dette blir på admin siden i oppgave 3
-const kursoversikt = ["Programmering 1, Webutvikling, 3D-modellering, 3D-Animasjon, 3D-Spillutvikling, Kunstig intelligens, Maskinlæring,Databaser, Operativsystemer, Webdesign, Responsiv Utvikling, Grunnleggende JavaScript, Fontend_utvikling, CSS og design, Python og web, Systemutvikling, Datakommunikasjon, Datasikkerhet,"]
-console.log(kursoversikt)
