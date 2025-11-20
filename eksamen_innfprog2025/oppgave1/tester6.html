@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <title>Ansatte</title>
   <style>
-   body {
+    body {
       font-family: Arial, sans-serif;
       margin: 20px;
       background-color: #f9f9f9;
     }
-       .header-box {
+      .header-box {
   background-color: #800020; /* burgundy rød */
   color: white;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+
   /* linje-stil */
   width: 100%;       /* fyller hele bredden */
   height: 50px;      /* tykkelse på linjen */
   line-height: 50px; /* sentrerer teksten vertikalt */
+  margin: 0;         /* ingen space på sidene */
   padding: 0;        /* ingen ekstra luft inni */
 }
-
 
     /* resten av CSS for filter og grid */
    .filters {
@@ -209,7 +209,7 @@ const ansatte = [
   { id: 18, fullNavn: "Eirik Moe", stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", epost: "Eirik Moe@example.no", kursansvar: { harKursansvar: false } },
   { id: 19, fullNavn: "Sofie Gundersen", stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", epost: "Sofie Gundersen@example.no", kursansvar: { harKursansvar: false } },
   { id: 20, fullNavn: "Helene Dahl", stilling: "Lektor", gruppe: "Undervisere", kontor: "H105", epost: "Helene Dahl@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 21, fullNavn: "Ola Nordmann", stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Greg Jensen@example.no", kursansvar: { harKursansvar: false } }
+  { id: 21, fullNavn: "Ola Nordmann", stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Ola Nordmann@example.no", kursansvar: { harKursansvar: false } }
 ];
 
 
