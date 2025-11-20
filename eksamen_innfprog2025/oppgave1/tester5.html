@@ -267,6 +267,30 @@ const kurs = {
   18: "Datasikkerhet"
 };
 
+const stillinger = {
+  1: "Rektor",
+  2: "Dekan",
+  3: "Vaktmester",
+  4: "Professor",
+  5: "Professor",
+  6: "Professor",
+  7: "Professor",
+  8: "Professor",
+  9: "Lektor",
+  10: "Lektor",
+  11: "Lektor",
+  12: "Lektor",
+  13: "Lektor",
+  14: "Lektor",
+  15: "Lektor",
+  16: "Lektor",
+  17: "Lektor",
+  18: "Lektor",
+  19: "Lektor",
+  20: "Lektor",
+  21: "Lektor"
+};
+
 
 
 // 21 ansatte med kobling til kontorer
@@ -313,28 +337,26 @@ const ansatte = [
 
     
 
-// Rendering
-// --- Render funksjon ---
 function renderAnsatte(liste) {
   const grid = document.getElementById("ansatteGrid");
   grid.innerHTML = "";
   liste.forEach(a => {
     const kontorInfo = kontorer[a.kontor] || { navn: a.kontor, etasje: "", bygning: "" };
-    const kursListe = a.kursansvar?.kurs?.map(id => kurs[id]).join(", ") || "Ingen kursansvar";
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
       <h2>${navn[a.id]}</h2>
-      <p><strong>Stilling:</strong> ${a.stilling}</p>
-     <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
+      <p><strong>Stilling:</strong> ${stillinger[a.id]}</p>
+      <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
       <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
       <p class="${a.kursansvar?.harKursansvar ? "kursansvar" : "ingen-kursansvar"}">
-        ${a.kursansvar?.harKursansvar ? "Kursansvar: " + kursListe : "Ingen kursansvar"}
+        ${a.kursansvar?.harKursansvar ? "Kursansvar: " + a.kursansvar.kurs.map(id => kurs[id]).join(", ") : "Ingen kursansvar"}
       </p>
     `;
     grid.appendChild(card);
   });
 }
+
 
 // --- Filter funksjoner ---
 function visAlle() { renderAnsatte(ansatte); }
