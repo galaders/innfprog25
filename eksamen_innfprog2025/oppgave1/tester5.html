@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <title>Ansatte</title>
   <style>
-   body {
+    body {
       font-family: Arial, sans-serif;
       margin: 20px;
       background-color: #f9f9f9;
     }
-       .header-box {
+      .header-box {
   background-color: #800020; /* burgundy rød */
   color: white;
   text-align: center;
   font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+
   /* linje-stil */
   width: 100%;       /* fyller hele bredden */
   height: 50px;      /* tykkelse på linjen */
   line-height: 50px; /* sentrerer teksten vertikalt */
+  margin-bottom: 20px;      
   padding: 0;        /* ingen ekstra luft inni */
 }
-
 
     /* resten av CSS for filter og grid */
    .filters {
@@ -195,21 +195,21 @@ const ansatte = [
   // Professorer (5) - Undervisere
   { id: 7, fullNavn: "Erik Larsen", stilling: "Professor", gruppe: "Undervisere", kontor: "C301", epost: "Erik Larsen@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
   { id: 8, fullNavn: "Sara Pedersen", stilling: "Professor", gruppe: "Undervisere", kontor: "C302", epost: "Sara Pedersen.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 9, fullNavn: "Jonas Kristoffersen", stilling: "Professor", gruppe: "Undervisere", kontor: "C303", epost: "Jonas Kristoffersen@example.no", kursansvar: { harKursansvar: true, antall: 3 } },
+  { id: 9, fullNavn: "Jonas Kristoffersen", stilling: "Professor", gruppe: "Undervisere", kontor: "C303", epost: "Jonas Kristoffersen@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
   { id: 10, fullNavn: "Camilla Andresen", stilling: "Professor", gruppe: "Undervisere", kontor: "D401", epost: "Camilla Andresen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
   { id: 11, fullNavn: "Henrik Solberg", stilling: "Professor", gruppe: "Undervisere", kontor: "D402", epost: "Henrik Solberg@example.no", kursansvar: { harKursansvar: true, antall: 2 } },
 
   // Lektorer (10) - Undervisere
   { id: 12, fullNavn: "Marte Lie", stilling: "Lektor", gruppe: "Undervisere", kontor: "D403", epost: "Marte Lie@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 13, fullNavn: "Sindre Aas", stilling: "Lektor", gruppe: "Undervisere", kontor: "E210", epost: "Sindre Aas@example.no", kursansvar: { harKursansvar: false } },
+  { id: 13, fullNavn: "Sindre Aas", stilling: "Lektor", gruppe: "Undervisere", kontor: "E210", epost: "Sindre Aas@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
   { id: 14, fullNavn: "Tor Eriksen", stilling: "Lektor", gruppe: "Undervisere", kontor: "E211", epost: "Tor Eriksen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 15, fullNavn: "Ida Svendsen", stilling: "Lektor", gruppe: "Undervisere", kontor: "E212", epost: "Ida Svendsen@example.no", kursansvar: { harKursansvar: false } },
-  { id: 16, fullNavn: "Magnus Haugen", stilling: "Lektor", gruppe: "Undervisere", kontor: "F115", epost: "Magnus Haugen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 15, fullNavn: "Ida Svendsen", stilling: "Lektor", gruppe: "Undervisere", kontor: "E212", epost: "Ida Svendsen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
+  { id: 16, fullNavn: "Magnus Haugen", stilling: "Lektor", gruppe: "Undervisere", kontor: "F115", epost: "Magnus Haugen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
   { id: 17, fullNavn: "Nora Evensen", stilling: "Lektor", gruppe: "Undervisere", kontor: "F116", epost: "Nora Evensen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 18, fullNavn: "Eirik Moe", stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", epost: "Eirik Moe@example.no", kursansvar: { harKursansvar: false } },
-  { id: 19, fullNavn: "Sofie Gundersen", stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", epost: "Sofie Gundersen@example.no", kursansvar: { harKursansvar: false } },
+  { id: 18, fullNavn: "Eirik Moe", stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", epost: "Eirik Moe@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
+  { id: 19, fullNavn: "Sofie Gundersen", stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", epost: "Sofie Gundersen@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
   { id: 20, fullNavn: "Helene Dahl", stilling: "Lektor", gruppe: "Undervisere", kontor: "H105", epost: "Helene Dahl@example.no", kursansvar: { harKursansvar: true, antall: 1 } },
-  { id: 21, fullNavn: "Ola Nordmann", stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Greg Jensen@example.no", kursansvar: { harKursansvar: false } }
+  { id: 21, fullNavn: "Ola Nordmann", stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", epost: "Ola Nordmann@example.no", kursansvar: { harKursansvar: true, antall: 1 } }
 ];
 
 
