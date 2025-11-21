@@ -34,7 +34,7 @@
         margin-left: 40px; /* avstand fra venstre vegg */
       }
       .filter-btn {
-      background: #add8e6; /* lyseblå */
+      background: #add8e6; /* lyseblå */ /* dette er for knappene /*
       color: #000;
       border: 2px solid black; /* svart kant rundt knappene */
       padding: 10px 15px;
@@ -120,6 +120,13 @@
   justify-self: start;
   text-align: left;
 }
+
+.stilling-label {
+  font-size: 18px;   /* større font */
+  font-weight: bold; /* gjør den tydelig */
+  color: #000000;    /* svart tekst */
+  margin-right: 10px;
+}
     
   </style>
 </head>
@@ -130,18 +137,21 @@
   <!-- Filterpanel -->
   <div class="filters">
     <button class="filter-btn" onclick="visAlle()">Vis alle ansatte</button>
-    <button class="filter-btn" onclick="visUndervisere()">Vis undervisere</button>
-    <button class="filter-btn" onclick="visAdministrasjon()">Vis administrasjon</button>
+    <button id="btnUndervisere" class="filter-btn">Undervisere</button>
+    <button id="btnAdministrasjon" class="filter-btn">Administrasjon
   </div>
 
-  <div class="filters-row">
-    <span>Vis kun stillinger:</span>
-    <button class="filter-btn" onclick="filtrerStilling('Professor')">Professor</button>
-    <button class="filter-btn" onclick="filtrerStilling('Dekan')">Dekan</button>
-    <button class="filter-btn" onclick="filtrerStilling('Rektor')">Rektor</button>
-    <button class="filter-btn" onclick="filtrerStilling('Vaktmester')">Vaktmester</button>
-    <button class="filter-btn" onclick="filtrerStilling('Lektor')">Lektor</button>
-  </div>
+ <div class="filters">
+   <span class="stilling-label">Vis kun stillinger:</span>
+  <button data-stilling-id="1" class="filter-btn">Rektor</button>
+  <button data-stilling-id="2" class="filter-btn">Dekan</button>
+  <button data-stilling-id="3" class="filter-btn">Vaktmester</button>
+  <button data-stilling-id="4" class="filter-btn">Professor</button>
+  <button data-stilling-id="5" class="filter-btn">Lektor</button>
+</div>
+
+<div class="grid" id="ansatteGrid"></div>
+
 
  <!-- Overskrift over personas-boksene -->
 <div class="personas-title">Ansatte</div>
@@ -268,11 +278,11 @@ const kurs = {
 };
 
 const stillinger = {
-  1: "Rektor",
-  2: "Dekan",
-  3: "Vaktmester",
-  4: "Professor",
-  5: "Lektor"
+  1: { navn: "Rektor", kategori: "Administrasjon" },
+  2: { navn: "Dekan", kategori: "Administrasjon" },
+  3: { navn: "Vaktmester", kategori: "Administrasjon" },
+  4: { navn: "Professor", kategori: "Undervisere" },
+  5: { navn: "Lektor", kategori: "Undervisere" }
 };
 
 
@@ -282,33 +292,33 @@ const stillinger = {
 // 21 ansatte med kobling til kontorer
 const ansatte = [
   // Administrasjon (6)
-  { id: 1, stilling: "Rektor", gruppe: "Administrasjon", kontor: "A101", kursansvar: { harKursansvar: false } },
+  { id: 1, stillingId: 1, kontor: "A101", kursansvar: { harKursansvar: false } },
 
-  { id: 2, stilling: "Dekan", gruppe: "Administrasjon", kontor: "A102", kursansvar: { harKursansvar: false } },
-  { id: 3, stilling: "Dekan", gruppe: "Administrasjon", kontor: "A103", kursansvar: { harKursansvar: false } },
+  { id: 2, stillingId: 2, kontor: "A102", kursansvar: { harKursansvar: false } },
+  { id: 3, stillingId: 2, kontor: "A103", kursansvar: { harKursansvar: false } },
 
-  { id: 4, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B201", kursansvar: { harKursansvar: false } },
-  { id: 5, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B202", kursansvar: { harKursansvar: false } },
-  { id: 6, stilling: "Vaktmester", gruppe: "Administrasjon", kontor: "B203", kursansvar: { harKursansvar: false } },
+  { id: 4, stillingId: 3, kontor: "B201", kursansvar: { harKursansvar: false } },
+  { id: 5, stillingId: 3, kontor: "B202", kursansvar: { harKursansvar: false } },
+  { id: 6, stillingId: 3, kontor: "B203", kursansvar: { harKursansvar: false } },
 
   // Professorer (5) - Undervisere
-  { id: 7, stilling: "Professor", gruppe: "Undervisere", kontor: "C301", kursansvar: { harKursansvar: true, kurs: [1, 2] } },
-  { id: 8, stilling: "Professor", gruppe: "Undervisere", kontor: "C302", kursansvar:  { harKursansvar: true, kurs: [3, 4] } },
-  { id: 9, stilling: "Professor", gruppe: "Undervisere", kontor: "C303", kursansvar: { harKursansvar: true, kurs: [5, 6] } },
-  { id: 10, stilling: "Professor", gruppe: "Undervisere", kontor: "D401", kursansvar: { harKursansvar: true, kurs: [7] } },
-  { id: 11, stilling: "Professor", gruppe: "Undervisere", kontor: "D402", kursansvar: { harKursansvar: true, kurs: [8] } },
+  { id: 7, stillingId: 4, kontor: "C301", kursansvar: { harKursansvar: true, kurs: [1, 2] } },
+  { id: 8, stillingId: 4, kontor: "C302", kursansvar:  { harKursansvar: true, kurs: [3, 4] } },
+  { id: 9, stillingId: 4, kontor: "C303", kursansvar: { harKursansvar: true, kurs: [5, 6] } },
+  { id: 10, stillingId: 4, kontor: "D401", kursansvar: { harKursansvar: true, kurs: [7] } },
+  { id: 11, stillingId: 4, kontor: "D402", kursansvar: { harKursansvar: true, kurs: [8] } },
 
   // Lektorer (10) - Undervisere
-  { id: 12, stilling: "Lektor", gruppe: "Undervisere", kontor: "D403", kursansvar: { harKursansvar: true, kurs: [9] } },
-  { id: 13, stilling: "Lektor", gruppe: "Undervisere", kontor: "E210", kursansvar: { harKursansvar: true, kurs: [10] } },
-  { id: 14, stilling: "Lektor", gruppe: "Undervisere", kontor: "E211", kursansvar: { harKursansvar: true, kurs: [11] } },
-  { id: 15, stilling: "Lektor", gruppe: "Undervisere", kontor: "E212", kursansvar: { harKursansvar: true, kurs: [12] } },
-  { id: 16, stilling: "Lektor", gruppe: "Undervisere", kontor: "F115", kursansvar: { harKursansvar: true, kurs: [13] } },
-  { id: 17, stilling: "Lektor", gruppe: "Undervisere", kontor: "F116", kursansvar: { harKursansvar: true, kurs: [14] } },
-  { id: 18, stilling: "Lektor", gruppe: "Undervisere", kontor: "G320", kursansvar: { harKursansvar: true, kurs: [15] } },
-  { id: 19, stilling: "Lektor", gruppe: "Undervisere", kontor: "G321", kursansvar: { harKursansvar: true, kurs: [16] } },
-  { id: 20, stilling: "Lektor", gruppe: "Undervisere", kontor: "H105", kursansvar: { harKursansvar: true, kurs: [17] } },
-  { id: 21, stilling: "Lektor", gruppe: "Undervisere", kontor: "H205", kursansvar: { harKursansvar: true, kurs: [18] } },
+  { id: 12, stillingId: 5, kontor: "D403", kursansvar: { harKursansvar: true, kurs: [9] } },
+  { id: 13, stillingId: 5, kontor: "E210", kursansvar: { harKursansvar: true, kurs: [10] } },
+  { id: 14, stillingId: 5, kontor: "E211", kursansvar: { harKursansvar: true, kurs: [11] } },
+  { id: 15, stillingId: 5, kontor: "E212", kursansvar: { harKursansvar: true, kurs: [12] } },
+  { id: 16, stillingId: 5, kontor: "F115", kursansvar: { harKursansvar: true, kurs: [13] } },
+  { id: 17, stillingId: 5, kontor: "F116", kursansvar: { harKursansvar: true, kurs: [14] } },
+  { id: 18, stillingId: 5, kontor: "G320", kursansvar: { harKursansvar: true, kurs: [15] } },
+  { id: 19, stillingId: 5, kontor: "G321", kursansvar: { harKursansvar: true, kurs: [16] } },
+  { id: 20, stillingId: 5, kontor: "H105", kursansvar: { harKursansvar: true, kurs: [17] } },
+  { id: 21, stillingId: 5, kontor: "H205", kursansvar: { harKursansvar: true, kurs: [18] } },
 ];
 
 
@@ -332,12 +342,11 @@ function renderAnsatte(liste) {
     card.className = "card";
     card.innerHTML = `
       <h2>${navn[a.id]}</h2>
-      <p><strong>Stilling:</strong> ${stillinger[a.id]}</p>
+      <p><strong>Stilling:</strong> ${stillinger[a.stillingId].navn}</p>
+      <p><strong>Kategori:</strong> ${stillinger[a.stillingId].kategori}</p>
       <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
       <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
-      <p class="${a.kursansvar?.harKursansvar ? "kursansvar" : "ingen-kursansvar"}">
-        ${a.kursansvar?.harKursansvar ? "Kursansvar: " + a.kursansvar.kurs.map(id => kurs[id]).join(", ") : "Ingen kursansvar"}
-      </p>
+      <p>${a.kursansvar?.harKursansvar ? "Kursansvar: " + a.kursansvar.kurs.map(id => kurs[id]).join(", ") : "Ingen kursansvar"}</p>
     `;
     grid.appendChild(card);
   });
@@ -346,8 +355,13 @@ function renderAnsatte(liste) {
 
 // --- Filter funksjoner ---
 function visAlle() { renderAnsatte(ansatte); }
-function visUndervisere() { renderAnsatte(ansatte.filter(a => /underviser|lektor|professor/i.test(a.stilling))); }
-function visAdministrasjon() { renderAnsatte(ansatte.filter(a => /administrasjon|rektor|dekan|vaktmester|bibliotekar/i.test(a.stilling))); }
+function visUndervisere() {
+  renderAnsatte(ansatte.filter(a => stillinger[a.stillingId].kategori === "Undervisere"));
+}
+
+function visAdministrasjon() {
+  renderAnsatte(ansatte.filter(a => stillinger[a.stillingId].kategori === "Administrasjon"));
+}
 function visMedKursansvar() { renderAnsatte(ansatte.filter(a => a.kursansvar?.harKursansvar)); }
 function visUtenKursansvar() { renderAnsatte(ansatte.filter(a => !a.kursansvar?.harKursansvar)); }
 function filtrerStilling(stilling) { renderAnsatte(ansatte.filter(a => a.stilling === stilling)); }
@@ -357,6 +371,18 @@ function filtrerKontor(kode) { renderAnsatte(ansatte.filter(a => a.kontor === ko
 document.addEventListener("DOMContentLoaded", () => {
   // initial visning
   visAlle();
+
+  document.addEventListener("DOMContentLoaded", () => {
+  renderAnsatte(ansatte); // start med alle
+
+  document.querySelectorAll("[data-stilling-id]").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const id = parseInt(e.currentTarget.dataset.stillingId, 10);
+      const filtrert = ansatte.filter(a => a.stillingId === id);
+      renderAnsatte(filtrert);
+    });
+  });
+});
 
   const map = id => document.getElementById(id);
 
@@ -386,6 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 });
 
+
 // --- Hjelpefunksjoner for knapptilstand ---
 function toggleActive(id) {
   document.querySelectorAll(".filters button").forEach(b => b.classList.remove("active"));
@@ -412,6 +439,20 @@ document.addEventListener("DOMContentLoaded", () => {
   visAlle();      // viser alle ansatte
   visAlleKurs();  // viser alle kursene nederst
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderAnsatte(ansatte); // start med alle
+
+  document.querySelectorAll("[data-stilling-id]").forEach(btn => {
+    btn.addEventListener("click", e => {
+      const id = parseInt(e.currentTarget.dataset.stillingId, 10);
+      const filtrert = ansatte.filter(a => a.stillingId === id);
+      renderAnsatte(filtrert);
+    });
+  });
+});
+
   </script>
 </body>
 </html>

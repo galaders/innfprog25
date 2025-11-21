@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f3f3f3;
+    color: var(--purple)
+}
+
