@@ -129,6 +129,22 @@
   margin-right: 10px;
 }
     
+#kursContainer {
+  font-size: 18px;      /* større font */
+  color: #000000;       /* svart tekst */
+  text-align: left;     /* venstrejustert */
+  margin-top: 20px;     /* litt luft over */
+}
+#kursContainer h2 {
+  font-size: 22px;      /* overskrift enda større */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#kursContainer ul {
+  list-style-type: disc; /* vanlige punktmerker */
+  padding-left: 20px;    /* innrykk for punktene */
+}
+
   </style>
 </head>
 <body>
@@ -161,14 +177,12 @@
 <!-- Grid med personboksene -->
 <div class="grid" id="ansatteGrid"></div>
 
-  
-  <div class="grid" id="ansatteGrid">
   <div class="grid" id="ansatteGrid"></div>
 
 <!-- Ny seksjon for kursliste -->
 <div id="kursListe"></div>
 
-      
+<div id="kursContainer"></div>
 
 
   
@@ -425,21 +439,17 @@ function clearActiveGroup(attr) {
 }
 
 function visAlleKurs() {
-  const kursDiv = document.getElementById("kursListe");
-  kursDiv.innerHTML = "<h2>Alle kurs</h2>";
-
-  const ul = document.createElement("ul");
-  Object.values(kurs).forEach(k => {
-    const li = document.createElement("li");
-    li.textContent = k;
-    ul.appendChild(li);
-  });
-
-  kursDiv.appendChild(ul);
+  const kursDiv = document.getElementById("kursContainer");
+  kursDiv.innerHTML = `
+    <h2>Alle kurs</h2>
+    <ul>
+      ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")}
+    </ul>
+  `;
 }
 document.addEventListener("DOMContentLoaded", () => {
-  visAlle();      // viser alle ansatte
-  visAlleKurs();  // viser alle kursene nederst
+  renderAnsatte(ansatte);  // viser personkortene
+  visAlleKurs();           // viser kurslisten nederst
 });
 
 

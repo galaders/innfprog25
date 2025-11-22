@@ -1,133 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Workshop Game</title>
-    <link href="style.css" rel="stylesheet" media="screen" />
-    <link rel="apple-touch-icon" sizes="180x180" href="meta/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="meta/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="meta/favicon-16x16.png">
-    <link rel="manifest" href="meta/site.webmanifest">
-    <link rel="mask-icon" href="meta/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8">
+  <title>Ansatte‑register</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    form {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      max-width: 400px;
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 16px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover { background-color: #005a9e; }
+    #ansatteGrid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      background: #f9f9f9;
+    }
+    .delete-btn {
+      margin-top: 10px;
+      padding: 6px 12px;
+      background-color: #d83b01;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn:hover { background-color: #a4262c; }
+    #kursContainer {
+      font-size: 18px;
+      color: #000000;
+      text-align: left;
+      margin-top: 40px;
+      display: block;
+    }
+    #kursContainer h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #kursContainer ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <section id="player">
-            <ul>
-                <li><img src="icons/shield.svg"> <span id="playerName"></span></li>
-                <li><img src="icons/energydrink.svg" title="energy"> <span id="energy">3</span></li>
-                <li><img src="icons/notebook.svg"> <span id="notebookItems">0</span></li>
-                <li><img src="icons/solution.svg"> <span id="points">0</span> poeng</li>
-                <li><img src="icons/clock.svg"> <span id="duration">0</span></li>
-            </ul>
-        </section>
-        <img src="icons/c3_logo.svg" alt="Code Concept Collector" />
-        <nav>
-            <button id="notebookToggler"><img src="icons/notebook.svg" />Åpne kladdeboka <span class="shortcut">n</span></button>
-            <button id="infoToggler">Info / Hvordan spille <span class="shortcut">i</span></button>
-        </nav>
-    </header>
-    <main>
-        
-        <section id="notebook">
-            <div id="notebook-page">
-                
-                <h2>Notater</h2>
-                <table>
-                    <tr>
-                        <td><img src="icons/variable.svg" alt="" /></td>
-                        <td>Variabler</td>
-                        <td><span id="variables">0</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="icons/array.svg" alt="" /></td>
-                        <td>Arrayer</td>
-                        <td><span id="arrays">0</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="icons/loop.svg" alt="" /></td>
-                        <td>Løkker</td>
-                        <td><span id="loops">0</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="icons/function.svg" alt="" /></td>
-                        <td>Funksjoner</td>
-                        <td><span id="functions">0</span></td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-        <section id="info" class="hidden">
-            <div id="info-page">
-                <h2>Info / Hvordan spille C<sup>3</sup></h2>
-                <p>Målet med spiller er at programmeringsstudenten Fortran <span class="illustration">(<img src="icons/fortran.svg" />)</span> skal samle programmeringskonseptene variabler <span class="illustration">(<img src="icons/variable.svg" />)</span>, arrayer <span class="illustration">(<img src="icons/array.svg" />)</span>, løkker <span class="illustration">(<img src="icons/loop.svg" />)</span> og funksjoner <span class="illustration">(<img src="icons/function.svg" />)</span> i kladdeboka <span class="illustration">(<img src="icons/notebook.svg" />)</span> si.</p>
-                <p>Etterhvert kan Fortran bruke de oppsamlede konseptene for å løse oppgaver <span class="illustration">(<img src="icons/puzzle.svg" />)</span>. Det koster en energi <span class="illustration">(<img src="icons/energydrink.svg" />)</span>. Dersom Fortran ikke løser oppgaven korrekt, mister han enda en energi, i tillegg til å ha brukt opp programmeringskonseptene han har brukt i oppgaven.</p>
-                <p>Gjennom spillet samler Fortran de nevnte konseptene og energidrikker. Men, det vil også komme bugs <span class="illustration">(<img src="icons/bug.svg" />)</span>! Pass på så Fortran ikke samler bugs, de koster det en energidrikke og løse opp!</p>
-                <h2>Hvordan spille</h2>
-                <p>Bruk piltastene for å flytte Fortran rundt og samle konsepter og energidrikker, og unngå bugs.</p>
-                <p>Klikk knappen "Åpne kladdeboka", eller snarveien N for å åpne kladdeboka og se hvor mange konsepter Fortran har samlet.</p>
-                <p>Gå på en oppgave når denne dukker opp for å løse en oppgave for å score poeng. Du får 10 poeng for å løse en oppgave, 1 poeng for hvert konsept du samler.</p>
-            </div>
-        </section>
-    </main>
-    <script>
-        //PREPARE GAME CONFIG AND VARIABLES
-        //TODO: config
 
-        const gameConfig = {
-            player: "",
-            energy: 5,
-            points: 10,
-            duration: 138
-        }
-       
-        //TODO: notebook
-        const notebook = {
-            variables: 2,
-            arrays: 4,
-            loops: 3,
-            functions: 7,
-        }
+  <h1>Legg til ny ansatt</h1>
 
-        //(BONUS) TODO: function for all prints
+  <!-- Skjema -->
+  <form id="nyAnsattForm">
+    <label for="fornavn">Fornavn:</label>
+    <input type="text" id="fornavn" name="fornavn" required>
 
-        function updateStaticUI(){
-        //TODO: print playerinfo to HTML
-        //Vi kan lagre HTML-elementer i variabler for lettere testing/kontroll i logg.
-        let playerNameHTML = document.getElementById("playerName")
+    <label for="etternavn">Etternavn:</label>
+    <input type="text" id="etternavn" name="etternavn" required>
 
-        if(gameConfig.player === ""){
-            document.getElementById("playerName").innerHTML = "Waiting for player..."
-            // Her tvinger vi gameConfig-verdiene til å være 0 dersom spillernavn ikke er "logget inn"
-            for(key in gameConfig){
-                gameConfig[key] = 0
-            }
+    <label for="epost">E‑post:</label>
+    <input type="email" id="epost" name="epost" required>
 
-            for(key in notebook){
-                notebook[key] = 0
-            }
-            
-        } else {
-            document.getElementById("playerName").innerHTML = gameConfig.player
-        }
+    <label for="kontor">Kontor:</label>
+    <input type="text" id="kontor" name="kontor" required>
 
-        document.getElementById("energy").innerHTML = gameConfig.energy
-        document.getElementById("points").innerHTML = gameConfig.points
-        document.getElementById("duration").innerHTML = gameConfig.duration
+    <label for="stilling">Stilling:</label>
+    <select id="stilling" name="stilling" required>
+      <option value="Rektor">Rektor</option>
+      <option value="Dekan">Dekan</option>
+      <option value="Vaktmester">Vaktmester</option>
+      <option value="Professor">Professor</option>
+      <option value="Lektor">Lektor</option>
+    </select>
 
+    <label for="kurs">Kurs (kommaseparert):</label>
+    <input type="text" id="kurs" name="kurs">
 
-        //TODO: print notebook info to HTML
-        document.getElementById("variables").innerHTML = notebook.variables
-        document.getElementById("arrays").innerHTML = notebook.arrays
-        document.getElementById("loops").innerHTML = notebook.loops
-        document.getElementById("functions").innerHTML = notebook.functions
+    <button type="submit">Legg til ansatt</button>
+  </form>
+
+  <!-- Grid for ansatte -->
+  <div id="ansatteGrid"></div>
+
+  <!-- Kursliste nederst -->
+  <div id="kursContainer"></div>
+
+  <script>
+    const ansatte = [];
+    const kurs = {
+      1: "Matematikk 1",
+      2: "Matematikk 2",
+      3: "Fysikk",
+      4: "Kjemi",
+      5: "Biologi",
+      6: "Historie",
+      7: "Samfunnsfag",
+      8: "Engelsk",
+      9: "Norsk",
+      10: "IT",
+      11: "Økonomi",
+      12: "Pedagogikk",
+      13: "Psykologi"
+    };
+
+    // Render ansatte
+    function renderAnsatte() {
+      const grid = document.getElementById("ansatteGrid");
+      grid.innerHTML = "";
+      ansatte.forEach((a, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <h2>${a.fornavn} ${a.etternavn}</h2>
+          <p><strong>E‑post:</strong> ${a.epost}</p>
+          <p><strong>Kontor:</strong> ${a.kontor}</p>
+          <p><strong>Stilling:</strong> ${a.stilling}</p>
+          <p><strong>Kurs:</strong> ${a.kurs.length > 0 ? a.kurs.join(", ") : "Ingen"}</p>
+          <button class="delete-btn" data-index="${index}">Slett ansatt</button>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Slett-knapper
+      document.querySelectorAll(".delete-btn").forEach(btn => {
+        btn.addEventListener("click", e => {
+          const idx = parseInt(e.target.dataset.index, 10);
+          ansatte.splice(idx, 1);
+          renderAnsatte();
+        });
+      });
     }
-    
-    updateStaticUI()
-        
-    </script>
+
+    // Render kursliste nederst
+    function visAlleKurs() {
+      const kursDiv = document.getElementById("kursContainer");
+      kursDiv.innerHTML = `
+        <h2>Alle kurs</h2>
+        <ul>
+          ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")}
+        </ul>
+      `;
+    }
+
+    // Skjema
+    document.getElementById("nyAnsattForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const fornavn = document.getElementById("fornavn").value;
+      const etternavn = document.getElementById("etternavn").value;
+      const epost = document.getElementById("epost").value;
+      const kontor = document.getElementById("kontor").value;
+      const stilling = document.getElementById("stilling").value;
+      const kursInput = document.getElementById("kurs").value;
+      const kursListe = kursInput ? kursInput.split(",").map(k => k.trim()) : [];
+
+      const nyAnsatt = { fornavn, etternavn, epost, kontor, stilling, kurs: kursListe };
+      ansatte.push(nyAnsatt);
+
+      renderAnsatte();
+      e.target.reset();
+    });
+
+    // Init
+    visAlleKurs();
+  </script>
+
 </body>
 </html>
