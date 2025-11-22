@@ -145,10 +145,14 @@
 }
     
 #kursContainer {
-  font-size: 18px;      /* større font */
+  /* Vis kurslisten som en venstrestilt HTML-blokk med fremhevet tekst */
+  width: 300px;
+  float: left;
+  font-size: 20px;      /* større font */
   color: #000000;       /* svart tekst */
   text-align: left;     /* venstrejustert */
-  margin-top: 20px;     /* litt luft over */
+  margin: 20px 20px 20px 40px;     /* litt luft rundt */
+  background: transparent;
 }
 #kursContainer h2 {
   font-size: 22px;      /* overskrift enda større */
@@ -158,6 +162,11 @@
 #kursContainer ul {
   list-style-type: disc; /* vanlige punktmerker */
   padding-left: 20px;    /* innrykk for punktene */
+}
+
+/* Skyv hoved-girdene til høyre så kurslisten får plass */
+.grid {
+  margin-left: 360px;
 }
 
   </style>
@@ -611,11 +620,14 @@ function clearActiveGroup(attr) {
 
 function visAlleKurs() {
   const kursDiv = document.getElementById("kursContainer");
+  // Bygger ren HTML for kurslisten som vises i venstre kolonne
   kursDiv.innerHTML = `
-    <h2>Alle kurs</h2>
-    <ul>
-      ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")}
-    </ul>
+    <div class="kurs-html">
+      <h2 style="font-size:24px; color:#000; margin:0 0 8px 0;">Alle kurs</h2>
+      <ul>
+        ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")}
+      </ul>
+    </div>
   `;
 }
 document.addEventListener("DOMContentLoaded", () => {
