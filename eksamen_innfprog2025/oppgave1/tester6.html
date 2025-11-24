@@ -232,6 +232,15 @@
   
 
   <script>
+    // Cached external card template (optional file `card.html`)
+    let cardTemplateHTML = null;
+    function loadCardTemplate() {
+      // Try to fetch the external template; if it fails we fall back to inline rendering
+      return fetch('card.html')
+        .then(r => { if (!r.ok) throw new Error('Failed'); return r.text(); })
+        .then(t => { cardTemplateHTML = t; })
+        .catch(() => { cardTemplateHTML = null; });
+    }
     const NAVN_LISTE = [
       "Ola Nordmann", "Kari Olsen", "Per Hansen", "Anne Johansen",
       "Morten Berg", "Lise Nilsen", "Erik Larsen", "Sara Pedersen",
@@ -409,20 +418,44 @@ function renderAnsatte(liste) {
       kursTekst = 'Kursansvar: ' + kListe.join(', ');
     }
 
-    card.innerHTML = `
-      <h2>${navn[a.id]}</h2>
-      <p><strong>Stilling:</strong> ${stillinger[a.stillingId].navn}</p>
-      <p><strong>Kategori:</strong> ${stillinger[a.stillingId].kategori}</p>
-      <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
-      <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
-      <p>${kursTekst}</p>
-      <div style="margin-top:12px;">
-        <!-- knapp uten inline-onclick; bruker data-attributt -->
-        <button class="filter-btn delete-btn" data-delete-id="${a.id}" aria-label="Slett ${navn[a.id]}">Slett person</button>
-      </div>
-    `;
+    // If external template loaded, use it and replace placeholders, otherwise inline fallback
+    if (cardTemplateHTML) {
+      const kontorDisplay = kontorInfo.navn + (kontorInfo.etasje ? ` (${kontorInfo.etasje}, ${kontorInfo.bygning})` : '');
+      const html = cardTemplateHTML
+        .replace(/{{NAME}}/g, escapeHtml(navn[a.id] || ''))
+        .replace(/{{STILLING}}/g, escapeHtml(stillinger[a.stillingId].navn || ''))
+        .replace(/{{KATEGORI}}/g, escapeHtml(stillinger[a.stillingId].kategori || ''))
+        .replace(/{{KONTOR}}/g, escapeHtml(kontorDisplay))
+        .replace(/{{EPOST}}/g, escapeHtml(emails[a.id] || ''))
+        .replace(/{{KURS}}/g, escapeHtml(kursTekst))
+        .replace(/{{ID}}/g, String(a.id));
+      card.innerHTML = html;
+    } else {
+      // Fallback: same markup built inline (keeps previous behavior)
+      card.innerHTML = `
+        <h2>${navn[a.id]}</h2>
+        <p><strong>Stilling:</strong> ${stillinger[a.stillingId].navn}</p>
+        <p><strong>Kategori:</strong> ${stillinger[a.stillingId].kategori}</p>
+        <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
+        <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
+        <p>${kursTekst}</p>
+        <div style="margin-top:12px;">
+          <button type="button" class="filter-btn delete-btn" data-delete-id="${a.id}" aria-label="Slett ${navn[a.id]}">Slett person</button>
+        </div>
+      `;
+    }
     grid.appendChild(card);
   });
+}
+
+// Simple HTML escape to avoid injecting values directly into template
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 // Fjern en person fra listen og oppdater visningen

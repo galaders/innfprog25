@@ -3,29 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passordgenerator</title>
+    <title>Admin</title>
      <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header-boks -->
   <div class="header-box">Høyskolen JS</div>
 
-  <!-- Filterpanel -->
-  <div class="filters">
-    <button class="filter-btn" onclick="visAlle()">Vis alle ansatte</button>
-    <button id="btnUndervisere" class="filter-btn">Undervisere</button>
-    <button id="btnAdministrasjon" class="filter-btn">Administrasjon
+  
+
+<!-- Skjema for å legge til en ansatt -->
+<div class="form-card" id="leggTilForm">
+  <div style="font-weight:bold; margin-bottom:8px;">Legg til ansatt</div>
+  <div class="form-row">
+    <label for="fornavn">Fornavn</label>
+    <input id="fornavn" type="text" placeholder="Fornavn">
+    <label for="etternavn">Etternavn</label>
+    <input id="etternavn" type="text" placeholder="Etternavn">
   </div>
-
- <div class="filters">
-   <span class="stilling-label">Vis kun stillinger:</span>
-  <button data-stilling-id="1" class="filter-btn">Rektor</button>
-  <button data-stilling-id="2" class="filter-btn">Dekan</button>
-  <button data-stilling-id="3" class="filter-btn">Vaktmester</button>
-  <button data-stilling-id="4" class="filter-btn">Professor</button>
-  <button data-stilling-id="5" class="filter-btn">Lektor</button>
+  <div class="form-row">
+    <label for="epost">E-post</label>
+    <input id="epost" type="email" placeholder="epost@hiof.no">
+    <label for="kontor">Kontor</label>
+    <input id="kontor" type="text" placeholder="A101">
+  </div>
+  <div class="form-row">
+    <label for="stillingSelect">Stilling</label>
+    <select id="stillingSelect"></select>
+    <label for="kursInput">Kurs</label>
+    <input id="kursInput" type="text" placeholder="Skriv kurs (komma-separert)" style="flex:1" />
+  </div>
+  <div style="text-align:right;">
+    <div id="formError" class="form-error" aria-live="polite"></div>
+    <button class="filter-btn add-btn" onclick="leggTilAnsatt()">Legg til ansatt</button>
+  </div>
 </div>
-
 
 
  <!-- Overskrift over personas-boksene -->
@@ -37,12 +49,8 @@
 <!-- Grid med personboksene -->
 <div class="grid" id="ansatteGrid"></div>
 
-  <div class="grid" id="ansatteGrid"></div>
+<div class="grid" id="ansatteGrid"></div>
 
-<!-- Ny seksjon for kursliste -->
-<div id="kursListe"></div>
-
-<div id="kursContainer"></div>
 
 <script src="../oppgave1/actions.js"></script>
 <script src="../oppgave1/register.js"></script>
