@@ -1,0 +1,157 @@
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0px;
+      background-color: #ebf4f8; /* lys blå bakgrunn */
+      padding: 0px;
+    }
+      .header-box {
+  background-color: #088ec3; /* blå bakgrunn */
+  color: #ffffff; /* hvit tekst */
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+ 
+
+  /* linje-stil */
+  width: 100%;       /* fyller hele bredden */
+  height: 80px;      /* tykkelse på linjen */
+  line-height: 50px; /* sentrerer teksten vertikalt */
+  margin-bottom: 20px;      
+  padding: 0;        /* ingen ekstra luft inni */
+}
+
+    /* resten av CSS for filter og grid */
+   .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+        margin-left: 40px; /* avstand fra venstre vegg */
+      }
+      .filter-btn {
+      background: #add8e6; /* lyseblå */ /* dette er for knappene /*
+      color: #000;
+      border: 2px solid black; /* svart kant rundt knappene */
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .filter-btn:hover {
+      background: #87ceeb; /* litt mørkere lyseblå ved hover */
+    }
+    .filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 40px; /* avstand fra venstre vegg */
+  }
+    .filters-row span {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 0 40px;
+    }
+  .card {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      /* kontroll på størrelse */
+      width: 400px;   /* bredde */
+      height: 250px;  /* høyde */
+    }
+    .card h2 {
+      margin: 0 0 15px;
+      font-size: 22px;
+      color: #333;
+    }
+    .card p {
+  margin: 0; /* fjerner all avstand mellom linjene */
+  font-size: 18px;
+}
+
+.card .email {
+  margin: 0; /* ingen ekstra avstand over epost-linjen */
+  font-size: 16px;
+}
+
+    .kursansvar {
+      color: green;
+      font-weight: bold;
+    }
+    .ingen-kursansvar {
+      color: red;
+    }
+    .personas-title {
+    font-size: 32px;   /* større font */
+    font-weight: bold;
+    color: #000;       /* svart tekst */
+    margin: 20px 40px 20px 60px; /* litt luft over og mer fra venstre */
+    text-align: left;  /* venstrejustert */
+  }
+
+  /* Skjema for å legge til ansatt */
+  .form-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 40px 20px 40px;
+    max-width: 800px;
+  }
+  .form-row { display: flex; gap: 12px; margin-bottom: 10px; }
+  .form-row input, .form-row select { flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #bbb; font-size: 14px; }
+  .form-row label { min-width: 90px; display: inline-block; font-weight: bold; }
+  .add-btn { margin-top: 8px; }
+  .form-error { color: #b00020; font-size: 14px; margin-top: 8px; min-height: 18px; }
+
+
+
+#kursListe {
+  grid-column: 1;   /* plasser i første kolonne */
+  grid-row: 2;      /* plasser under første rad */
+  font-size: 22px;   /* større font */
+  align-self: start;
+  justify-self: start;
+  text-align: left;
+}
+
+.stilling-label {
+  font-size: 18px;   /* større font */
+  font-weight: bold; /* gjør den tydelig */
+  color: #000000;    /* svart tekst */
+  margin-right: 10px;
+}
+    
+#kursContainer {
+  font-size: 18px;      /* større font */
+  color: #000000;       /* svart tekst */
+  text-align: left;     /* venstrejustert */
+  margin-top: 20px;     /* litt luft over */
+  margin-left: 40px;    /* litt luft vesntre side */ 
+}
+#kursContainer h2 {
+  font-size: 22px;      /* overskrift enda større */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+#kursContainer ul {
+  list-style-type: disc; /* vanlige punktmerker */
+  padding-left: 20px;    /* innrykk for punktene */
+}

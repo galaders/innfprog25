@@ -7,19 +7,20 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0px;
-      background-color: #f9f9f9;
+      background-color: #ebf4f8; /* lys blå bakgrunn */
       padding: 0px;
     }
       .header-box {
-  background-color: #800020; /* burgundy rød */
-  color: white;
+  background-color: #088ec3; /* blå bakgrunn */
+  color: #ffffff; /* hvit tekst */
   text-align: center;
-  font-size: 28px;
+  font-size: 40px;
   font-weight: bold;
+ 
 
   /* linje-stil */
   width: 100%;       /* fyller hele bredden */
-  height: 50px;      /* tykkelse på linjen */
+  height: 80px;      /* tykkelse på linjen */
   line-height: 50px; /* sentrerer teksten vertikalt */
   margin-bottom: 20px;      
   padding: 0;        /* ingen ekstra luft inni */
@@ -107,7 +108,7 @@
     font-size: 32px;   /* større font */
     font-weight: bold;
     color: #000;       /* svart tekst */
-    margin: 20px 40px 20px 80px; /* litt luft over og mer fra venstre */
+    margin: 20px 40px 20px 60px; /* litt luft over og mer fra venstre */
     text-align: left;  /* venstrejustert */
   }
 
@@ -149,7 +150,7 @@
   color: #000000;       /* svart tekst */
   text-align: left;     /* venstrejustert */
   margin-top: 20px;     /* litt luft over */
-  margin-left: 40px;    /* litt luft vesntre side */
+  margin-left: 40px;    /* litt luft vesntre side */ 
 }
 #kursContainer h2 {
   font-size: 22px;      /* overskrift enda større */
@@ -165,7 +166,7 @@
 </head>
 <body>
   <!-- Header-boks -->
-  <div class="header-box">Liste over ansatte</div>
+  <div class="header-box">Høyskolen JS</div>
 
   <!-- Filterpanel -->
   <div class="filters">
@@ -415,7 +416,10 @@ function renderAnsatte(liste) {
       <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p>
       <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p>
       <p>${kursTekst}</p>
-      <div style="margin-top:12px;"><button class="filter-btn" onclick="slettPerson(${a.id})">Slett person</button></div>
+      <div style="margin-top:12px;">
+        <!-- knapp uten inline-onclick; bruker data-attributt -->
+        <button class="filter-btn delete-btn" data-delete-id="${a.id}" aria-label="Slett ${navn[a.id]}">Slett person</button>
+      </div>
     `;
     grid.appendChild(card);
   });
@@ -538,6 +542,17 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // Initial toggle av kursfeltet
   toggleKursInput();
+
+  // Delegert event-handler for slett-knapper i ansatteGrid
+  const ansatteGrid = document.getElementById('ansatteGrid');
+  if (ansatteGrid) {
+    ansatteGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-delete-id]');
+      if (!btn) return;
+      const id = parseInt(btn.dataset.deleteId, 10);
+      if (!Number.isNaN(id)) slettPerson(id);
+    });
+  }
 });
 
 

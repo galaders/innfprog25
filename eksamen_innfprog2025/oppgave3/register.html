@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Passordgenerator</title>
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-</body> 
+    <!-- Header-boks -->
+  <div class="header-box">Høyskolen JS</div>
+
+  
+
+<!-- Skjema for å legge til en ansatt -->
+<div class="form-card" id="leggTilForm">
+  <div style="font-weight:bold; margin-bottom:8px;">Legg til ansatt</div>
+  <div class="form-row">
+    <label for="fornavn">Fornavn</label>
+    <input id="fornavn" type="text" placeholder="Fornavn">
+    <label for="etternavn">Etternavn</label>
+    <input id="etternavn" type="text" placeholder="Etternavn">
+  </div>
+  <div class="form-row">
+    <label for="epost">E-post</label>
+    <input id="epost" type="email" placeholder="epost@hiof.no">
+    <label for="kontor">Kontor</label>
+    <input id="kontor" type="text" placeholder="A101">
+  </div>
+  <div class="form-row">
+    <label for="stillingSelect">Stilling</label>
+    <select id="stillingSelect"></select>
+    <label for="kursInput">Kurs</label>
+    <input id="kursInput" type="text" placeholder="Skriv kurs (komma-separert)" style="flex:1" />
+  </div>
+  <div style="text-align:right;">
+    <div id="formError" class="form-error" aria-live="polite"></div>
+    <button class="filter-btn add-btn" onclick="leggTilAnsatt()">Legg til ansatt</button>
+  </div>
+</div>
+
+
+ <!-- Overskrift over personas-boksene -->
+<div class="personas-title">Ansatte</div>
+
+<div class="grid" id="ansatteGrid"></div>
+
+
+<!-- Grid med personboksene -->
+<div class="grid" id="ansatteGrid"></div>
+
+<div class="grid" id="ansatteGrid"></div>
+
+
+<script src="../oppgave1/actions.js"></script>
+<script src="../oppgave1/register.js"></script>
 <script>
-    //knapper her for alle actions skal i dette html denne er startsiden for register og alt av mesteparten av javascript koding "husk å fjerne script taggen
-    // email skal være blå det vil si klikbar med email navnet på vær person sin mail"
-    // prøv å ha ccs som lik som mulig som er vist av lærer på begge html filene
+    
 </script>
+</body>
 </html>
