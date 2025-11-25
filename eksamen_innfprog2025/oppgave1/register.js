@@ -1,5 +1,4 @@
-// Datastruktur med alle kontor
-// --- Kontorer (kan tilpasses) ---
+// Hver kontor har navn, etasje og bygning
 const kontorer = {
   A101: { navn: "Kontor A101", etasje: "1. etasje", bygning: "Hovedbygget" },
   A102: { navn: "Kontor A102", etasje: "1. etasje", bygning: "Hovedbygget" },
@@ -24,6 +23,7 @@ const kontorer = {
   H205: { navn: "Kontor H205", etasje: "2. etasje", bygning: "Bygg H" }
 };
 
+// Ansatte-data
 const navn = {
   1: "Greg Jensen",
   2: "Kari Olsen",
@@ -48,6 +48,7 @@ const navn = {
   21: "Ola Nordmann",
 };
 
+// Epost-data
 const emails = {
   1: "Greg.Jensen@hiof.no",
   2: "Kari.Olsen@hiof.no",
@@ -94,6 +95,7 @@ const kurs = {
   18: "Datasikkerhet"
 };
 
+// Stillingstyper
 const stillinger = {
   1: { navn: "Rektor", kategori: "Administrasjon" },
   2: { navn: "Dekan", kategori: "Administrasjon" },
@@ -105,11 +107,14 @@ const stillinger = {
 // 21 ansatte med kobling til kontorer
 const ansatte = [
   // Administrasjon (6)
+  // Rektor (1) - Administrasjon
   { id: 1, stillingId: 1, kontor: "A101", kursansvar: { harKursansvar: false } },
 
+  // Dekaner (2) - Administrasjon
   { id: 2, stillingId: 2, kontor: "A102", kursansvar: { harKursansvar: false } },
   { id: 3, stillingId: 2, kontor: "A103", kursansvar: { harKursansvar: false } },
 
+  // Vaktmestere (3) - Administrasjon
   { id: 4, stillingId: 3, kontor: "B201", kursansvar: { harKursansvar: false } },
   { id: 5, stillingId: 3, kontor: "B202", kursansvar: { harKursansvar: false } },
   { id: 6, stillingId: 3, kontor: "B203", kursansvar: { harKursansvar: false } },

@@ -49,7 +49,7 @@ function createDeleteButton(id, navnStr) {
   return btn;
 }
 
- //* Slett en ansatt basert på ID
+ // Slett en ansatt basert på ID
 function slettPerson(id) {
   const index = ansatte.findIndex(a => a.id === id);
   if (index === -1) return;
@@ -62,7 +62,7 @@ function getNextId() {
   return Math.max(0, ...ansatte.map(a => a.id)) + 1;
 }
 
-//* Fyll stilling-select og kurs-select i skjema*//
+// Fyll stilling-select og kurs-select i skjema//
 function populateStillings() {
   const sel = document.getElementById('stillingSelect');
   if (!sel) return;
@@ -114,7 +114,7 @@ function leggTilAnsatt() {
     if (formError) formError.textContent = msg || '';
     if (msg && focusEl) focusEl.focus();
   }
-
+  // Valider påkrevde felt
   if (!fornavn || !etternavn || !epost || !stillingSel) {
     setFormError('Fyll ut fornavn, etternavn, e-post og stilling.', document.getElementById(!fornavn ? 'fornavn' : !etternavn ? 'etternavn' : 'epost'));
     return;
@@ -152,7 +152,7 @@ function leggTilAnsatt() {
   ansatte.push(nyAnsatt);
   renderAnsatte(ansatte);
 
-  // Reset skjema
+  // Tøm skjema
   document.getElementById('fornavn').value = '';
   document.getElementById('etternavn').value = '';
   document.getElementById('epost').value = '';
@@ -197,16 +197,16 @@ function visUtenKursansvar() { renderAnsatte(ansatte.filter(a => !a.kursansvar?.
 function filtrerStilling(stilling) { renderAnsatte(ansatte.filter(a => a.stilling === stilling)); }
 function filtrerKontor(kode) { renderAnsatte(ansatte.filter(a => a.kontor === kode)); }
 
-// --- Koble knapper (forutsetter ID-er i HTML) ---
+// Initialiser visning ved DOM-lastning 
 document.addEventListener("DOMContentLoaded", () => {
   // initial visning
   visAlle();
 
-  //* Koble filter-knapper *//
+  // Koble filter-knapper //
   document.addEventListener("DOMContentLoaded", () => {
   renderAnsatte(ansatte); // start med alle
 
-  // Eksempel: knapper for spesifikke stillinger basert på stillingId //
+  // knapper for spesifikke stillinger basert på stillingId //
   document.querySelectorAll("[data-stilling-id]").forEach(btn => {
     btn.addEventListener("click", e => {
       const id = parseInt(e.currentTarget.dataset.stillingId, 10);
@@ -218,14 +218,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Koble filter-knapper
   const map = id => document.getElementById(id);
-
   map("btnAlle")?.addEventListener("click", () => { visAlle(); toggleActive("btnAlle"); });
   map("btnUndervisere")?.addEventListener("click", () => { visUndervisere(); toggleActive("btnUndervisere"); });
   map("btnAdministrasjon")?.addEventListener("click", () => { visAdministrasjon(); toggleActive("btnAdministrasjon"); });
   map("btnMedKurs")?.addEventListener("click", () => { visMedKursansvar(); toggleActive("btnMedKurs"); });
   map("btnUtenKurs")?.addEventListener("click", () => { visUtenKursansvar(); toggleActive("btnUtenKurs"); });
 
-  // Eksempel: knapper for spesifikke stillinger eller kontor (hvis du har slike knapper i HTML)
+  
   // <button data-stilling="Bibliotekar" class="btn-stilling">Bibliotekar</button>
   document.querySelectorAll("[data-stilling]").forEach(btn =>
     btn.addEventListener("click", e => {
@@ -272,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   visAlleKurs();           // viser kurslisten nederst
 });
 
-// Eksempel: knapper for spesifikke stillinger basert på stillingId //
+// Knapper for spesifikke stillinger basert på stillingId "se over denne blokken"
 document.addEventListener("DOMContentLoaded", () => {
   renderAnsatte(ansatte); // start med alle
   document.querySelectorAll("[data-stilling-id]").forEach(btn => {

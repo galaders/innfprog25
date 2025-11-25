@@ -1,61 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nb">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
+    <!-- links til css-->
      <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header-boks -->
-  <div class="header-box">Høyskolen JS</div>
-
-  
+  <header class="header-box">Høyskolen JS</header>
 
 <!-- Skjema for å legge til en ansatt -->
-<div class="form-card" id="leggTilForm">
-  <div style="font-weight:bold; margin-bottom:8px;">Legg til ansatt</div>
-  <div class="form-row">
+<main class="form-card" id="leggTilForm">
+  <main style="font-weight:bold; margin-bottom:8px;">Legg til ansatt</main>
+  <main class="form-row">
     <label for="fornavn">Fornavn</label>
     <input id="fornavn" type="text" placeholder="Fornavn">
     <label for="etternavn">Etternavn</label>
     <input id="etternavn" type="text" placeholder="Etternavn">
-  </div>
-  <div class="form-row">
+  </main>
+  <main class="form-row">
     <label for="epost">E-post</label>
     <input id="epost" type="email" placeholder="epost@hiof.no">
     <label for="kontor">Kontor</label>
     <input id="kontor" type="text" placeholder="A101">
-  </div>
-  <div class="form-row">
+  </main>
+  <main class="form-row">
     <label for="stillingSelect">Stilling</label>
     <select id="stillingSelect"></select>
     <label for="kursInput">Kurs</label>
     <input id="kursInput" type="text" placeholder="Skriv kurs (komma-separert)" style="flex:1" />
-  </div>
-  <div style="text-align:right;">
-    <div id="formError" class="form-error" aria-live="polite"></div>
+  </main>
+  <main style="text-align:right;">
+    <main id="formError" class="form-error" aria-live="polite"></main>
     <button class="filter-btn add-btn" onclick="leggTilAnsatt()">Legg til ansatt</button>
-  </div>
-</div>
+  </main>
+</main>
 
 
  <!-- Overskrift over personas-boksene -->
-<div class="personas-title">Ansatte</div>
-
-<div class="grid" id="ansatteGrid"></div>
-
+<main class="personas-title">Ansatte</main>
 
 <!-- Grid med personboksene -->
-<div class="grid" id="ansatteGrid"></div>
+<main class="grid" id="ansatteGrid"></main>
 
-<div class="grid" id="ansatteGrid"></div>
-
-
+<!-- links til javascript kodene-->
 <script src="../oppgave1/actions.js"></script>
 <script src="../oppgave1/register.js"></script>
-<script>
-    
-</script>
 </body>
 </html>
