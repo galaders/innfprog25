@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refaktorering</title>
+</head>
+<body>
+    <script>
+        // Enkel og kort versjon: finn lengste ord
+        const ordListe = ["kode", "programmering", "design", "data", "variabel"];
+        const finnLengsteOrd = liste => liste.reduce((a, b) => a.length >= b.length ? a : b, "");
+        console.log(`Det lengste ordet i listen er: ${finnLengsteOrd(ordListe)}`);
+
+        // Enkel og kort versjon: gjennomsnittsalder
+        const personer = [
+            { navn: "Ola", alder: 24 },
+            { navn: "Kari", alder: 32 },
+            { navn: "Per", alder: 29 },
+            { navn: "Anne", alder: 41 }
+        ];
+        const gjennomsnittAlder = ppl => ppl.reduce((s, p) => s + p.alder, 0) / (ppl.length || 1);
+        console.log(`Gjennomsnittsalderen er ${gjennomsnittAlder(personer)}`);
+
+            //PROBLEM 3
+        const tall_array_en = [9, 13, 5, 62, 11, 6, 28, 31, 17]
+
+        //Din kode for å løse problem 3 her.
+
+const calculateAverage = arr => arr.reduce((sum, value) => sum + value, 0) / arr.length;
+
+let averageScore1 = calculateAverage(tall_array_en);
+document.getElementById('resultat1').textContent = averageScore1;
+    </script>
+</body>
+</html>
