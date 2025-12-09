@@ -7,70 +7,117 @@
 </head>
 <body>
     <script>
-        //Denne koden finner det lengste ordet i en liste med ord.
-        function start() {
-            let ordListe = ["kode", "programmering", "design", "data", "variabel"];
+       
+     // min kode for å finne lengste ord i en liste 
 
-            function finnLengsteOrd(liste) {
-                let lengste = "";
-                for (let i = 0; i < liste.length; i++) {
-                    let ord = liste[i];
-                    if (ord.length > lengste.length) {
-                        lengste = ord;
-                    } else {
-                        // gjør ingenting
-                    }
-                }
-                return lengste;
-            }
+     //jeg laget mine egene koder i stedet for å kutte ned på koden som var der synes det jeg fant fram var en fin og kort en som funker bra
 
-            function skrivUtResultat() {
-                let resultat = finnLengsteOrd(ordListe);
-                console.log("Det lengste ordet i listen er: " + resultat);
-            }
+        // Liste med ord
+         const ordListe = ["kode", "programmering", "design", "data", "variabel"]; // eksempel liste
+        // Funksjon for å finne det lengste ordet i en liste
+        // Bruker en array metode reduce for å finne lengste ord i listen
+        // reduce går gjennom hvert ord i listen og sammenligner lengden for å finne det lengste
+         const finnLengsteOrd = liste => liste.reduce((a, b) => a.length >= b.length ? a : b, ""); // bruker reduce for å finne lengste ord i listen 
+        // Tester funksjonen og skriver ut resultatet
+         console.log(`Det lengste ordet i listen er: ${finnLengsteOrd(ordListe)}`); // skriver ut lengste ord
 
-            skrivUtResultat();
-        }
 
-        start();
+         
+     //min kode for gjennomsnittsalder 
+
+        // Liste med personer og deres aldre
+             const personers = [
+            { navn: "Ola", alder: 24 },
+            { navn: "Kari", alder: 32 },
+            { navn: "Per", alder: 29 },
+            { navn: "Anne", alder: 41 }
+         ];
+         
+        // Funksjon for å beregne gjennomsnittet av en liste med tall  
+        // samme kodebruk som ble brukt i arbeidskravet 2 oppgaven
+        // Array.prototype.reduce brukes for å summere alle tallene i arrayet
+        // Deretter deles summen på lengden av arrayet for å finne gjennomsnittet
+         const calculateAverage = arr => arr.reduce((sum, value) => sum + value, 0) / arr.length; // bruker reduce for å summere og deler på lengden for å finne gjennomsnitt
+        // Beregner og skriver ut gjennomsnittsalderen
+         let gjennomsnitt = calculateAverage(personers.map(person => person.alder)); // mapper personers til en liste med aldre og beregner gjennomsnitt
+        // Tester funksjonen og skriver ut resultatet
+         console.log(`Gjennomsnittsalderen er ${gjennomsnitt}`); // skriver ut gjennomsnittsalder
+
+
+
+
+
+
+
+       //!gammle kode fra oppgaven!//
+       //Denne koden finner det lengste ordet i en liste med ord. 
+       // function start() {
+           // let ordListe = ["kode", "programmering", "design", "data", "variabel"];
+
+           // function finnLengsteOrd(liste) {
+             //   let lengste = "";
+             //   for (let i = 0; i < liste.length; i++) {
+             //       let ord = liste[i];
+             //       if (ord.length > lengste.length) {
+             //           lengste = ord;
+             //       } else {
+             //           // gjør ingenting
+             //       }
+            //    }
+            //    return lengste;
+           //  }
+
+             // function skrivUtResultat() {
+            //    let resultat = finnLengsteOrd(ordListe);
+           //     console.log("Det lengste ordet i listen er: " + resultat);
+         //   }
+
+        //    skrivUtResultat();
+       // }
+
+       // start();
+
+
+       //!gammle kode fra oppgaven!// 
 
         //Denne koden regner ut gjennomsnittsalderen til en gruppe personer.
-        function startProgram() {
-            let personer = [
-                { navn: "Ola", alder: 24 },
-                { navn: "Kari", alder: 32 },
-                { navn: "Per", alder: 29 },
-                { navn: "Anne", alder: 41 }
-            ];
+       // function startProgram() {
+        //    let personer = [
+        //        { navn: "Ola", alder: 24 },
+        //        { navn: "Kari", alder: 32 },
+        //        { navn: "Per", alder: 29 },
+        //        { navn: "Anne", alder: 41 }
+        //    ];
 
-            function hentAldre(liste) {
-                let alderArray = [];
-                for (let i = 0; i < liste.length; i++) {
-                    let person = liste[i];
-                    alderArray.push(person.alder);
-                }
-                return alderArray;
-            }
+        //    function hentAldre(liste) {
+        //        let alderArray = [];
+        //        for (let i = 0; i < liste.length; i++) {
+        //            let person = liste[i];
+        //            alderArray.push(person.alder);
+        //        }
+        //        return alderArray;
+        //    }
 
-            function regnUtGjennomsnitt(alderArray) {
-                let sum = 0;
-                for (let i = 0; i < alderArray.length; i++) {
-                    sum = sum + alderArray[i];
-                }
-                let gjennomsnitt = sum / alderArray.length;
-                return gjennomsnitt;
-            }
+        //    function regnUtGjennomsnitt(alderArray) {
+        //        let sum = 0;
+        //        for (let i = 0; i < alderArray.length; i++) {
+        //            sum = sum + alderArray[i];
+        //        }
+        //        let gjennomsnitt = sum / alderArray.length;
+        //        return gjennomsnitt;
+        //    }
 
-            function visResultat() {
-                let alderArray = hentAldre(personer);
-                let gjennomsnitt = regnUtGjennomsnitt(alderArray);
-                console.log("Gjennomsnittsalderen er " + gjennomsnitt);
-            }
+        //    function visResultat() {
+        //        let alderArray = hentAldre(personer);
+        //        let gjennomsnitt = regnUtGjennomsnitt(alderArray);
+        //        console.log("Gjennomsnittsalderen er " + gjennomsnitt);
+        //    }
 
-            visResultat();
-        }
+        //    visResultat();
+        // }
 
-        startProgram();
+     //   startProgram();
+
     </script>
 </body>
 </html>

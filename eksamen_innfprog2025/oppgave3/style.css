@@ -1,106 +1,116 @@
   body {
-      font-family: Arial, sans-serif;
-      margin: 0px;
+      font-family: Arial, sans-serif; /* generel font */
+      margin: 0px; /* fjerner standard marg */
       background-color: #ebf4f8; /* lys blå bakgrunn */
-      padding: 0px;
+      padding: 0px; /* fjerner standard padding */
     }
       .header-box {
   background-color: #088ec3; /* blå bakgrunn */
   color: #ffffff; /* hvit tekst */
-  text-align: center;
-  font-size: 40px;
-  font-weight: bold;
- 
+  text-align: center; /* sentrert tekst */
+  font-size: 40px; /* stor font */
+  font-weight: bold; /* fet skrift */
 
   /* linje-stil */
   width: 100%;       /* fyller hele bredden */
   height: 80px;      /* tykkelse på linjen */
   line-height: 50px; /* sentrerer teksten vertikalt */
-  margin-bottom: 20px;      
+  margin-bottom: 20px; /* litt luft under linjen */
   padding: 0;        /* ingen ekstra luft inni */
 }
 
-    /* resten av CSS for filter og grid */
+    /* Filterseksjon */
    .filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        justify-content: flex-start;
-        margin-bottom: 20px;
+        display: flex; /* fleksboks for filterknapper */
+        flex-wrap: wrap; /* bryt til ny linje om nødvendig */
+        gap: 10px; /* avstand mellom knappene */
+        justify-content: flex-start; /* venstrejustert */
+        margin-bottom: 20px; /* litt luft under filterseksjonen */
         margin-left: 40px; /* avstand fra venstre vegg */
       }
+
+      /* Stil for filterknappene */
       .filter-btn {
-      background: #add8e6; /* lyseblå */ /* dette er for knappene /*
-      color: #000;
+      background: #add8e6; /* lyseblå */
+      color: #000; /* svart tekst */
       border: 2px solid black; /* svart kant rundt knappene */
-      padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
+      padding: 10px 15px; /* litt luft inni knappene */
+      border-radius: 6px; /* avrundede hjørner */
+      cursor: pointer; /* pekerhånd ved hover */
+      font-size: 16px; /* litt større tekst */
+      transition: background 0.3s; /* myk overgang ved hover */
     }
+
+    /* Hover-effekt for knappene */
     .filter-btn:hover {
       background: #87ceeb; /* litt mørkere lyseblå ved hover */
     }
+
+    /* Aktiv filterknapp */
     .filters-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    display: flex; /* fleksboks for filter-rad */
+    flex-wrap: wrap; /* bryt til ny linje om nødvendig */
+    gap: 10px; /* avstand mellom elementene */
+    align-items: center; /* vertikal sentrering */
+    justify-content: flex-start; /* venstrejustert */
+    margin-top: 10px; /* litt luft over */
+    margin-bottom: 20px; /* litt luft under */
     margin-left: 40px; /* avstand fra venstre vegg */
   }
+
+  /* Stil for teksten i filter-raden */
     .filters-row span {
-      font-size: 18px;
-      font-weight: bold;
+      font-size: 18px; /* litt større tekst */
+      font-weight: bold; /* fet skrift */
     }
+
+    /* Grid for ansattkort */
     .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding: 0 40px;
+      display: grid; /* grid layout for kortene */
+      grid-template-columns: repeat(3, 1fr); /* 3 kolonner */
+      gap: 20px; /* avstand mellom kortene */
+      padding: 0 40px; /* litt luft på sidene */
     }
+
+    /* Stil for hvert ansattkort */
   .card {
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      background: white; /* hvit bakgrunn */
+      border: 1px solid #ccc; /* lys grå kant */
+      border-radius: 8px; /* avrundede hjørner */
+      padding: 20px; /* litt luft inni kortet */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* svak skygge */
+      display: flex; /* fleksboks for innholdet */
+      flex-direction: column; /* stable vertikalt */
+      justify-content: space-between; /* fordeler innholdet */
 
       /* kontroll på størrelse */
       width: 400px;   /* bredde */
       height: 250px;  /* høyde */
     }
+
+    /* Stil for navn på ansatt */
     .card h2 {
-      margin: 0 0 15px;
-      font-size: 22px;
-      color: #333;
+      margin: 0 0 15px; /* avstand under navnet */
+      font-size: 22px; /* litt større font */
+      color: #000000; /* svart tekst */
     }
+
+    /* Stil for stilling og epost */
     .card p {
-  margin: 0; /* fjerner all avstand mellom linjene */
-  font-size: 18px;
+  margin: 0; /* ingen ekstra avstand */
+  font-size: 18px; /* litt større font */
 }
 
+/* Spesiell stil for epost-linjen */
 .card .email {
   margin: 0; /* ingen ekstra avstand over epost-linjen */
   font-size: 16px;
 }
 
-    .kursansvar {
-      color: green;
-      font-weight: bold;
-    }
-    .ingen-kursansvar {
-      color: red;
-    }
+   /* Tittel for personas-seksjonen */
     .personas-title {
     font-size: 32px;   /* større font */
-    font-weight: bold;
+    font-weight: bold; /* gjør den tydelig */
     color: #000;       /* svart tekst */
     margin: 20px 40px 20px 60px; /* litt luft over og mer fra venstre */
     text-align: left;  /* venstrejustert */
@@ -108,37 +118,39 @@
 
   /* Skjema for å legge til ansatt */
   .form-card {
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 0 40px 20px 40px;
-    max-width: 800px;
+    background: #fff; /* hvit bakgrunn */
+    border: 1px solid #ccc; /* lys grå kant */
+    border-radius: 8px; /* avrundede hjørner */
+    padding: 16px; /* litt luft inni kortet */
+    margin: 0 40px 20px 40px; /* litt luft rundt */
+    max-width: 800px; /* maks bredde */
   }
-  .form-row { display: flex; gap: 12px; margin-bottom: 10px; }
-  .form-row input, .form-row select { flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #bbb; font-size: 14px; }
-  .form-row label { min-width: 90px; display: inline-block; font-weight: bold; }
-  .add-btn { margin-top: 8px; }
-  .form-error { color: #b00020; font-size: 14px; margin-top: 8px; min-height: 18px; }
+  /* Stil for skjema-rader */
+  .form-row { display: flex; gap: 12px; margin-bottom: 10px; } /* fleksboks for rader */
+  .form-row input, .form-row select { flex: 1; padding: 8px; border-radius: 6px; border: 1px solid #bbb; font-size: 14px; } /* stil for input-felt */
+  .form-row label { min-width: 90px; display: inline-block; font-weight: bold; } /* stil for etiketter */
+  .add-btn { margin-top: 8px; } /* litt luft over knappen */
+  .form-error { color: #b00020; font-size: 34px; margin-top: 8px; min-height: 18px; } /* stil for feilmeldinger */
 
-
-
+/* Stil for kursliste */
 #kursListe {
   grid-column: 1;   /* plasser i første kolonne */
   grid-row: 2;      /* plasser under første rad */
   font-size: 22px;   /* større font */
-  align-self: start;
-  justify-self: start;
-  text-align: left;
+  align-self: start; /* plasser øverst i cellen */
+  justify-self: start; /* plasser til venstre i cellen */
+  text-align: left; /* venstrejustert */
 }
 
+/* Stil for stilling etiketter */
 .stilling-label {
   font-size: 18px;   /* større font */
-  font-weight: bold; /* gjør den tydelig */
+  font-weight: bold; /* fet skrift */
   color: #000000;    /* svart tekst */
-  margin-right: 10px;
+  margin-right: 10px; /* litt luft til høyre */
 }
-    
+
+/* Stil for kurs container */    
 #kursContainer {
   font-size: 18px;      /* større font */
   color: #000000;       /* svart tekst */
@@ -146,11 +158,15 @@
   margin-top: 20px;     /* litt luft over */
   margin-left: 40px;    /* litt luft vesntre side */ 
 }
+
+/* Stil for kurs overskrifter og liste */
 #kursContainer h2 {
   font-size: 22px;      /* overskrift enda større */
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-weight: bold;    /* fet skrift */
+  margin-bottom: 10px; /* litt luft under overskriften */
 }
+
+/* Stil for kurs liste */
 #kursContainer ul {
   list-style-type: disc; /* vanlige punktmerker */
   padding-left: 20px;    /* innrykk for punktene */

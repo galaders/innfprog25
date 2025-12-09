@@ -14,7 +14,9 @@
         }
     </style>
 </head>
-<body>
+<body> 
+
+    <!-- denne skulle vi ikke gjøre noe med siden dere hadde gjit ås svaret for oppgaven -->
     <h1>Liste over kurs</h1>
     <ul>
         <li>Webutvikling</li>
@@ -29,7 +31,10 @@
     </ul>
 
     <script>
+        //svar fra oppgaven som skulle legges til her men var levert i oppgaven texten//
+        // Endre bakgrunnsfarge på annenhver listeelement og legg til klikk-hendelse
         $('li:odd').css('background-color', '#d3d3d3').height(50);
+        // Legg til klikk-hendelse som viser en alert med listeelementets tekst
         $('li').on('click', function() {
             alert($(this).text());
         }  );

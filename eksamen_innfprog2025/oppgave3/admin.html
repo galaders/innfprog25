@@ -13,27 +13,35 @@
 
 <!-- Skjema for å legge til en ansatt -->
 <main class="form-card" id="leggTilForm">
+  <!-- Skjema overskrift -->
   <main style="font-weight:bold; margin-bottom:8px;">Legg til ansatt</main>
+  <!-- Skjema rader -->
   <main class="form-row">
+    <!-- Input felter for fornavn og etternavn -->
     <label for="fornavn">Fornavn</label>
     <input id="fornavn" type="text" placeholder="Fornavn">
     <label for="etternavn">Etternavn</label>
     <input id="etternavn" type="text" placeholder="Etternavn">
   </main>
   <main class="form-row">
+    <!-- Input felter for epost og kontor -->
     <label for="epost">E-post</label>
     <input id="epost" type="email" placeholder="epost@hiof.no">
     <label for="kontor">Kontor</label>
     <input id="kontor" type="text" placeholder="A101">
   </main>
   <main class="form-row">
+    <!-- input for stilling og kurs -->
     <label for="stillingSelect">Stilling</label>
     <select id="stillingSelect"></select>
     <label for="kursInput">Kurs</label>
     <input id="kursInput" type="text" placeholder="Skriv kurs (komma-separert)" style="flex:1" />
   </main>
+  <!-- Legg til knapp og feilmelding -->
   <main style="text-align:right;">
+    <!-- Feilmelding vises her -->
     <main id="formError" class="form-error" aria-live="polite"></main>
+    <!-- Knapp for å legge til ansatt -->
     <button class="filter-btn add-btn" onclick="leggTilAnsatt()">Legg til ansatt</button>
   </main>
 </main>

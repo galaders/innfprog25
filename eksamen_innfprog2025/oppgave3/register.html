@@ -7,7 +7,7 @@
     <!-- links til css-->
      <link rel="stylesheet" href="style.css">
     <style>
-      /* På admin-siden skjuler vi slett-knappene */
+      /* På register-siden skjuler vi slett-knappene */
       .delete-btn { display: none !important; }
     </style>
 </head>
@@ -17,18 +17,26 @@
 
   <!-- Filterpanel -->
   <main class="filters">
+    <!-- Knapper for å filtrere på avdeling -->
   <button class="filter-btn" onclick="visAlle()">Vis alle ansatte</button>
+  <!-- Avdelingsfilter knapper -->
     <button id="btnUndervisere" class="filter-btn">Undervisere</button>
+  <!-- adninistrasjon knapp -->  
     <button id="btnAdministrasjon" class="filter-btn">Administrasjon
   </main>
 
   <!-- Filter for stillinger -->
  <main class="filters">
    <span class="stilling-label">Vis kun stillinger:</span>
+   <!-- rektor knapp --> 
   <button data-stilling-id="1" class="filter-btn">Rektor</button>
+  <!-- Dekan knapp -->
   <button data-stilling-id="2" class="filter-btn">Dekan</button>
+  <!-- Vaktmester knapp -->
   <button data-stilling-id="3" class="filter-btn">Vaktmester</button>
+  <!-- Professor knapp -->
   <button data-stilling-id="4" class="filter-btn">Professor</button>
+  <!-- Lektor knapp -->
   <button data-stilling-id="5" class="filter-btn">Lektor</button>
 </main>
 
