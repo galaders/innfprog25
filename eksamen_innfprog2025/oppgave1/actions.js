@@ -29,12 +29,12 @@ function renderAnsatte(liste)  { // Rendre ansatte i grid
 
     // Sett HTML-innhold uten slett-knappen
     card.innerHTML = `
-      <h2>${navn[a.id]}</h2> // ansattens navn //
-      <p><strong>Stilling:</strong> ${stillinger[a.stillingId].navn}</p> // stillingsnavn //
-      <p><strong>Kategori:</strong> ${stillinger[a.stillingId].kategori}</p> // stillingskategori //
-      <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p> // kontorinfo //
-      <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p> // epost //
-      <p>${kursTekst}</p> // kursansvar //
+      <h2>${navn[a.id]}</h2> 
+      <p><strong>Stilling:</strong> ${stillinger[a.stillingId].navn}</p> 
+      <p><strong>Kategori:</strong> ${stillinger[a.stillingId].kategori}</p>
+      <p><strong>Kontor:</strong> ${kontorInfo.navn}${kontorInfo.etasje ? " (" + kontorInfo.etasje + ", " + kontorInfo.bygning + ")" : ""}</p> 
+      <p class="email"><strong>E-post:</strong> <a href="mailto:${emails[a.id]}">${emails[a.id]}</a></p> 
+      <p>${kursTekst}</p> 
     `;
     // Legg til en slett-knapp i kortet
     const deleteBtn = createDeleteButton(a.id, navn[a.id]); // lag slett-knapp
