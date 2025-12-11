@@ -340,7 +340,7 @@ function visAlleKurs() { // hent container
   kursDiv.innerHTML = `
     <h2>Kursoversikt</h2>
     <ul>
-      ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")} // lag listeelement for hvert kurs //
+      ${Object.values(kurs).map(k => `<li>${k}</li>`).join("")} 
     </ul>
   `;
 }
