@@ -16,17 +16,6 @@ const newsCards = document.querySelectorAll(".news-card");
 
 
 /* =========================
-   MOBILE MENU
-========================= */
-
-menuButton.addEventListener("click", () => {
-
-    mainNav.classList.toggle("active");
-
-});
-
-
-/* =========================
    HEADER LINKS
 ========================= */
 
@@ -46,8 +35,9 @@ mainNavLinks.forEach((link) => {
    SEARCH
 ========================= */
 
-searchButton.addEventListener("click", () => {
+searchButton.addEventListener("click", (event) => {
 
+    event.stopPropagation();
     searchBox.classList.toggle("active");
 
     if (searchBox.classList.contains("active")) {
@@ -106,29 +96,27 @@ newsCards.forEach((card) => {
     });
 
 });
+
 /* =========================
-   CLOSE MENU WHEN CLICKING
-   OUTSIDE
+   CLOSE DROPDOWNS ON OUTSIDE CLICK
 ========================= */
 
 document.addEventListener("click", (event) => {
 
-    const clickedInsideMenu =
-        mainNav.contains(event.target);
+    const clickedInsideMenu = mainNav.contains(event.target);
+    const clickedMenuButton = menuButton.contains(event.target);
+    const clickedInsideSearch = searchBox.contains(event.target);
+    const clickedSearchButton = searchButton.contains(event.target);
 
-    const clickedMenuButton =
-        menuButton.contains(event.target);
-
-    if (
-        !clickedInsideMenu &&
-        !clickedMenuButton &&
-        mainNav.classList.contains("active")
-    ) {
+    if (!clickedInsideMenu && !clickedMenuButton && mainNav.classList.contains("active")) {
         mainNav.classList.remove("active");
     }
 
-});
+    if (!clickedInsideSearch && !clickedSearchButton && searchBox.classList.contains("active")) {
+        searchBox.classList.remove("active");
+    }
 
+});
 
 /*   =========================
    ESCAPE KEY
