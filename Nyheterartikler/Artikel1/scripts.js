@@ -1,7 +1,9 @@
 /* =========================
-   ELEMENTS
+   DOM ELEMENTS
+   Henter alle HTML-elementene som brukes for meny, søk og nyhetskort.
 ========================= */
 
+// Henter de viktigste elementene i HTML-en som skal styres av JavaScript.
 const menuButton = document.getElementById("menuButton");
 const mainNav = document.getElementById("mainNav");
 const mainNavLinks = document.querySelectorAll("#mainNav a");
@@ -16,9 +18,13 @@ const newsCards = document.querySelectorAll(".news-card");
 
 
 /* =========================
-   HEADER LINKS
+   HEADER NAVIGATION
+   Hvis brukeren klikker på en hovedmeny-lenke, stoppes standard oppførsel.
+   Dette er en enkel placeholder-oppførsel fordi menylinkene ikke peker til faktiske sider.
 ========================= */
 
+// Hvis brukeren klikker på en menylink, stoppes vanlig lenkeoppførsel.
+// Dette er bare en demo-oppførsel fordi sidene ikke faktisk er koblet sammen.
 mainNavLinks.forEach((link) => {
 
     link.addEventListener("click", (event) => {
@@ -32,9 +38,12 @@ mainNavLinks.forEach((link) => {
 
 
 /* =========================
-   SEARCH
+   SEARCH TOGGLE
+   Knappen åpner eller lukker søkfeltet. Hvis feltet åpnes, fokuseres input-feltet med en gang.
 ========================= */
 
+// Søknappen viser eller skjuler søkfeltet.
+// Når søkfeltet åpnes, går fokus direkte til input-feltet.
 searchButton.addEventListener("click", (event) => {
 
     event.stopPropagation();
@@ -48,9 +57,12 @@ searchButton.addEventListener("click", (event) => {
 
 
 /* =========================
-   SEARCH FORM
+   SEARCH FORM SUBMIT
+   Hindrer sideomlasting og håndterer "tom søk"-tilfellet uten å sende brukeren videre.
 ========================= */
 
+// Når formen sendes inn, stoppes vanlig sideoppdatering.
+// Hvis brukeren ikke har skrevet noe, får de en melding og feltet får fokus.
 searchForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
@@ -69,6 +81,7 @@ searchForm.addEventListener("submit", (event) => {
 
 /* =========================
    FOOTER LINKS
+   Lenker i footeren er også satt opp som placeholders og skal ikke navigere i dette demo-oppsettet.
 ========================= */
 
 footerLinks.forEach((link) => {
@@ -84,9 +97,13 @@ footerLinks.forEach((link) => {
 
 
 /* =========================
-   RELATED NEWS
+   RELATED NEWS CARDS
+   Hvert nyhetskort peker til en annen artikkel via data-page-attributten.
+   Klikk går direkte til riktig side uten å laste inn en ny HTML-fil manuelt.
 ========================= */
 
+// Hvert nyhetskort har en data-page som peker til en annen artikkel.
+// Når brukeren klikker, sendes de direkte til riktig side.
 newsCards.forEach((card) => {
 
     card.addEventListener("click", () => {
@@ -99,11 +116,12 @@ newsCards.forEach((card) => {
 
 /* =========================
    CLOSE DROPDOWNS ON OUTSIDE CLICK
+   Hvis brukeren klikker utenfor menyen eller søket, lukkes dem automatisk.
 ========================= */
 
 document.addEventListener("click", (event) => {
 
-    const clickedInsideMenu = mainNav.contains(event.target);
+    const clickedInsideMenu = mainNav.contains(event.target); 
     const clickedMenuButton = menuButton.contains(event.target);
     const clickedInsideSearch = searchBox.contains(event.target);
     const clickedSearchButton = searchButton.contains(event.target);
@@ -120,6 +138,7 @@ document.addEventListener("click", (event) => {
 
 /*   =========================
    ESCAPE KEY
+   Trykk på Esc lukker både menyen og søkfeltet for bedre brukeropplevelse.
 ========================= */
 
 document.addEventListener("keydown", (event) => {

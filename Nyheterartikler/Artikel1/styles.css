@@ -1,5 +1,6 @@
 /* =========================
-   RESET
+   BASE / RESET
+   Setter standard verdier for alle elementer slik at layoutet blir likt i nettlesere.
 ========================= */
 
 * {
@@ -41,6 +42,7 @@ button {
 
 /* =========================
    HEADER
+   Topplinjen med logo, navigasjon og knappene for søk og mobilmeny.
 ========================= */
 
 .site-header {
@@ -191,7 +193,8 @@ button {
 
 
 /* =========================
-   ARTICLE
+   ARTICLE LAYOUT
+   Setter opp selve innholdsspalten med bredde, mellomrom og typografi for artikkelen.
 ========================= */
 
 .article {
@@ -245,7 +248,10 @@ button {
 }
 
 
-/* HERO */
+/* HERO IMAGE
+   Hovedbildet er låst til en høyde og beskåret med object-fit/object-position
+   slik at fokus ligger på riktig del av bildet.
+*/
 
 .hero-image {
     margin: 0 0 38px;
@@ -255,7 +261,9 @@ button {
     width: 100%;
     display: block;
 
-    height: auto;
+    height: 600px;
+    object-fit: cover;
+    object-position: center 25%;
 }
 
 .hero-image figcaption {
@@ -267,7 +275,9 @@ button {
 }
 
 
-/* INTRO */
+/* INTRO / LEAD
+   Dette er innledningen som skal være større og mer visuell enn resten av teksten.
+*/
 
 .lead {
     font-size: 23px;
@@ -279,7 +289,9 @@ button {
 }
 
 
-/* ARTICLE TEXT */
+/* ARTICLE TEXT
+   Her styres brødteksten, mellomrom og bilder som ligger inne i artikkelen.
+*/
 
 .article-content {
     font-family:
@@ -297,12 +309,27 @@ button {
 
 .article-image {
     margin: 42px 0;
+    overflow: hidden;
 }
 
 .article-image img {
     width: 100%;
     display: block;
-    height: auto;
+    height: 550px;
+    zoom: 1.5;
+    object-fit: cover;
+    object-position: center 25%;
+    transform: scale(var(--image-zoom));
+}
+
+.article-image-4 img {
+     width: 100%;
+    display: block;
+    height: 550px;
+    zoom: 1.5;
+    object-fit: cover;
+    object-position: center bottom;
+    transform: scale(var(--image-zoom));
 }
 
 .article-image figcaption {
@@ -313,8 +340,17 @@ button {
     padding-top: 8px;
 }
 
+.article-image-2 figcaption,
+.article-image-4 figcaption {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+}
 
-/* QUOTE */
+
+/* QUOTE
+   Sitatseksjonen får tydelig venstremarg og rød kant for å skille seg fra vanlig tekst.
+*/
 
 blockquote {
     border-left: 5px solid #e21d38;
@@ -344,17 +380,23 @@ blockquote cite {
 
 /* =========================
    RELATED NEWS
+   Den nederste delen med flere nyheter bruker grid for to kolonner og lager visuelle kort
+   som peker videre til andre artikler.
 ========================= */
 
 .related {
     background: #f5f5f5;
 
-    padding: 70px 25px;
+    padding: 70px 2rem;
 }
 
 .container {
     max-width: 1250px;
     margin: auto;
+}
+
+.related .container {
+    max-width: none;
 }
 
 .related h2 {
@@ -365,46 +407,39 @@ blockquote cite {
 
     font-size: 38px;
 
+    padding: 0;
     margin-bottom: 35px;
 }
 
 .news-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 25px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
 }
 
 
-/* NEWS CARD */
+/* NEWS CARD
+   Hvert kort inneholder bilde, kategori, overskrift og kort tekst.
+   Hele kortet er klikkbart for å navigere til en ny side.
+*/
 
 .news-card {
-    background: #fff;
+    background: transparent;
     cursor: pointer;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.news-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .news-card img {
     width: 100%;
-    height: auto;
+    height: 320px;
+    object-fit: cover;
 
     display: block;
 }
 
 .card-content {
-    padding: 22px;
+    padding: 28px 32px 10px;
 }
 
 .card-content span {
@@ -437,6 +472,7 @@ blockquote cite {
 
 /* =========================
    FOOTER
+   Bunnområdet med nettstedets info og lenker.
 ========================= */
 
 footer {
@@ -498,6 +534,7 @@ footer {
 
 /* =========================
    MOBILE
+   Justerer meny, tekststørrelser og kolonner når skjermen blir liten.
 ========================= */
 
 @media (max-width: 800px) {
@@ -557,6 +594,7 @@ footer {
 
 /* =========================
    SMALL MOBILE
+   Fine-tunerer ekstra små skjermer slik at tekst og bilder ikke blir for brede.
 ========================= */
 
 @media (max-width: 480px) {

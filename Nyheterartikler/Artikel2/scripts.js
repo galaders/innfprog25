@@ -4,14 +4,12 @@
 
 const menuButton = document.getElementById("menuButton");
 const mainNav = document.getElementById("mainNav");
-const mainNavLinks = document.querySelectorAll("#mainNav a");
 
 const searchButton = document.getElementById("searchButton");
 const searchBox = document.getElementById("searchBox");
 
 const searchForm = document.getElementById("searchForm");
 const searchInput = document.getElementById("searchInput");
-const footerLinks = document.querySelectorAll(".footer-link");
 const newsCards = document.querySelectorAll(".news-card");
 
 
@@ -22,22 +20,6 @@ const newsCards = document.querySelectorAll(".news-card");
 menuButton.addEventListener("click", () => {
 
     mainNav.classList.toggle("active");
-
-});
-
-
-/* =========================
-   HEADER LINKS
-========================= */
-
-mainNavLinks.forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-        event.preventDefault();
-        alert("Dette er en placeholder");
-
-    });
 
 });
 
@@ -68,27 +50,11 @@ searchForm.addEventListener("submit", (event) => {
     const query = searchInput.value.trim();
 
     if (query === "") {
-        alert("Skriv inn noe du vil men dette er en Placeholder.");
+        searchInput.focus();
         return;
     }
 
-    alert("Dette er en placeholder");
-
-});
-
-
-/* =========================
-   FOOTER LINKS
-========================= */
-
-footerLinks.forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-        event.preventDefault();
-        alert("Dette er en placeholder");
-
-    });
+    searchBox.classList.remove("active");
 
 });
 

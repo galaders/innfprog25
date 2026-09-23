@@ -16,15 +16,19 @@
 
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER
+         Topplinje med logo, navigasjonsmeny og søk-/menyknapper.
+    -->
     <header class="site-header">
 
         <section class="header-inner">
 
+            <!-- Logoen i toppfeltet. Den brukes som nettstedets merke/logo. -->
             <a href="#" class="logo">
                 FREDRIKSHALD <span>Tidende</span>
             </a>
 
+            <!-- Hovedmenyen med linker til de viktigste seksjonene på siden. -->
             <nav class="main-nav" id="mainNav">
                 <a href="#">Hjem</a>
                 <a href="#">Nyheter</a>
@@ -36,6 +40,7 @@
 
             <aside class="header-actions">
 
+                <!-- Søknappen åpner søkfeltet på siden. -->
                 <button
                     class="search-button"
                     id="searchButton"
@@ -44,6 +49,7 @@
                     🔍
                 </button>
 
+                <!-- Menyknappen brukes på mobil for å vise navigasjonen. -->
                 <button
                     class="menu-button"
                     id="menuButton"
@@ -56,8 +62,10 @@
 
         </section>
 
-        <!-- SEARCH -->
-        <section class="search-box" id="searchBox">
+        <!-- SEARCH
+             Søkfeltet blir vist når brukeren klikker på søkikonet.
+        -->
+        <section class="search-box" id="searchBox"> 
 
             <form id="searchForm">
 
@@ -79,27 +87,38 @@
     </header>
 
 
-    <!-- MAIN -->
+    <!-- MAIN
+         Hovedinnholdet for artikkelen og relaterte nyheter.
+    -->
     <main>
 
+        <!-- Artikkelinnholdet som består av kategori, overskrift, dato og tekstseksjoner. -->
         <article class="article">
 
-            <!-- CATEGORY -->
+            <!-- CATEGORY
+                 Kategorien viser hva slags nyhet dette er.
+            -->
             <p class="category">
                 NYHETER
             </p>
 
-            <!-- TITLE -->
+            <!-- TITLE
+                 Artikkelens hovedoverskrift.
+            -->
             <h1>
-                Gratis tilgang skal få unge til å lese mer lokalnyheter
+               Gratis tilgang skal få unge til å lese mer lokalnyheter
             </h1>
 
-            <!-- DATE -->
+            <!-- DATE
+                 Publiseringsdatoen for artikkelen.
+            -->
             <time class="article-meta" datetime="2026-09-10">
                 10. september 2026
             </time>
 
-            <!-- HERO IMAGE -->
+            <!-- HERO IMAGE
+                 Dette er hovedbildet i artikkelen og får fokus med stor visning.
+            -->
             <figure class="hero-image">
 
                 <img
@@ -108,25 +127,32 @@
                 >
                 
                 <figcaption>
-                    Amedia gir unge gratis tilgang til lokalaviser.
+                    Wiels plass 2, 1771 Halden Arbeiderblad byget.
                 </figcaption>
                 
             </figure>
             
             
-            <!-- INTRO -->
+            <!-- INTRO
+                 Dette er innledningen som samler opp hovedspørsmålet i artikkelen.
+            -->
             <p class="lead">
-                Amedia gir unge gratis tilgang til lokalaviser – men har ordningen faktisk gjort dem mer
-                engasjerte i lokalnyheter?
+                Amedia gir unge gratis tilgang til lokalaviser, 
+                men har ordningen faktisk gjort dem mer engasjerte i lokalnyheter?
+
             </p>
             
             
-            <!-- ARTICLE CONTENT -->
+            <!-- ARTICLE CONTENT
+                 Her ligger hovedteksten med flere avsnitt, sitater og bilder.
+            -->
             <section class="article-content">
                 
                 <p>
-                    Ordningen ble først lansert for unge mellom 15 og 20 år, men er nå utvidet til og med
-                    23 år. Målet er å senke terskelen for at unge skal lese redaktørstyrte nyheter.
+                    Ordningen ble først lansert for unge mellom 15 og 20 år, men er nå utvidet 
+                    til og med 23 år. Målet er å senke terskelen for at unge skal 
+                    lese redaktørstyrte nyheter.
+
                 </p>
                 
                 <p>
@@ -135,13 +161,14 @@
                     nødvendigvis henger sammen.
                 </p>
                 
+                <!-- Mellombilde i artikkelen for å vise lokasjon eller kontekst. -->
                 <figure class="article-image">
                     <img
                     src="../bilder/20260910_124515.jpg"
                         alt="Ung person som leser nyheter"
                     >
                     <figcaption>
-                        Gratis tilgang skal gjøre lokalnyheter mer tilgjengelige for unge.
+                        Ingang Til Halden Arbeiderblad 2 etasje er hvor dem holder til.
                     </figcaption>
                 </figure>
 
@@ -149,8 +176,9 @@
 
                 <p>
                     Halden Arbeiderblad (HA) har i dag <strong>798 aktive gratisabonnenter</strong>.
-                    Likevel er det bare rundt <strong>100 unge</strong> som er innom avisen på en vanlig
-                    dag. Dette viser at ordningen når mange, men at bruken varierer betydelig.
+                    Likevel er det bare rundt <strong>100 unge</strong> som er innom avisen på en vanlig dag. 
+                    Dette viser at ordningen når mange, men at bruken varierer betydelig.
+
                 </p>
 
                 <p>
@@ -158,80 +186,88 @@
                     15‑åringer bruker tilbudet. Bruken faller også noe i alderen <strong>19–21 år</strong>.
                 </p>
 
+                <!-- Diagrammet viser tall og bruksmønster for unge lesere. -->
                 <figure class="article-image">
                     <img
                         src="../bilder/15-20-dashbord_Alt_Ung.png"
                         alt="Nyheter på en digital skjerm"
                     >
                     <figcaption>
-                        Digitale vaner påvirker hvordan unge finner og leser nyheter.
+                        Søylediagram over unge brukere av lokalaviser.
                     </figcaption>
                 </figure>
 
                 <h2>Hva får unge til å lese?</h2>
 
                 <p>
-                    Ulekleiv sier at den største utfordringen ikke er å få unge til å registrere seg,
+                    Ulekleiv sier at den største utfordringen ikke er å få unge til å registrere seg, 
                     men å lage saker de faktisk er interessert i.
+
                 </p>
 
+                <!-- Sitatet legger vekt på journalistenes hovedutfordring. -->
                 <blockquote>
-                    «Den største utfordringen er ikke registreringen, men å lage saker unge faktisk er
-                    interessert i.»
+                    «Den største utfordringen er ikke registreringen, 
+                     men å lage saker unge faktisk er interessert i.»
                     <cite>– Ulekleiv</cite>
                 </blockquote>
 
                 <p>
-                    Breaking news, kriminalitet og ulykker er mest populært. Deretter kommer saker om
-                    næringslivet – som nye butikker, restauranter og lokale tilbud. Dette reiser
-                    spørsmålet: Klikker unge fordi de er mer opptatt av lokalsamfunnet, eller fordi de
-                    dramatiske sakene fanger oppmerksomheten?
+                    Breaking news, kriminalitet og ulykker er mest populært. Deretter kommer saker om næringslivet som nye butikker, 
+                    restauranter og lokale tilbud. Dette stiller spørsmålet: Klikker unge fordi de er mer opptatt av lokalsamfunnet, 
+                    eller fordi de dramatiske sakene fanger oppmerksomheten?  
                 </p>
 
                 <h2>Har gratis tilgang gjort unge mer engasjerte?</h2>
 
                 <p>
-                    Amedia-tallene viser at mange unge har begynt å bruke avisene etter at de ble gratis.
-                    Intervjuet med HA bekrefter også at avisen har en betydelig gruppe unge brukere.
+                    Amedia-tallene viser at mange unge har begynt å bruke avisene etter at de ble gratis. 
+                    Intervjuet med HA bekrefter også at avisen har en betydelig gruppe unge brukere. 
                     Gratis tilgang ser dermed ut til å ha senket terskelen for å lese lokalnyheter.
                 </p>
 
                 <h2>Hvorfor mener avisen at dette er viktig?</h2>
 
                 <p>
-                    Ulekleiv peker på at unge bør ha et forhold til redaktørstyrte medier. Han advarer
-                    mot at innholdet på sosiale medier kan være misvisende, algoritmestyrt og mer
-                    ekstremt.
+                    Ulekleiv peker på at unge bør ha et forhold til redaktørstyrte medier. 
+                    Han advarer mot at innholdet på sosiale medier kan være misvisende, 
+                    algoritmestyrt og mer ekstremt.
                 </p>
 
                 <blockquote>
-                    «Før lå lokalavisen på kjøkkenbordet. Nå må avisene finne en måte å bli synlige på
-                    ungdommens digitale kjøkkenbord.»
+                    «Før lå lokalavisen på kjøkkenbordet. 
+                    Nå må avisene finne en måte å bli synlige på ungdommens digitale kjøkkenbord.»
                     <cite>– Ulekleiv</cite>
                 </blockquote>
 
-                <figure class="article-image">
+                <!-- Dette bildet peker mot personen bak innholdet og avslutter artikkelen visuelt. -->
+                <figure class="article-image article-image-4">
                     <img
                         src="../bilder/20260910_124233.jpg"
                         alt="Avis og digital informasjon"
                     >
                     <figcaption>
-                        Lokalavisen må være synlig der unge allerede finner informasjon.
+                        Morten Ulekleiv Ansvarlig redaktør og daglig leder.
                     </figcaption>
                 </figure>
 
                 <h2>Veien videre</h2>
-
+                
                 <p>
-                    Amedia utvider nå tilbudet ytterligere. Ulekleiv mener nøkkelen er å etablere vaner:
-                    Hvis unge blir vant til å bruke lokalavisen nå, kan de bli fremtidige abonnenter.
+                     Amedia utvider nå tilbudet ytterligere. Ulekleiv mener nøkkelen er å etablere vaner. 
+                    Hvis unge blir vant til å bruke lokalavisen nå, kan de bli fremtidige abonnenter. 
+                    Som en del av satsingen tilbys derfor et utvidet ung-abonnement for personer mellom 24 og 30 år til rundt 
+                    <strong>100 kroner</strong> i måneden, sammenlignet med en ordinær pris på  <strong>299 kroner</strong>. 
+                    Dette kan gjøre overgangen fra gratis tilgang til et betalt abonnement mindre.
                 </p>
 
             </section>
         </article>
 
 
-        <!-- RELATED NEWS -->
+        <!-- RELATED NEWS
+             Seksjonen under artikkelen viser to andre artikler som leseren kan åpne videre.
+        -->
         <section class="related">
 
             <section class="container">
@@ -264,28 +300,7 @@
                     </article>
 
 
-                    <article class="news-card" data-page="../Artikel1/index.html">
-
-                        <img
-                            src="../bilder/20260910_124233.jpg"
-                            alt="Nyhetsjournalistikk"
-                        >
-
-                        <section class="card-content">
-
-                            <span>SAMFUNN</span>
-
-                            <h3>
-                                Hvorfor journalistikk er viktig
-                            </h3>
-
-                            <p>
-                                Redaktørstyrte medier spiller en viktig rolle i demokratiet.
-                            </p>
-
-                        </section>
-
-                    </article>
+                    
 
 
                     <article class="news-card" data-page="../Artikel3/kultur.html">
@@ -320,7 +335,9 @@
     </main>
 
 
-    <!-- FOOTER -->
+    <!-- FOOTER
+         Bunnteksten inneholder nettstedets informasjon og lenker.
+    -->
     <footer>
 
         <section class="footer-inner">
