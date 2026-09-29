@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interaktiv Telefon App</title>
+    
+    <!-- Laster inn Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Laster inn Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Laster inn Phosphor Icons for app-ikoner -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        app: {
+                            bg: '#f3f4f6',
+                            primary: '#6366f1', // Indigo farge for aktiv state
+                            secondary: '#8b5cf6',
+                            text: '#1f2937',
+                            muted: '#9ca3af'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #e5e7eb; }
+        
+        /* Skjuler rullefeltet (scrollbar) for en ekte "app"-følelse, men beholder funksjonaliteten */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Animasjon for sideoverganger */
+        .fade-in {
+            animation: fadeIn 0.2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+
+    <!-- Telefon-innpakning (Device Mockup) -->
+    <div class="relative w-full max-w-[375px] h-[812px] bg-white border-[12px] sm:border-[14px] border-gray-900 rounded-[3rem] sm:rounded-[3.5rem] shadow-2xl overflow-hidden flex flex-col ring-4 ring-gray-200">
+        
+        <!-- Fake "Notch" (Dynamic Island stil) -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-gray-900 rounded-b-3xl z-50 flex items-center justify-center gap-2">
+            <!-- Kamera linse (liten prikk) -->
+            <div class="w-2 h-2 rounded-full bg-gray-800 border border-gray-700"></div>
+        </div>
+
+        <!-- Fake Status-bar (Tid, batteri, wifi) -->
+        <div class="absolute top-0 w-full h-12 flex justify-between items-center px-6 pt-2 z-40 text-xs font-semibold text-gray-800 bg-white/80 backdrop-blur-md">
+            <span>09:41</span>
+            <div class="flex items-center gap-1.5 text-sm">
+                <i class="ph-fill ph-cell-signal-full"></i>
+                <i class="ph-fill ph-wifi-high"></i>
+                <i class="ph-fill ph-battery-full text-lg"></i>
+            </div>
+        </div>
+
+        <!-- App Innhold (Scrollbar skjult via CSS) -->
+        <div class="flex-1 overflow-y-auto no-scrollbar pt-14 pb-24 bg-gray-50 relative" id="app-content">
+            
+            <!-- VIEW 1: HJEM (HOME) -->
+            <div id="view-home" class="view-section fade-in px-5 py-4">
+                <!-- Header / Greeting -->
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium mb-1">God morgen,</p>
+                        <h1 class="text-2xl font-bold text-gray-900">Alex 👋</h1>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center overflow-hidden border-2 border-white shadow-sm">
+                        <img src="https://placehold.co/100x100/6366f1/ffffff?text=A" alt="Profilbilde" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Stat Cards -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-3xl p-5 text-white shadow-lg shadow-indigo-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-2 -mr-2 w-16 h-16 bg-white opacity-10 rounded-full blur-xl"></div>
+                        <i class="ph ph-wallet text-2xl mb-2 opacity-80"></i>
+                        <p class="text-xs font-medium opacity-90 mb-1">Saldo</p>
+                        <p class="text-xl font-bold">14 250 kr</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-5 text-gray-800 shadow-sm border border-gray-100 flex flex-col justify-between">
+                        <div class="w-8 h-8 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center mb-2">
+                            <i class="ph-fill ph-star"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-medium mb-1">Poeng</p>
+                            <p class="text-xl font-bold">2,450</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Handlinger -->
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex flex-col items-center gap-2">
+                        <button class="w-14 h-14 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 active:scale-95 transition-all">
+                            <i class="ph ph-paper-plane-tilt text-2xl"></i>
+                        </button>
+                        <span class="text-xs font-medium text-gray-600">Send</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <button class="w-14 h-14 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 active:scale-95 transition-all">
+                            <i class="ph ph-download-simple text-2xl"></i>
+                        </button>
+                        <span class="text-xs font-medium text-gray-600">Motta</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <button class="w-14 h-14 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 active:scale-95 transition-all">
+                            <i class="ph ph-arrows-left-right text-2xl"></i>
+                        </button>
+                        <span class="text-xs font-medium text-gray-600">Veksle</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <button class="w-14 h-14 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-50 active:scale-95 transition-all">
+                            <i class="ph ph-dots-three text-2xl"></i>
+                        </button>
+                        <span class="text-xs font-medium text-gray-600">Mer</span>
+                    </div>
+                </div>
+
+                <!-- Nylige Aktiviteter -->
+                <div>
+                    <div class="flex justify-between items-end mb-4">
+                        <h2 class="text-lg font-bold text-gray-900">Siste aktivitet</h2>
+                        <button class="text-sm font-medium text-indigo-500">Se alt</button>
+                    </div>
+                    <div class="bg-white rounded-3xl p-2 shadow-sm border border-gray-100">
+                        
+                        <!-- List Item 1 -->
+                        <div class="flex items-center justify-between p-3 border-b border-gray-50">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-red-50 text-red-500 flex items-center justify-center">
+                                    <i class="ph-fill ph-netflix-logo text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-900">Netflix</p>
+                                    <p class="text-xs text-gray-500">Abonnement</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold text-sm text-gray-900">-159 kr</p>
+                        </div>
+                        
+                        <!-- List Item 2 -->
+                        <div class="flex items-center justify-between p-3 border-b border-gray-50">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-green-50 text-green-500 flex items-center justify-center">
+                                    <i class="ph-fill ph-money text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-900">Lønnsoverføring</p>
+                                    <p class="text-xs text-gray-500">Bedrift AS</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold text-sm text-green-600">+34 500 kr</p>
+                        </div>
+
+                        <!-- List Item 3 -->
+                        <div class="flex items-center justify-between p-3">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center">
+                                    <i class="ph-fill ph-coffee text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-sm text-gray-900">Kaffebar AS</p>
+                                    <p class="text-xs text-gray-500">Mat & Drikke</p>
+                                </div>
+                            </div>
+                            <p class="font-semibold text-sm text-gray-900">-45 kr</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: SØK (SEARCH) -->
+            <div id="view-search" class="view-section hidden fade-in px-5 py-4">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Utforsk</h1>
+                
+                <!-- Search Bar -->
+                <div class="relative mb-6">
+                    <i class="ph ph-magnifying-glass absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
+                    <input type="text" placeholder="Søk etter alt..." class="w-full bg-white border border-gray-200 text-gray-900 rounded-full py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent shadow-sm">
+                </div>
+
+                <h2 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wider">Kategorier</h2>
+                <div class="grid grid-cols-2 gap-3 mb-8">
+                    <div class="bg-blue-50 rounded-2xl p-4 flex flex-col justify-between h-24 relative overflow-hidden">
+                        <span class="font-semibold text-blue-900 z-10">Mat & Drikke</span>
+                        <i class="ph-fill ph-hamburger absolute -bottom-2 -right-2 text-5xl text-blue-200"></i>
+                    </div>
+                    <div class="bg-purple-50 rounded-2xl p-4 flex flex-col justify-between h-24 relative overflow-hidden">
+                        <span class="font-semibold text-purple-900 z-10">Shopping</span>
+                        <i class="ph-fill ph-shopping-bag absolute -bottom-2 -right-2 text-5xl text-purple-200"></i>
+                    </div>
+                    <div class="bg-green-50 rounded-2xl p-4 flex flex-col justify-between h-24 relative overflow-hidden">
+                        <span class="font-semibold text-green-900 z-10">Reise</span>
+                        <i class="ph-fill ph-airplane-tilt absolute -bottom-2 -right-2 text-5xl text-green-200"></i>
+                    </div>
+                    <div class="bg-orange-50 rounded-2xl p-4 flex flex-col justify-between h-24 relative overflow-hidden">
+                        <span class="font-semibold text-orange-900 z-10">Underholdning</span>
+                        <i class="ph-fill ph-game-controller absolute -bottom-2 -right-2 text-5xl text-orange-200"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: VARSLINGER (NOTIFICATIONS) -->
+            <div id="view-notifications" class="view-section hidden fade-in px-5 py-4">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Varslinger</h1>
+                
+                <div class="space-y-4">
+                    <!-- Nytt varsel -->
+                    <div class="bg-indigo-50 rounded-3xl p-4 border border-indigo-100 flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-fill ph-bell-ringing"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900">Ny funksjon tilgjengelig!</p>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">Du kan nå kategorisere overføringene dine automatisk. Trykk her for å prøve det ut.</p>
+                            <p class="text-[10px] text-indigo-400 mt-2 font-medium">10 MINUTTER SIDEN</p>
+                        </div>
+                    </div>
+
+                    <!-- Leste varsler -->
+                    <div class="bg-white rounded-3xl p-4 border border-gray-100 flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-fill ph-check-circle"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900">Overføring fullført</p>
+                            <p class="text-xs text-gray-500 mt-1">Din overføring på 450 kr til "Mads" var vellykket.</p>
+                            <p class="text-[10px] text-gray-400 mt-2 font-medium">I GÅR</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-3xl p-4 border border-gray-100 flex gap-4">
+                        <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center shrink-0 mt-1">
+                            <i class="ph-fill ph-shield-check"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm text-gray-900">Sikkerhetsoppdatering</p>
+                            <p class="text-xs text-gray-500 mt-1">Vi har oppdatert våre personvernvilkår.</p>
+                            <p class="text-[10px] text-gray-400 mt-2 font-medium">3 DAGER SIDEN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 4: PROFIL (PROFILE) -->
+            <div id="view-profile" class="view-section hidden fade-in px-5 py-4">
+                <!-- Profil Header -->
+                <div class="flex flex-col items-center mt-4 mb-8">
+                    <div class="w-24 h-24 rounded-full bg-indigo-100 mb-4 p-1 shadow-md">
+                        <img src="https://placehold.co/200x200/6366f1/ffffff?text=A" alt="Profilbilde" class="w-full h-full object-cover rounded-full">
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-900">Alex Nordmann</h1>
+                    <p class="text-sm text-gray-500">Premium Medlem</p>
+                    <button class="mt-4 px-5 py-2 bg-gray-900 text-white text-sm font-semibold rounded-full hover:bg-gray-800 transition-colors">
+                        Rediger profil
+                    </button>
+                </div>
+
+                <!-- Innstillinger Liste -->
+                <div class="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="flex items-center justify-between p-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center"><i class="ph-fill ph-user"></i></div>
+                            <span class="font-medium text-sm text-gray-800">Personlig informasjon</span>
+                        </div>
+                        <i class="ph ph-caret-right text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center justify-between p-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-green-50 text-green-500 flex items-center justify-center"><i class="ph-fill ph-credit-card"></i></div>
+                            <span class="font-medium text-sm text-gray-800">Betalingsmetoder</span>
+                        </div>
+                        <i class="ph ph-caret-right text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center justify-between p-4 border-b border-gray-50 cursor-pointer hover:bg-gray-50 transition-colors">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-500 flex items-center justify-center"><i class="ph-fill ph-lock-key"></i></div>
+                            <span class="font-medium text-sm text-gray-800">Sikkerhet & Personvern</span>
+                        </div>
+                        <i class="ph ph-caret-right text-gray-400"></i>
+                    </div>
+                    <div class="flex items-center justify-between p-4 cursor-pointer hover:bg-red-50 transition-colors group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center group-hover:bg-red-100"><i class="ph-fill ph-sign-out"></i></div>
+                            <span class="font-medium text-sm text-red-500">Logg ut</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bunnavigasjon (Sticky Bottom Bar) -->
+        <div class="absolute bottom-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-100 pt-3 pb-8 px-6 z-40 rounded-b-[2.5rem]">
+            <div class="flex justify-between items-center relative">
+                
+                <!-- Nav Button: Hjem -->
+                <button class="nav-btn flex flex-col items-center gap-1 text-indigo-600 transition-colors w-16" data-target="view-home">
+                    <i class="ph-fill ph-house text-2xl nav-icon transition-transform duration-200"></i>
+                    <span class="text-[10px] font-semibold">Hjem</span>
+                </button>
+                
+                <!-- Nav Button: Søk -->
+                <button class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 transition-colors w-16" data-target="view-search">
+                    <i class="ph ph-magnifying-glass text-2xl nav-icon transition-transform duration-200"></i>
+                    <span class="text-[10px] font-semibold">Søk</span>
+                </button>
+                
+                <!-- Nav Button: Varslinger -->
+                <button class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 transition-colors w-16 relative" data-target="view-notifications">
+                    <div class="relative">
+                        <i class="ph ph-bell text-2xl nav-icon transition-transform duration-200"></i>
+                        <div class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></div>
+                    </div>
+                    <span class="text-[10px] font-semibold">Varsler</span>
+                </button>
+                
+                <!-- Nav Button: Profil -->
+                <button class="nav-btn flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 transition-colors w-16" data-target="view-profile">
+                    <i class="ph ph-user text-2xl nav-icon transition-transform duration-200"></i>
+                    <span class="text-[10px] font-semibold">Profil</span>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Hjem-indikator (Bunn-streken på iPhone) -->
+        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-300 rounded-full z-50"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const viewSections = document.querySelectorAll('.view-section');
+
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 1. Reset alle knapper
+                    navButtons.forEach(b => {
+                        // Fjern aktive farger
+                        b.classList.remove('text-indigo-600');
+                        b.classList.add('text-gray-400', 'hover:text-gray-600');
+                        
+                        // Bytt ikon til "outline" (regular)
+                        const icon = b.querySelector('.nav-icon');
+                        icon.classList.remove('ph-fill');
+                        if(!icon.classList.contains('ph')) icon.classList.add('ph');
+                        icon.classList.remove('scale-110');
+                    });
+
+                    // 2. Skjul alle views
+                    viewSections.forEach(view => {
+                        view.classList.add('hidden');
+                    });
+
+                    // 3. Sett valgt knapp til aktiv
+                    btn.classList.remove('text-gray-400', 'hover:text-gray-600');
+                    btn.classList.add('text-indigo-600');
+                    
+                    const activeIcon = btn.querySelector('.nav-icon');
+                    activeIcon.classList.remove('ph');
+                    activeIcon.classList.add('ph-fill', 'scale-110'); // Gjør ikonet fylt og litt større
+
+                    // 4. Vis valgt view
+                    const targetId = btn.getAttribute('data-target');
+                    const targetView = document.getElementById(targetId);
+                    if (targetView) {
+                        targetView.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
