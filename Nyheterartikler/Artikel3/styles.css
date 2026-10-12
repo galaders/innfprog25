@@ -1,5 +1,6 @@
 /* =========================
-   RESET
+   BASE / RESET
+   Setter standard verdier for alle elementer slik at layoutet blir likt i nettlesere.
 ========================= */
 
 * {
@@ -23,9 +24,25 @@ body {
     line-height: 1.6;
 }
 
+a,
+button,
+input {
+    font: inherit;
+}
+
+button,
+input {
+    border: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
 
 /* =========================
    HEADER
+   Topplinjen med logo, navigasjon og knappene for søk og mobilmeny.
 ========================= */
 
 .site-header {
@@ -101,13 +118,26 @@ body {
 
 .search-button,
 .menu-button {
-    border: 0;
     background: transparent;
-
-    cursor: pointer;
-
+    border: 1px solid #e5e5e5;
+    border-radius: 999px;
+    width: 42px;
+    height: 42px;
     font-size: 22px;
-    padding: 8px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.search-button:hover,
+.menu-button:hover,
+.search-button:focus-visible,
+.menu-button:focus-visible {
+    background: #f7f7f7;
+    border-color: #d3d3d3;
+    outline: none;
 }
 
 .menu-button {
@@ -149,18 +179,22 @@ body {
     background: #e21d38;
     color: white;
 
-    border: 0;
     border-radius: 4px;
-
     padding: 0 25px;
-
     font-weight: 700;
-    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.search-box button:hover,
+.search-box button:focus-visible {
+    opacity: 0.9;
+    outline: none;
 }
 
 
 /* =========================
-   ARTICLE
+   ARTICLE LAYOUT
+   Setter opp selve innholdsspalten med bredde, mellomrom og typografi for artikkelen.
 ========================= */
 
 .article {
@@ -214,7 +248,10 @@ body {
 }
 
 
-/* HERO */
+/* HERO IMAGE
+   Hovedbildet er låst til en høyde og beskåret med object-fit/object-position
+   slik at fokus ligger på riktig del av bildet.
+*/
 
 .hero-image {
     margin: 0 0 38px;
@@ -224,7 +261,7 @@ body {
     width: 100%;
     display: block;
 
-    height: 420px;
+    height: 600px;
     object-fit: cover;
     object-position: center 25%;
 }
@@ -238,7 +275,9 @@ body {
 }
 
 
-/* INTRO */
+/* INTRO / LEAD
+   Dette er innledningen som skal være større og mer visuell enn resten av teksten.
+*/
 
 .lead {
     font-size: 23px;
@@ -250,7 +289,9 @@ body {
 }
 
 
-/* ARTICLE TEXT */
+/* ARTICLE TEXT
+   Her styres brødteksten, mellomrom og bilder som ligger inne i artikkelen.
+*/
 
 .article-content {
     font-family:
@@ -271,40 +312,24 @@ body {
     overflow: hidden;
 }
 
-.article-image-2 {
-    --image-height: 360px;
-    --image-zoom: 1;
-    --image-position: center bottom;
-}
-
-.article-image-3 {
-    --image-position: center;
-}
-
-.article-image-4 {
-    --image-height: 420px;
-    --image-zoom: 1.1;
-    --image-position: center 70%;
-}
-
 .article-image img {
     width: 100%;
     display: block;
-    height: var(--image-height);
+    height: 550px;
+    zoom: 1.5;
     object-fit: cover;
-    object-position: var(--image-position);
+    object-position: center 25%;
     transform: scale(var(--image-zoom));
 }
 
-.article-image-3 img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 360px;
-    margin: 0 auto;
-    object-fit: contain;
-    object-position: center;
-    transform: none;
+.article-image-4 img {
+     width: 100%;
+    display: block;
+    height: 550px;
+    zoom: 1.5;
+    object-fit: cover;
+    object-position: center bottom;
+    transform: scale(var(--image-zoom));
 }
 
 .article-image figcaption {
@@ -323,7 +348,9 @@ body {
 }
 
 
-/* QUOTE */
+/* QUOTE
+   Sitatseksjonen får tydelig venstremarg og rød kant for å skille seg fra vanlig tekst.
+*/
 
 blockquote {
     border-left: 5px solid #e21d38;
@@ -353,6 +380,8 @@ blockquote cite {
 
 /* =========================
    RELATED NEWS
+   Den nederste delen med flere nyheter bruker grid for to kolonner og lager visuelle kort
+   som peker videre til andre artikler.
 ========================= */
 
 .related {
@@ -384,16 +413,21 @@ blockquote cite {
 
 .news-grid {
     display: grid;
+
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
 }
 
 
-/* NEWS CARD */
+/* NEWS CARD
+   Hvert kort inneholder bilde, kategori, overskrift og kort tekst.
+   Hele kortet er klikkbart for å navigere til en ny side.
+*/
 
 .news-card {
     background: transparent;
     cursor: pointer;
+
 }
 
 .news-card img {
@@ -438,6 +472,7 @@ blockquote cite {
 
 /* =========================
    FOOTER
+   Bunnområdet med nettstedets info og lenker.
 ========================= */
 
 footer {
@@ -499,6 +534,7 @@ footer {
 
 /* =========================
    MOBILE
+   Justerer meny, tekststørrelser og kolonner når skjermen blir liten.
 ========================= */
 
 @media (max-width: 800px) {
@@ -509,22 +545,15 @@ footer {
 
     .main-nav {
         display: none;
-
         position: absolute;
-
         left: 0;
         right: 0;
         top: 70px;
-
         background: white;
-
         border-bottom: 1px solid #ddd;
-
         padding: 20px 25px;
-
         flex-direction: column;
         align-items: flex-start;
-
         gap: 18px;
     }
 
@@ -533,7 +562,7 @@ footer {
     }
 
     .menu-button {
-        display: block;
+        display: inline-flex;
     }
 
     .article {
@@ -565,6 +594,7 @@ footer {
 
 /* =========================
    SMALL MOBILE
+   Fine-tunerer ekstra små skjermer slik at tekst og bilder ikke blir for brede.
 ========================= */
 
 @media (max-width: 480px) {
@@ -595,5 +625,4 @@ footer {
         font-size: 22px;
         padding-left: 18px;
     }
-
 }
