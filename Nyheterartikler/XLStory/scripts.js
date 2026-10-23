@@ -18,14 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	sliderContainers.forEach(function (container, index) {
 		const rangeInput = container.querySelector('.slider-range');
+		const imgAfter = container.querySelector('.img-after');
 		const imgBefore = container.querySelector('.img-before');
 		const divider = container.querySelector('.slider-divider');
 		const section = container.closest('section');
 
 		function updateSlider(value) {
-			const amount = 1 - Number(value) / 100;
+			const sliderValue = Number(value);
+			const amount = sliderValue / 100;
 
-			imgBefore.style.clipPath = `polygon(0 0, ${value}% 0, ${value}% 100%, 0 100%)`;
+			imgAfter.style.clipPath = `polygon(0 0, ${sliderValue}% 0, ${sliderValue}% 100%, 0 100%)`;
 			divider.style.left = `${value}%`;
 			section.style.backgroundColor = mixColors(
 				backgroundColors[index][0],
@@ -37,6 +39,21 @@ document.addEventListener('DOMContentLoaded', function () {
 		rangeInput.addEventListener('input', function (event) {
 			updateSlider(event.target.value);
 		});
+
+		if (container.classList.contains('click-to-toggle')) {
+			function toggleImage() {
+				rangeInput.value = rangeInput.value === '100' ? '0' : '100';
+				updateSlider(rangeInput.value);
+			}
+
+			container.addEventListener('click', toggleImage);
+			container.addEventListener('keydown', function (event) {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					toggleImage();
+				}
+			});
+		}
 
 		updateSlider(rangeInput.value);
 	});

@@ -67,6 +67,46 @@ section {
 	margin-bottom: 35px;
 }
 
+.info-box {
+	width: 100%;
+	max-width: 850px;
+	margin-top: 28px;
+	text-align: left;
+	border: 1px solid rgba(56, 239, 125, 0.45);
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.info-box summary {
+	padding: 18px 24px;
+	color: #38ef7d;
+	font-weight: 700;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+.info-content {
+	padding: 0 24px 22px;
+}
+
+.info-content article + article {
+	margin-top: 24px;
+	padding-top: 20px;
+	border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.info-content h2 {
+	font-size: 1.5rem;
+	margin: 14px 0 8px;
+}
+
+.info-content p {
+	font-size: 1.05rem;
+	line-height: 1.7;
+	margin-bottom: 12px;
+}
+
 .section-tag {
 	display: inline-block;
 	font-size: 0.8rem;
@@ -120,6 +160,23 @@ p {
 	background-color: #000;
 }
 
+.click-to-toggle {
+	cursor: pointer;
+}
+
+.click-to-toggle .slider-divider {
+	display: none;
+}
+
+.click-to-toggle .slider-range {
+	pointer-events: none;
+}
+
+.click-to-toggle:focus-visible {
+	outline: 3px solid #38ef7d;
+	outline-offset: 4px;
+}
+
 .slider-img {
 	position: absolute;
 	top: 0;
@@ -130,11 +187,15 @@ p {
 	pointer-events: none;
 }
 
-.img-after { z-index: 1; }
+.img-after {
+	z-index: 2;
+	clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
 
 .img-before {
-	z-index: 2;
-	clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+	z-index: 1;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	filter: grayscale(100%);
 }
 
 .slider-range {
