@@ -322,6 +322,12 @@ button {
     transform: scale(var(--image-zoom));
 }
 
+.article-image-1 img {
+    object-position: center 68%;
+    transform: scale(1.25);
+    transform-origin: center center;
+}
+
 .article-image-4 img {
      width: 100%;
     display: block;
@@ -436,6 +442,11 @@ blockquote cite {
     object-fit: cover;
 
     display: block;
+}
+
+.education-card-image {
+    object-fit: cover;
+    object-position: center 72%;
 }
 
 .card-content {

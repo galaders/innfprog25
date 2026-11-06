@@ -438,6 +438,11 @@ blockquote cite {
     display: block;
 }
 
+.education-card-image {
+    object-fit: cover !important;
+    object-position: center 72%;
+}
+
 .card-content {
     padding: 28px 32px 10px;
 }

@@ -274,7 +274,7 @@ button {
 
     height: 600px;
     object-fit: cover;
-    object-position: center 25%;
+    object-position: center 50%;
 }
 
 .hero-image figcaption {
@@ -339,8 +339,12 @@ button {
     height: 550px;
     zoom: 1.5;
     object-fit: cover;
-    object-position: center bottom;
+    object-position: center 75%;
     transform: scale(var(--image-zoom));
+}
+
+.article-image-2 img {
+    object-position: center top;
 }
 
 .article-image figcaption {
