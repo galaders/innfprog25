@@ -344,7 +344,9 @@ button {
 }
 
 .article-image-2 img {
-    object-position: center top;
+    zoom: 1;
+    object-position: center 50%;
+    transform: none;
 }
 
 .article-image figcaption {

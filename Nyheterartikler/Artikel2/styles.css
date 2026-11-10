@@ -346,6 +346,7 @@ button {
     padding-top: 8px;
 }
 
+.article-image-1 figcaption,
 .article-image-2 figcaption,
 .article-image-4 figcaption {
     position: relative;
