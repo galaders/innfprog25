@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En ball, to mål og ingen voksne – hvor ble det av løkka?</title>
+    <style>
+        /* CSS for å etterligne NRK-stilen */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #222222;
+            --text-light: #555555;
+            --link-color: #0056b3;
+            --progress-bg: #0056b3;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --text-light: #aaaaaa;
+            --link-color: #4da3ff;
+            --progress-bg: #4da3ff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Fremdriftslinje */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: var(--progress-bg);
+            width: 0%;
+        }
+
+        /* Navigasjon/Toppmeny */
+        header {
+            border-bottom: 1px solid #ccc;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        button.theme-toggle {
+            background: none;
+            border: 1px solid var(--text-color);
+            color: var(--text-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        button.theme-toggle:hover {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Hovedinnhold */
+        main {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px 20px 60px 20px;
+        }
+
+        article h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .ingress {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        figure {
+            margin: 0 -20px 30px -20px; /* Lar bildet gå helt ut i kantene på mobil */
+        }
+
+        figure img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        figcaption {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            padding: 10px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        article h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        article p {
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+        }
+
+        .quote {
+            border-left: 4px solid var(--progress-bg);
+            padding-left: 15px;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin: 30px 0;
+            color: var(--text-light);
+        }
+
+        /* Responsivitet */
+        @media (min-width: 768px) {
+            figure {
+                margin: 0 0 30px 0;
+            }
+            figcaption {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Lese-fremdriftslinje -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- Toppmeny -->
+    <header>
+        <div class="logo">NYHETER</div>
+        <button class="theme-toggle" id="themeBtn">Bytt til mørkt tema</button>
+    </header>
+
+    <main>
+        <article>
+            <h1>En ball, to mål og ingen voksne – hvor ble det av løkka?</h1>
+            
+            <p class="ingress">Før samlet barna seg på løkka med en ball og spilte til mørket kom. Ingen faste treningstider, ingen påmelding og ingen voksne som bestemte. I dag er fotballen mer organisert enn noen gang. Men hva skjedde egentlig med den spontane fotballgleden i Halden?[cite: 2]</p>
+
+            <figure>
+                <!-- Her settes det forespurte bildet inn -->
+                <img src="images_4.jpg" alt="Grønn fotballbane i Halden med tribuner">
+                <figcaption>LØKKA: Fra barndommens uorganiserte fotball til dagens moderne anlegg. Foto: Privat / Illustrasjon</figcaption>
+            </figure>
+
+            <h2>Fra barndommens grusbane til dagens stadion</h2>
+            <p>For Dag Morten, som i dag jobber som vaktmester ved Tistedalen stadion, begynte fotballgleden rett utenfor barndomshjemmet[cite: 2].</p>
+            <p>Han vokste opp like ved stadion. Etter skolen samlet barna i nabolaget seg på grusbanen, fant fram en ball og spilte til kvelden[cite: 2].</p>
+            
+            <div class="quote">
+                – Løkkefotball var det vi startet med da vi var unger. Jeg er født og oppvokst i huset du ser rett frem der, så jeg hadde kort vei til stadion[cite: 2].
+            </div>
+
+            <p>Den gangen var det verken faste treningstider eller organiserte øvelser. Barna bestemte selv hvem som skulle spille, hvordan lagene skulle fordeles, og når kampen var over[cite: 2].</p>
+            <p>– I løkkefotballen sparket vi bare ball. Vi tenkte ikke på noe annet[cite: 2].</p>
+            <p>I dag ser Dag Morten en helt annen fotballhverdag. Barn begynner tidligere med organisert trening, og klubbene legger større vekt på utvikling, teknikk og inkludering. Men han mener ikke at alt nødvendigvis var bedre før[cite: 2].</p>
+
+            <h2>Ikke alle ble valgt på løkka</h2>
+            <p>Selv om løkkefotballen forbindes med frihet og fellesskap, hadde den også en bakside[cite: 2].</p>
+            <p>Dag Morten husker hvordan barna valgte lag, og hvordan de som ikke var like gode, ofte ble stående igjen til slutt[cite: 2].</p>
+            
+            <div class="quote">
+                – Var du dårlig, var du den siste som ble valgt. Sånn er det ikke i dag[cite: 2].
+            </div>
+
+            <p>Han mener den organiserte fotballen har blitt flinkere til å ta vare på barn med ulike ferdigheter[cite: 2].</p>
+            <p>Dermed oppstår et interessant spørsmål: Har fotballen mistet noe av spontaniteten, men samtidig blitt mer inkluderende?[cite: 2]</p>
+
+            <h2>– Ting er mye mer organisert</h2>
+            <p>Mari, som leder fotballavdelingen i Tistedalens Turn- og Idrettsforening (TTIF), kjenner igjen utviklingen[cite: 2].</p>
+            <p>– Løkkefotball er egentlig ikke et begrep vi bruker så mye lenger. Nå er det mer organisert[cite: 2].</p>
+            <p>Hun beskriver løkkefotball som uorganisert spill mellom venner og bekjente, uten faste treningstider eller krav om oppmøte[cite: 2].</p>
+            <p>Samtidig peker hun på at mange ungdommer kan oppleve den organiserte fotballen som for seriøs. I TTIF forsøker klubben å gi plass til ulike ambisjoner. Noen ønsker å trene flere ganger i uka, mens andre vil spille fotball mest for det sosiale[cite: 2].</p>
+            <p>Klubbens baner er åpne for fri bruk når de ikke benyttes til organisert aktivitet. Likevel forteller Mari at hun ikke ser store grupper med barn som spiller på egen hånd[cite: 2].</p>
+            <p>– Jeg er her av og til i helgene, og da er det noen som flyr her nede og spiller. Men det er ikke kjempestore grupper[cite: 2].</p>
+
+            <h2>Løkkefotballen har flyttet på seg</h2>
+            <p>En tidligere kultursjef, som har bodd i Halden i 37 år, mener løkkefotballen gradvis har fått mindre plass i barnas hverdag. – Løkkefotballen forsvinner jo mer og mer, og aktiviteten blir mer organisert[cite: 2].</p>
+            <p>Samtidig understreker han at den frie fotballen ikke nødvendigvis er borte. Tidligere møttes barna på åpne løkker i boligområdene. I dag foregår mye av den samme aktiviteten på skoleområder, i ballbinger og på idrettsanlegg[cite: 2].</p>
+            <p>Han trekker blant annet fram Låby skole og åpne deler av fotballanleggene i Halden som steder der barn fortsatt spiller uten organiserte treninger[cite: 2].</p>
+            <p>Også lekeplassene har endret seg. Noen gamle løkker har grodd igjen, mens andre har blitt oppgradert til moderne nærmiljøanlegg. Dermed er det ikke bare fotballen som har forandret seg, men også stedene der barn møtes[cite: 2].</p>
+
+            <h2>Trenger barn fortsatt løkka?</h2>
+            <p>I dag kan barn begynne med organisert fotball allerede som fire- eller femåringer. Foreldre følger opp treninger, kamper og aktiviteter, mens fritiden i større grad planlegges[cite: 2].</p>
+            <p>Den tidligere kultursjefen mener likevel at den frie leken fortsatt har en viktig funksjon. På løkka bestemmer barna reglene selv. De lærer å samarbeide, løse uenigheter og skape aktivitet uten at voksne organiserer alt[cite: 2].</p>
+            <p>Samtidig viser erfaringene fra TTIF at organiserte klubber kan gi barn trygghet, tilhørighet og muligheter de kanskje ikke hadde fått på den gamle løkka[cite: 2].</p>
+
+        </article>
+    </main>
+
+    <script>
+        // JavaScript for fremdriftslinje
+        window.onscroll = function() { updateProgressBar() };
+
+        function updateProgressBar() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+
+        // JavaScript for lyst/mørkt tema (Dark Mode)
+        const themeBtn = document.getElementById('themeBtn');
+        
+        themeBtn.addEventListener('click', () => {
+            const body = document.body;
+            const isDark = body.getAttribute('data-theme') === 'dark';
+            
+            if (isDark) {
+                body.removeAttribute('data-theme');
+                themeBtn.textContent = 'Bytt til mørkt tema';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.textContent = 'Bytt til lyst tema';
+            }
+        });
+    </script>
+</body>
+</html>

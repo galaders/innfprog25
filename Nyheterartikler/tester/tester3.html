@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En ball, to mål og ingen voksne</title>
+    <style>
+        /* VG Spesial-inspirert CSS */
+        :root {
+            --vg-red: #E60000;
+            --bg-dark: #0a0a0a;
+            --card-bg: rgba(15, 15, 15, 0.92);
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+        }
+
+        /* Toppstripe */
+        .vg-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            z-index: 100;
+            border-bottom: 3px solid var(--vg-red);
+            text-transform: uppercase;
+        }
+
+        /* Fast bakgrunnsbilde */
+        .fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('images_4.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: brightness(0.4) contrast(1.1);
+        }
+
+        /* Hovedtittel (Hero) */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .kicker {
+            color: var(--vg-red);
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin: 0;
+            text-shadow: 2px 2px 20px rgba(0,0,0,1);
+            max-width: 900px;
+            text-transform: uppercase;
+        }
+
+        .hero-section p.ingress {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin-top: 30px;
+            line-height: 1.5;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.8);
+        }
+
+        /* Tidslinje / Innholdskort */
+        .story-container {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 50px 20px 150px 20px;
+        }
+
+        .story-card {
+            background: var(--card-bg);
+            border-left: 5px solid var(--vg-red);
+            padding: 40px 30px;
+            margin-bottom: 10vh;
+            border-radius: 4px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+            
+            /* Animasjon for innhold */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease-out;
+        }
+
+        .story-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-card h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .story-card p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #dcdcdc;
+        }
+
+        .quote-block {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-left: 3px solid #666;
+        }
+
+        .quote-block p {
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: bold;
+            margin: 0;
+            color: #fff;
+        }
+
+        /* Responsivitet for mobil */
+        @media (max-width: 768px) {
+            .hero-section h1 { font-size: 2.8rem; }
+            .hero-section p.ingress { font-size: 1.1rem; }
+            .story-card { padding: 25px 20px; }
+            .story-card h2 { font-size: 1.6rem; }
+            .story-card p { font-size: 1.05rem; }
+            .quote-block p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- VG Spesial Toppstripe -->
+    <div class="vg-header">
+        Spesial
+    </div>
+
+    <!-- Fast bakgrunnsbilde -->
+    <div class="fixed-bg"></div>
+
+    <!-- Hovedtittel -->
+    <section class="hero-section">
+        <div class="kicker">Halden-fotballen</div>
+        <h1>En ball, to mål og ingen voksne</h1>
+        <p class="ingress">Før samlet barna seg på løkka med en ball og spilte til mørket kom. Ingen faste treningstider, ingen påmelding og ingen voksne som bestemte. Men hva skjedde egentlig med den spontane fotballgleden?[cite: 2]</p>
+    </section>
+
+    <!-- Rullende innholdskort -->
+    <main class="story-container">
+        
+        <div class="story-card">
+            <h2>Fra barndommens grusbane</h2>
+            <p>For Dag Morten, som i dag jobber som vaktmester ved Tistedalen stadion, begynte fotballgleden rett utenfor barndomshjemmet[cite: 2].</p>
+            <p>Han vokste opp like ved stadion. Etter skolen samlet barna i nabolaget seg på grusbanen, fant fram en ball og spilte til kvelden[cite: 2]. Den gangen var det verken faste treningstider eller organiserte øvelser. Barna bestemte selv hvem som skulle spille, hvordan lagene skulle fordeles, og når kampen var over[cite: 2].</p>
+            
+            <div class="quote-block">
+                <p>«Løkkefotball var det vi startet med da vi var unger. Vi sparket bare ball. Vi tenkte ikke på noe annet.»[cite: 2]</p>
+            </div>
+            
+            <p>I dag ser Dag Morten en helt annen fotballhverdag. Barn begynner tidligere med organisert trening, og klubbene legger større vekt på utvikling, teknikk og inkludering[cite: 2].</p>
+        </div>
+
+        <div class="story-card">
+            <h2>Baksiden av medaljen</h2>
+            <p>Selv om løkkefotballen forbindes med frihet og fellesskap, hadde den også en bakside. Dag Morten husker hvordan barna valgte lag, og hvordan de som ikke var like gode, ofte ble stående igjen til slutt[cite: 2].</p>
+            
+            <div class="quote-block">
+                <p>«Var du dårlig, var du den siste som ble valgt. Sånn er det ikke i dag.»[cite: 2]</p>
+            </div>
+            
+            <p>Han mener den organiserte fotballen har blitt flinkere til å ta vare på barn med ulike ferdigheter. Dermed oppstår et interessant spørsmål: Har fotballen mistet noe av spontaniteten, men samtidig blitt mer inkluderende?[cite: 2]</p>
+        </div>
+
+        <div class="story-card">
+            <h2>Mye mer organisert</h2>
+            <p>Mari, som leder fotballavdelingen i Tistedalens Turn- og Idrettsforening (TTIF), kjenner igjen utviklingen[cite: 2].</p>
+            <p>– Løkkefotball er egentlig ikke et begrep vi bruker så mye lenger. Nå er det mer organisert, forteller hun. Hun beskriver løkkefotball som uorganisert spill mellom venner og bekjente, uten faste treningstider eller krav om oppmøte[cite: 2].</p>
+            <p>Klubbens baner er åpne for fri bruk når de ikke benyttes til organisert aktivitet. Likevel forteller Mari at hun ikke ser store grupper med barn som spiller på egen hånd. – Jeg er her av og til i helgene, og da er det noen som flyr her nede og spiller. Men det er ikke kjempestore grupper[cite: 2].</p>
+        </div>
+
+        <div class="story-card">
+            <h2>Har flyttet på seg</h2>
+            <p>En tidligere kultursjef, som har bodd i Halden i 37 år, mener løkkefotballen gradvis har fått mindre plass i barnas hverdag. Samtidig understreker han at den frie fotballen ikke nødvendigvis er borte[cite: 2].</p>
+            <p>Tidligere møttes barna på åpne løkker i boligområdene. I dag foregår mye av den samme aktiviteten på skoleområder, i ballbinger og på idrettsanlegg, som for eksempel ved Låby skole[cite: 2].</p>
+            <p>Også lekeplassene har endret seg. Noen gamle løkker har grodd igjen, mens andre har blitt oppgradert til moderne nærmiljøanlegg[cite: 2].</p>
+        </div>
+
+        <div class="story-card">
+            <h2>Trenger de løkka?</h2>
+            <p>I dag kan barn begynne med organisert fotball allerede som fire- eller femåringer. Foreldre følger opp treninger, kamper og aktiviteter, mens fritiden i større grad planlegges[cite: 2].</p>
+            <p>Den tidligere kultursjefen mener likevel at den frie leken fortsatt har en viktig funksjon. På løkka bestemmer barna reglene selv. De lærer å samarbeide, løse uenigheter og skape aktivitet uten at voksne organiserer alt[cite: 2].</p>
+            <p>Samtidig viser erfaringene fra TTIF at organiserte klubber kan gi barn trygghet, tilhørighet og muligheter de kanskje ikke hadde fått på den gamle løkka[cite: 2].</p>
+        </div>
+
+    </main>
+
+    <script>
+        // JavaScript for å detektere når kortene scroller inn i skjermbildet
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.story-card');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // Legger til klassen 'in-view' når kortet er 15% synlig
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+</body>
+</html>

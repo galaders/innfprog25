@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En ball, to mål og ingen voksne – hvor ble det av løkka?</title>
+    <style>
+        /* Grunnleggende oppsett for XL-stil */
+        :root {
+            --bg-color: #000000;
+            --text-color: #f1f1f1;
+            --accent-color: #ff3b30;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        /* Fullskjermsbilde med Parallax-effekt */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('images_4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Gir parallax-effekt */
+            text-align: center;
+        }
+
+        /* Mørk gradient over bildet slik at teksten blir leselig */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero p.ingress {
+            font-size: 1.5rem;
+            font-weight: 300;
+            line-height: 1.4;
+            color: #d1d1d1;
+        }
+
+        /* Hovedinnhold og Scrollytelling-blokker */
+        .content-wrapper {
+            background-color: var(--bg-color);
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+        }
+
+        .text-block {
+            max-width: 650px;
+            margin: 0 auto 10vh auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .text-block.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        p {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #cccccc;
+        }
+
+        /* Sitat-design typisk for XL */
+        .xl-quote {
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 1.3;
+            text-align: center;
+            margin: 15vh auto;
+            max-width: 800px;
+            color: #ffffff;
+        }
+
+        .xl-quote span {
+            display: block;
+            font-size: 1rem;
+            font-weight: normal;
+            color: #888;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Responsivitet */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p.ingress { font-size: 1.2rem; }
+            h2 { font-size: 1.8rem; }
+            p { font-size: 1.1rem; }
+            .xl-quote { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Seksjon med fullskjermsbilde -->
+    <header class="hero">
+        <div class="hero-content text-block visible">
+            <h1>En ball, to mål og ingen voksne</h1>
+            <p class="ingress">Hvor ble det av løkka? Før samlet barna seg med en ball og spilte til mørket kom. I dag er fotballen mer organisert enn noen gang. Hva skjedde med den spontane gleden i Halden?</p>
+        </div>
+    </header>
+
+    <!-- Historiefortelling (Scrollytelling) -->
+    <main class="content-wrapper">
+        
+        <div class="text-block fade-in-section">
+            <h2>Fra barndommens grusbane til dagens stadion</h2>
+            <p>For Dag Morten, som i dag jobber som vaktmester ved Tistedalen stadion, begynte fotballgleden rett utenfor barndomshjemmet.</p>
+            <p>Han vokste opp like ved stadion. Etter skolen samlet barna i nabolaget seg på grusbanen, fant fram en ball og spilte til kvelden.</p>
+            <p>Den gangen var det verken faste treningstider eller organiserte øvelser. Barna bestemte selv hvem som skulle spille, hvordan lagene skulle fordeles, og når kampen var over.</p>
+            <p>I dag ser Dag Morten en helt annen fotballhverdag. Barn begynner tidligere med organisert trening, og klubbene legger større vekt på utvikling, teknikk og inkludering.</p>
+        </div>
+
+        <div class="text-block fade-in-section xl-quote">
+            «I løkkefotballen sparket vi bare ball. Vi tenkte ikke på noe annet.»
+            <span>– Dag Morten, Vaktmester</span>
+        </div>
+
+        <div class="text-block fade-in-section">
+            <h2>Ikke alle ble valgt på løkka</h2>
+            <p>Selv om løkkefotballen forbindes med frihet og fellesskap, hadde den også en bakside. Dag Morten husker hvordan barna valgte lag, og hvordan de som ikke var like gode, ofte ble stående igjen til slutt.</p>
+            <p>– Var du dårlig, var du den siste som ble valgt. Sånn er det ikke i dag, forteller han.</p>
+            <p>Han mener den organiserte fotballen har blitt flinkere til å ta vare på barn med ulike ferdigheter. Dermed oppstår et interessant spørsmål: Har fotballen mistet noe av spontaniteten, men samtidig blitt mer inkluderende?</p>
+        </div>
+
+        <div class="text-block fade-in-section">
+            <h2>– Ting er mye mer organisert</h2>
+            <p>Mari, som leder fotballavdelingen i Tistedalens Turn- og Idrettsforening (TTIF), kjenner igjen utviklingen. Hun beskriver løkkefotball som uorganisert spill mellom venner, uten faste tider.</p>
+            <p>I TTIF forsøker klubben å gi plass til ulike ambisjoner. Noen ønsker å trene flere ganger i uka, mens andre vil spille fotball mest for det sosiale. Klubbens baner er åpne for fri bruk når de ikke benyttes til organisert aktivitet.</p>
+            <p>Likevel forteller Mari at hun ikke ser store grupper med barn som spiller på egen hånd i helgene.</p>
+        </div>
+
+        <div class="text-block fade-in-section xl-quote">
+            «Løkkefotball er egentlig ikke et begrep vi bruker så mye lenger. Nå er det mer organisert.»
+            <span>– Mari, TTIF</span>
+        </div>
+
+        <div class="text-block fade-in-section">
+            <h2>Løkkefotballen har flyttet på seg</h2>
+            <p>En tidligere kultursjef i Halden mener løkkefotballen gradvis har fått mindre plass i barnas hverdag, men understreker at den frie fotballen ikke nødvendigvis er borte.</p>
+            <p>Tidligere møttes barna på åpne løkker i boligområdene. I dag foregår mye av den samme aktiviteten på skoleområder, i ballbinger og på idrettsanlegg, som for eksempel ved Låby skole.</p>
+            <p>Også lekeplassene har endret seg. Noen gamle løkker har grodd igjen, mens andre har blitt oppgradert til moderne nærmiljøanlegg.</p>
+        </div>
+
+        <div class="text-block fade-in-section">
+            <h2>Trenger barn fortsatt løkka?</h2>
+            <p>I dag kan barn begynne med organisert fotball allerede som fire- eller femåringer. Foreldre følger opp treninger og kamper, og fritiden planlegges.</p>
+            <p>Den tidligere kultursjefen mener likevel at den frie leken har en viktig funksjon. På løkka bestemmer barna reglene selv og lærer å løse uenigheter uten voksne.</p>
+            <p>Samtidig viser erfaringene fra TTIF at organiserte klubber kan gi barn trygghet, tilhørighet og muligheter de kanskje ikke hadde fått på den gamle grusbanen.</p>
+        </div>
+
+    </main>
+
+    <script>
+        // JavaScript for å lage "fade-in"-effekten når du scroller (Intersection Observer)
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15 // Starter animasjonen når 15% av elementet er synlig
+            });
+
+            const hiddenSections = document.querySelectorAll('.fade-in-section');
+            hiddenSections.forEach((el) => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
