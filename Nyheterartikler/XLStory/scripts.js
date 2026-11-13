@@ -54,9 +54,17 @@ document.addEventListener("DOMContentLoaded", function() {
             // Fader ut raskere ved å starte ut-fadingen litt før 
             let fadeOut = (rect.bottom - viewportHeight * 0.2) / (viewportHeight * 0.4);
             
-            // NY KODE: Hindre at scene 4 fader ut på slutten av siden
             if (scene.classList.contains('fourth-scene')) {
-                fadeOut = 1; // Holder verdien på maks, slik at den aldri forsvinner i bunnen
+                const footerDetails = document.querySelector('.footer-details');
+                const footerBrand = document.querySelector('.footer-brand');
+                const footerDetailsTop = footerDetails.getBoundingClientRect().top;
+                const footerBrandTop = footerBrand.getBoundingClientRect().top;
+                const footerFadeDistance = footerBrandTop - footerDetailsTop;
+                const footerFadeProgress = (
+                    viewportHeight - footerDetailsTop
+                ) / footerFadeDistance;
+
+                fadeOut = 1 - footerFadeProgress;
             }
             
             // Beregner opacity slik at den blir maksimalt 1, og aldri under 0
@@ -190,8 +198,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 ? 'Halden Stadium nå'
                 : 'Halden Stadium før';
             stadiumCaption.textContent = showingCurrentStadium
-                ? 'Trykk på meg for å se forskjell på Halden Stadium – Får nå tekst satt inn ferdig'
-                : 'Trykk på meg for å se forskjell på Halden Stadium – Sett inn tekst for nå';
+                ? 'Trykk på meg for å se forskjell på Halden Stadium – Bilde fra 2026-tallet'
+                : 'Trykk på meg for å se forskjell på Halden Stadium – Bilde fra 1930-tallet';
         });
     }
 });
