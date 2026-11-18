@@ -11,7 +11,24 @@ document.addEventListener("DOMContentLoaded", function() {
             
             let fadeIn;
 
-            if (
+            if (scene.classList.contains('moving-football-scene')) {
+                const sceneHeading = scene.querySelector('h2');
+                const followingBlock = scene.nextElementSibling;
+                const headingTop = sceneHeading.getBoundingClientRect().top;
+                const followingBlockTop = followingBlock.getBoundingClientRect().top;
+                const fadeInProgress = (
+                    viewportHeight - headingTop
+                ) / (viewportHeight * 0.65);
+                const fadeOutProgress = (
+                    followingBlockTop - viewportHeight * 0.2
+                ) / (viewportHeight * 0.65);
+
+                fadeIn = Math.min(
+                    0.55,
+                    Math.max(0, fadeInProgress * 0.55),
+                    Math.max(0, Math.min(1, fadeOutProgress)) * 0.55
+                );
+            } else if (
                 scene.classList.contains('opening-scene') &&
                 !scene.classList.contains('second-scene') &&
                 !scene.classList.contains('fourth-scene')
@@ -107,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.addEventListener('resize', scheduleSceneUpdate);
     updateSceneBackgrounds(); // Kjør en gang ved oppstart for å sette riktig opacity umiddelbart
 
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
     let lockedScrollPosition = 0;
     const galleryItemPositions = new Map();
 
@@ -118,59 +135,64 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    galleryItems.forEach((item) => {
+    const restoreGalleryItem = (item) => {
+        const position = galleryItemPositions.get(item);
+        item.classList.remove('is-zoomed');
+        position.gallery.insertBefore(
+            item,
+            position.nextSibling && position.nextSibling.parentElement === position.gallery
+                ? position.nextSibling
+                : null
+        );
+    };
+
+    const showZoomedItem = (item) => {
+        const gallery = galleryItemPositions.get(item).gallery;
+        const galleryTextBlock = gallery.closest('.text-block');
+        const currentItem = galleryItems.find((galleryItem) =>
+            galleryItem.classList.contains('is-zoomed')
+        );
+
+        if (currentItem && currentItem !== item) {
+            restoreGalleryItem(currentItem);
+        }
+
+        document.body.appendChild(item);
+        item.classList.add('is-zoomed');
+        gallery.classList.add('has-zoomed');
+        galleryTextBlock.classList.add('gallery-open');
+        document.documentElement.classList.add('gallery-zoomed');
+        document.body.classList.add('gallery-zoomed');
+
+        if (!currentItem) {
+            lockedScrollPosition = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${lockedScrollPosition}px`;
+            document.body.style.width = '100%';
+        }
+    };
+
+    const closeZoom = (item) => {
+        const position = galleryItemPositions.get(item);
+        const galleryTextBlock = position.gallery.closest('.text-block');
+        restoreGalleryItem(item);
+        position.gallery.classList.remove('has-zoomed');
+        galleryTextBlock.classList.remove('gallery-open');
+        document.documentElement.classList.remove('gallery-zoomed');
+        document.body.classList.remove('gallery-zoomed');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, lockedScrollPosition);
+    };
+
+    galleryItems.forEach((item, index) => {
         const toggleZoom = () => {
-            const itemPosition = galleryItemPositions.get(item);
-            const gallery = itemPosition.gallery;
-            const galleryTextBlock = gallery.closest('.text-block');
-            const wasZoomed = gallery.classList.contains('has-zoomed');
-            const shouldZoom = !item.classList.contains('is-zoomed');
-
-            if (shouldZoom) {
-                galleryItems.forEach((galleryItem) => {
-                    if (!galleryItem.classList.contains('is-zoomed')) {
-                        return;
-                    }
-
-                    galleryItem.classList.remove('is-zoomed');
-                    const position = galleryItemPositions.get(galleryItem);
-                    const nextSibling = position.nextSibling;
-                    position.gallery.insertBefore(
-                        galleryItem,
-                        nextSibling && nextSibling.parentElement === position.gallery
-                            ? nextSibling
-                            : null
-                    );
-                });
-
-                document.body.appendChild(item);
+            if (item.classList.contains('is-zoomed')) {
+                closeZoom(item);
             } else {
-                gallery.insertBefore(
-                    item,
-                    itemPosition.nextSibling && itemPosition.nextSibling.parentElement === gallery
-                        ? itemPosition.nextSibling
-                        : null
-                );
+                showZoomedItem(item);
             }
-
-            gallery.classList.toggle('has-zoomed', shouldZoom);
-            galleryTextBlock.classList.toggle('gallery-open', shouldZoom);
-            document.documentElement.classList.toggle('gallery-zoomed', shouldZoom);
-            document.body.classList.toggle('gallery-zoomed', shouldZoom);
-
-            if (shouldZoom && !wasZoomed) {
-                lockedScrollPosition = window.scrollY;
-                document.body.style.position = 'fixed';
-                document.body.style.top = `-${lockedScrollPosition}px`;
-                document.body.style.width = '100%';
-            } else if (!shouldZoom) {
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.width = '';
-                window.scrollTo(0, lockedScrollPosition);
-            }
-
-            item.classList.toggle('is-zoomed', shouldZoom);
         };
 
         item.addEventListener('click', toggleZoom);
@@ -180,6 +202,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 toggleZoom();
             }
         });
+
+        const previousButton = item.querySelector('.gallery-nav-previous');
+        if (previousButton) {
+            previousButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (index > 0) {
+                    showZoomedItem(galleryItems[index - 1]);
+                }
+            });
+        }
+
+        const nextButton = item.querySelector('.gallery-nav-next');
+        if (nextButton) {
+            nextButton.addEventListener('click', (event) => {
+                event.stopPropagation();
+                if (index < galleryItems.length - 1) {
+                    showZoomedItem(galleryItems[index + 1]);
+                }
+            });
+        }
     });
 
     // Funksjon for "før og nå" klikkbilde (stadium)

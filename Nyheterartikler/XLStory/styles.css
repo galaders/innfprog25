@@ -161,13 +161,20 @@ body.gallery-zoomed {
     padding-bottom: 120px;
 }
 
+.moving-football-scene {
+    display: block;
+    min-height: auto;
+    padding-top: 40px;
+    padding-bottom: 1px;
+}
+
 .opening-scene::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
         linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 1) 100%),
-        url('Bilder/20260929_113620.jpg');
+        url('Bilder/Skjermbilde 2026-11-17 194920.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -182,10 +189,21 @@ body.gallery-zoomed {
         url('Bilder/20261029_092810.jpg');
 }
 
+.first-scene::before {
+    filter: grayscale(1);
+}
+
 .fourth-scene::before {
     background-image:
         linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 1) 100%),
         url('Bilder/image4.png');
+}
+
+.moving-football-scene::before {
+    background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 35%, rgba(0, 0, 0, 0.9) 100%),
+        url('Bilder/lokkefotball.jpg');
+    background-position: center;
 }
 
 .opening-scene > * {
@@ -230,6 +248,21 @@ body.gallery-zoomed {
     grid-template-columns: 1fr;
 }
 
+.paired-image-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.paired-image-gallery figure {
+    min-width: 0;
+}
+
+.paired-image-gallery .gallery-caption {
+    grid-column: 1 / -1;
+    margin-top: -8px;
+    color: #888;
+    font-size: 1rem;
+}
+
 .text-block.gallery-open {
     transform: none;
 }
@@ -268,6 +301,10 @@ body.gallery-zoomed {
     font-size: 0.85rem;
 }
 
+.gallery-nav {
+    display: none;
+}
+
 body.gallery-zoomed::before {
     content: '';
     position: fixed;
@@ -279,7 +316,7 @@ body.gallery-zoomed::before {
 
 .gallery-item.is-zoomed {
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     z-index: 1000;
     width: min(90vw, 850px);
@@ -291,6 +328,42 @@ body.gallery-zoomed::before {
     pointer-events: auto;
     transform: translate(-50%, -50%) rotate(0) !important;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+}
+
+.gallery-item.is-zoomed .gallery-nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    width: 22%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.gallery-item.is-zoomed .gallery-nav:hover,
+.gallery-item.is-zoomed .gallery-nav:focus-visible {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.gallery-item.is-zoomed .gallery-nav-previous {
+    left: 0;
+}
+
+.gallery-item.is-zoomed .gallery-nav-next {
+    right: 0;
+}
+
+.gallery-nav span {
+    display: inline-block;
+    font-size: 3.5rem;
+    line-height: 1;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .gallery-item.is-zoomed img {
