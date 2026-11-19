@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.scrollTo(0, lockedScrollPosition);
     };
 
-    galleryItems.forEach((item, index) => {
+    galleryItems.forEach((item) => {
         const toggleZoom = () => {
             if (item.classList.contains('is-zoomed')) {
                 closeZoom(item);
@@ -203,12 +203,18 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
+        const gallery = galleryItemPositions.get(item).gallery;
+        const galleryItemsInGroup = galleryItems.filter(
+            (galleryItem) => galleryItemPositions.get(galleryItem).gallery === gallery
+        );
+        const index = galleryItemsInGroup.indexOf(item);
+
         const previousButton = item.querySelector('.gallery-nav-previous');
         if (previousButton) {
             previousButton.addEventListener('click', (event) => {
                 event.stopPropagation();
                 if (index > 0) {
-                    showZoomedItem(galleryItems[index - 1]);
+                    showZoomedItem(galleryItemsInGroup[index - 1]);
                 }
             });
         }
@@ -217,10 +223,37 @@ document.addEventListener("DOMContentLoaded", function() {
         if (nextButton) {
             nextButton.addEventListener('click', (event) => {
                 event.stopPropagation();
-                if (index < galleryItems.length - 1) {
-                    showZoomedItem(galleryItems[index + 1]);
+                if (index < galleryItemsInGroup.length - 1) {
+                    showZoomedItem(galleryItemsInGroup[index + 1]);
                 }
             });
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            const zoomedItem = document.querySelector('.gallery-item.is-zoomed');
+            if (zoomedItem) {
+                closeZoom(zoomedItem);
+            }
+        }
+
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            const zoomedItem = document.querySelector('.gallery-item.is-zoomed');
+            if (!zoomedItem) {
+                return;
+            }
+
+            event.preventDefault();
+            const gallery = galleryItemPositions.get(zoomedItem).gallery;
+            const group = galleryItems.filter(
+                (galleryItem) => galleryItemPositions.get(galleryItem).gallery === gallery
+            );
+            const index = group.indexOf(zoomedItem);
+            const nextIndex = event.key === 'ArrowRight'
+                ? Math.min(index + 1, group.length - 1)
+                : Math.max(index - 1, 0);
+            showZoomedItem(group[nextIndex]);
         }
     });
 
@@ -241,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 : 'Halden Stadium før';
             stadiumCaption.textContent = showingCurrentStadium
                 ? 'Trykk på meg for å se forskjell på Halden Stadium – Bilde fra 2026-tallet'
-                : 'Trykk på meg for å se forskjell på Halden Stadium – Bilde fra 1930-tallet';
+                : 'Trykk på meg for å se forskjell på Halden Stadium – Bilde fra 1930-tallet Bildet er hentet fra Nasjonalbibliotekets bildesamling Halden,Halden stadion, Halden, Østfold';
         });
     }
 });
