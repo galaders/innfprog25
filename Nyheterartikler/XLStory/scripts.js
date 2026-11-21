@@ -231,15 +231,15 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            const zoomedItem = document.querySelector('.gallery-item.is-zoomed');
-            if (zoomedItem) {
-                closeZoom(zoomedItem);
-            }
+        const zoomedItem = document.querySelector('.gallery-item.is-zoomed');
+
+        if ((event.key === 'Escape' || event.key === 'Enter') && zoomedItem) {
+            event.preventDefault();
+            closeZoom(zoomedItem);
+            return;
         }
 
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-            const zoomedItem = document.querySelector('.gallery-item.is-zoomed');
             if (!zoomedItem) {
                 return;
             }
