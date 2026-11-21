@@ -599,6 +599,26 @@ footer {
         font-size: 18px;
     }
 
+    .hero-image img,
+    .article-image img {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        object-position: center;
+        zoom: 1;
+        transform: none;
+    }
+
+    .article-image {
+        overflow: visible;
+    }
+
+    .news-card img {
+        height: auto;
+        object-fit: contain;
+    }
+
     .news-grid {
         grid-template-columns: 1fr;
     }
